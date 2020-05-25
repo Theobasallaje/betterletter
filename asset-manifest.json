@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/betterletter/static/css/main.523f09c5.chunk.css",
+    "main.js": "/betterletter/static/js/main.7137e295.chunk.js",
+    "main.js.map": "/betterletter/static/js/main.7137e295.chunk.js.map",
+    "runtime-main.js": "/betterletter/static/js/runtime-main.e2732c54.js",
+    "runtime-main.js.map": "/betterletter/static/js/runtime-main.e2732c54.js.map",
+    "static/js/2.18c7a0bc.chunk.js": "/betterletter/static/js/2.18c7a0bc.chunk.js",
+    "static/js/2.18c7a0bc.chunk.js.map": "/betterletter/static/js/2.18c7a0bc.chunk.js.map",
+    "index.html": "/betterletter/index.html",
+    "precache-manifest.8a3728f50194374b95868b481476040f.js": "/betterletter/precache-manifest.8a3728f50194374b95868b481476040f.js",
+    "service-worker.js": "/betterletter/service-worker.js",
+    "static/css/main.523f09c5.chunk.css.map": "/betterletter/static/css/main.523f09c5.chunk.css.map",
+    "static/js/2.18c7a0bc.chunk.js.LICENSE.txt": "/betterletter/static/js/2.18c7a0bc.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/betterletter/static/media/logo.ee7cd8ed.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e2732c54.js",
+    "static/js/2.18c7a0bc.chunk.js",
+    "static/css/main.523f09c5.chunk.css",
+    "static/js/main.7137e295.chunk.js"
+  ]
+}
