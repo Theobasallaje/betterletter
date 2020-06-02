@@ -1,21 +1,54 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {Editor, EditorState} from 'draft-js';
-import 'draft-js/dist/Draft.css';
-//import './TextEditor.scss';
+import React, { Component } from 'react';
+import { Editor, EditorState, RichUtils } from 'draft-js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUnderline, faCode } from '@fortawesome/free-solid-svg-icons'
+import './TextEditor.scss';
 
-class TextEditor extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {editorState: EditorState.createEmpty()};
-    this.onChange = editorState => this.setState({editorState});
+class TextEditor extends Component {
+  constructor() {
+    super();
+    this.state = {
+      editorState: EditorState.createEmpty(),
+    };
   }
+
+  onChange = (editorState) => {
+    this.setState({ editorState });
+  };
+
+  handleKeyCommand = (command) => {
+    const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
+
+    if (newState) {
+      this.onChange(newState);
+      return 'handled';
+    }
+
+    return 'not-handled';
+  }
+
+  onUnderlineClick = () => {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
+  }
+
+  onToggleCode = () => {
+    this.onChange(RichUtils.toggleCode(this.state.editorState));
+  }
+
   render() {
     return (
-      <Editor editorState={this.state.editorState} onChange={this.onChange} />
+      <div>
+        {/* <h1>Better Letter</h1> */}
+        <button onClick={this.onUnderlineClick}><FontAwesomeIcon icon={faUnderline} /> Underline</button>
+        <button onClick={this.onToggleCode}><FontAwesomeIcon icon={faCode} /> Code Block</button>
+        <Editor
+          editorState={this.state.editorState}
+          handleKeyCommand={this.handleKeyCommand}
+          onChange={this.onChange}
+        />
+      </div>
     );
   }
 }
-ReactDOM.render(<TextEditor />, document.getElementById('container'));
 
 export default TextEditor;

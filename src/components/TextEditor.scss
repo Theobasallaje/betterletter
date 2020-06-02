@@ -1,28 +1,70 @@
-// .textEdiorPlaceholder {
-//     font-size: large;
-//     margin-left: 10px;
-// }
+body {
+  margin: 0;
+  padding: 2em;
+  background: #333;
+  font-family: sans-serif;
+}
 
-.titleInput {
-    border: none !important;
-    font-size: xx-large;
+.DraftEditor-root {
+  background: #fff;
+  border-radius: 0.3em;
+  padding: 1em;
+}
+
+button {
+  background: #999;
+  color: #fff;
+  border: none;
+  padding: 0.5em;
+  cursor: pointer;
+  margin-bottom: 1em;
+  margin-right: 1em;
+  border-radius: 0.2em;
+}
+
+button:hover {
+  background: #888;
+}
+
+pre {
+  border: 1px solid #ccc;
+  background: #f0f0f0;
+  border-radius: 0.2em;
+  padding: 0.5em;
+  margin: 0;
+}
+
+pre > pre {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from {
+      transform: rotate(0deg);
   }
-  
-  input.titleInput {
-    // padding: 0;
+  to {
+      transform: rotate(360deg);
   }
-  
-  .public-DraftEditorPlaceholder-inner,
-  .DraftEditor-editorContainer {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  
-  .public-DraftEditorPlaceholder-inner {
-    color: #757575;
-  }
-  
-  // .textEditor::placeholder {
-  //     color: #949494!important;
-  // }
-  
+}

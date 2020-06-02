@@ -1,21 +1,13 @@
-import React, { Component } from "react";
-// import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-// import { TextEditor } from "./components/TextEditor";
+import React from 'react';
+import TextEditor from './components/TextEditor';
+import './App.css';
 
-class App extends Component {
-  componentDidMount() {
-  }
-
-  render() {
-    return (
-      <>
-      <h1>Welcome to Better letter...</h1>
-      {/* <Router> */}
-        {/* <Route path="/" exact component={TextEditor} /> */}
-      {/* </Router> */}
-      </>
-    );
-  }
+function App() {
+  return (
+    <>
+      <TextEditor/>
+    </>
+  );
 }
 
 export default App;
