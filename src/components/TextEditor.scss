@@ -1,14 +1,9 @@
 body {
-  margin: 0;
-  padding: 2em;
-  background: #333;
+  // margin: 0;
+  overflow: auto; /* Hide scrollbars */
+  // padding: 2em;
+  // background: #333;
   font-family: sans-serif;
-}
-
-.DraftEditor-root {
-  background: #fff;
-  border-radius: 0.3em;
-  padding: 1em;
 }
 
 button {
@@ -67,4 +62,30 @@ pre > pre {
   to {
       transform: rotate(360deg);
   }
+}
+
+// This fixes the placeholder being on top of the cursor issue
+.public-DraftEditorPlaceholder-root {
+  margin-top: 20vw;
+  // color: var(fbui-desktop-text-placeholder);
+  color: #666666;
+  font-size: xx-large;
+  position: absolute;
+  z-index: 0;
+  // border: 2px solid red;
+  margin-left: 20px;
+  vertical-align: center;
+  // width: 100%;
+}
+
+.public-DraftEditor-content {
+  width: 100vw;
+  height: 90vh;
+  // border: 2px solid green;
+}
+
+.DraftEditor-root {
+  width: 100vw;
+  height: 90vh;
+  //border: 2px solid blue;
 }

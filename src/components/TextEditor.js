@@ -39,10 +39,11 @@ class TextEditor extends Component {
     return (
       <div>
         {/* <h1>Better Letter</h1> */}
-        <button onClick={this.onUnderlineClick}><FontAwesomeIcon icon={faUnderline} /> Underline</button>
-        <button onClick={this.onToggleCode}><FontAwesomeIcon icon={faCode} /> Code Block</button>
+        {/* <button onClick={this.onUnderlineClick}><FontAwesomeIcon icon={faUnderline} /> Underline</button>
+        <button onClick={this.onToggleCode}><FontAwesomeIcon icon={faCode} /> Code Block</button> */}
         <Editor
           editorState={this.state.editorState}
+          placeholder='|  Tap anywhere to start typing'
           handleKeyCommand={this.handleKeyCommand}
           onChange={this.onChange}
         />
