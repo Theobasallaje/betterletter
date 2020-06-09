@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/betterletter/static/css/main.fc3e3fda.chunk.css",
-    "main.js": "/betterletter/static/js/main.971556da.chunk.js",
-    "main.js.map": "/betterletter/static/js/main.971556da.chunk.js.map",
+    "main.css": "/betterletter/static/css/main.975733d3.chunk.css",
+    "main.js": "/betterletter/static/js/main.fc78a20c.chunk.js",
+    "main.js.map": "/betterletter/static/js/main.fc78a20c.chunk.js.map",
     "runtime-main.js": "/betterletter/static/js/runtime-main.e2732c54.js",
     "runtime-main.js.map": "/betterletter/static/js/runtime-main.e2732c54.js.map",
-    "static/js/2.4bc1ee2a.chunk.js": "/betterletter/static/js/2.4bc1ee2a.chunk.js",
-    "static/js/2.4bc1ee2a.chunk.js.map": "/betterletter/static/js/2.4bc1ee2a.chunk.js.map",
+    "static/js/2.e4d232f2.chunk.js": "/betterletter/static/js/2.e4d232f2.chunk.js",
+    "static/js/2.e4d232f2.chunk.js.map": "/betterletter/static/js/2.e4d232f2.chunk.js.map",
     "index.html": "/betterletter/index.html",
-    "precache-manifest.566b3f4b7769f385c867a05b2e5fa34e.js": "/betterletter/precache-manifest.566b3f4b7769f385c867a05b2e5fa34e.js",
+    "precache-manifest.1dcf50146066f2f3bd93ac08e49770a1.js": "/betterletter/precache-manifest.1dcf50146066f2f3bd93ac08e49770a1.js",
     "service-worker.js": "/betterletter/service-worker.js",
-    "static/css/main.fc3e3fda.chunk.css.map": "/betterletter/static/css/main.fc3e3fda.chunk.css.map",
-    "static/js/2.4bc1ee2a.chunk.js.LICENSE.txt": "/betterletter/static/js/2.4bc1ee2a.chunk.js.LICENSE.txt"
+    "static/css/main.975733d3.chunk.css.map": "/betterletter/static/css/main.975733d3.chunk.css.map",
+    "static/js/2.e4d232f2.chunk.js.LICENSE.txt": "/betterletter/static/js/2.e4d232f2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.e2732c54.js",
-    "static/js/2.4bc1ee2a.chunk.js",
-    "static/css/main.fc3e3fda.chunk.css",
-    "static/js/main.971556da.chunk.js"
+    "static/js/2.e4d232f2.chunk.js",
+    "static/css/main.975733d3.chunk.css",
+    "static/js/main.fc78a20c.chunk.js"
   ]
 }
