@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Editor, EditorState, RichUtils } from 'draft-js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUnderline, faCode } from '@fortawesome/free-solid-svg-icons'
+// import Fab from './Fab/Fab';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faUnderline, faCode } from '@fortawesome/free-solid-svg-icons'
 import './TextEditor.scss';
 
 class TextEditor extends Component {
@@ -47,6 +48,7 @@ class TextEditor extends Component {
           handleKeyCommand={this.handleKeyCommand}
           onChange={this.onChange}
         />
+        {/* <Fab /> */}
       </div>
     );
   }
