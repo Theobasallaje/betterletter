@@ -79,13 +79,21 @@ pre > pre {
 }
 
 .public-DraftEditor-content {
-  width: 100vw;
+  width: 85vw;
+  max-width: 800px;
   height: 90vh;
   // border: 2px solid green;
 }
 
 .DraftEditor-root {
-  width: 100vw;
+  // width: 100vw;
   height: 90vh;
   //border: 2px solid blue;
+}
+
+.editorCoontainer {
+  display: flex;
+  justify-content: center;
+  font-size: large;
+  margin-top: 40px;
 }

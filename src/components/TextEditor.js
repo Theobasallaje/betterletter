@@ -38,7 +38,7 @@ class TextEditor extends Component {
 
   render() {
     return (
-      <div>
+      <div className='editorCoontainer'>
         {/* <h1>Better Letter</h1> */}
         {/* <button onClick={this.onUnderlineClick}><FontAwesomeIcon icon={faUnderline} /> Underline</button>
         <button onClick={this.onToggleCode}><FontAwesomeIcon icon={faCode} /> Code Block</button> */}
