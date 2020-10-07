@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/betterletter/static/css/main.a5cfd419.chunk.css",
-    "main.js": "/betterletter/static/js/main.e2a963c7.chunk.js",
-    "main.js.map": "/betterletter/static/js/main.e2a963c7.chunk.js.map",
+    "main.css": "/betterletter/static/css/main.972ceb50.chunk.css",
+    "main.js": "/betterletter/static/js/main.3442d4a8.chunk.js",
+    "main.js.map": "/betterletter/static/js/main.3442d4a8.chunk.js.map",
     "runtime-main.js": "/betterletter/static/js/runtime-main.e2732c54.js",
     "runtime-main.js.map": "/betterletter/static/js/runtime-main.e2732c54.js.map",
     "static/js/2.2b58fd4b.chunk.js": "/betterletter/static/js/2.2b58fd4b.chunk.js",
     "static/js/2.2b58fd4b.chunk.js.map": "/betterletter/static/js/2.2b58fd4b.chunk.js.map",
     "index.html": "/betterletter/index.html",
-    "precache-manifest.a12da6751ec2ddc216a98b149819d180.js": "/betterletter/precache-manifest.a12da6751ec2ddc216a98b149819d180.js",
+    "precache-manifest.8b384c9cd1fd1471ef29cfb785655542.js": "/betterletter/precache-manifest.8b384c9cd1fd1471ef29cfb785655542.js",
     "service-worker.js": "/betterletter/service-worker.js",
-    "static/css/main.a5cfd419.chunk.css.map": "/betterletter/static/css/main.a5cfd419.chunk.css.map",
+    "static/css/main.972ceb50.chunk.css.map": "/betterletter/static/css/main.972ceb50.chunk.css.map",
     "static/js/2.2b58fd4b.chunk.js.LICENSE.txt": "/betterletter/static/js/2.2b58fd4b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.e2732c54.js",
     "static/js/2.2b58fd4b.chunk.js",
-    "static/css/main.a5cfd419.chunk.css",
-    "static/js/main.e2a963c7.chunk.js"
+    "static/css/main.972ceb50.chunk.css",
+    "static/js/main.3442d4a8.chunk.js"
   ]
 }
