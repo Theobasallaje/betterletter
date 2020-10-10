@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import { Editor, EditorState, RichUtils } from 'draft-js';
 // import Fab from './Fab/Fab';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faUnderline, faCode } from '@fortawesome/free-solid-svg-icons'
+import { handlePlaceHolder } from './../actions'
 import './TextEditor.scss';
 
 class TextEditor extends Component {
@@ -11,12 +13,24 @@ class TextEditor extends Component {
     this.state = {
       editorState: EditorState.createEmpty(),
     };
+    this.textInput = React.createRef();
+  }
+
+  componentDidMount() {
+
   }
 
   onChange = (editorState) => {
     this.setState({ editorState });
   };
 
+  handleClick = () => {
+    console.log("handleClick ran!");
+    this.props.handlePlaceHolder(false);
+    this.textInput.current.focus();
+    // document.getElementsByClassName("editorCoontainer").focus();
+  };
+  
   handleKeyCommand = (command) => {
     const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
 
@@ -38,15 +52,16 @@ class TextEditor extends Component {
 
   render() {
     return (
-      <div className='editorCoontainer'>
+      <div className='editorCoontainer' onClick={this.handleClick}>
         {/* <h1>Better Letter</h1> */}
         {/* <button onClick={this.onUnderlineClick}><FontAwesomeIcon icon={faUnderline} /> Underline</button>
         <button onClick={this.onToggleCode}><FontAwesomeIcon icon={faCode} /> Code Block</button> */}
         <Editor
           editorState={this.state.editorState}
-          placeholder='|  Tap anywhere to start typing'
+          placeholder={this.props.placeHolder ? '|  Tap anywhere to start typing' : ''}
           handleKeyCommand={this.handleKeyCommand}
           onChange={this.onChange}
+          ref={this.textInput}
         />
         {/* <Fab /> */}
       </div>
@@ -54,4 +69,12 @@ class TextEditor extends Component {
   }
 }
 
-export default TextEditor;
+// export default TextEditor;
+
+const mapStateToProps = state => ({
+  placeHolder: state.placeHolder.placeHolderShow
+});
+
+export default connect(mapStateToProps, { handlePlaceHolder })(
+  TextEditor
+);
