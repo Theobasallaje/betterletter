@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/betterletter/static/css/main.972ceb50.chunk.css",
-    "main.js": "/betterletter/static/js/main.19fbc69c.chunk.js",
-    "main.js.map": "/betterletter/static/js/main.19fbc69c.chunk.js.map",
+    "main.js": "/betterletter/static/js/main.ee5c807b.chunk.js",
+    "main.js.map": "/betterletter/static/js/main.ee5c807b.chunk.js.map",
     "runtime-main.js": "/betterletter/static/js/runtime-main.e2732c54.js",
     "runtime-main.js.map": "/betterletter/static/js/runtime-main.e2732c54.js.map",
     "static/js/2.bb28f8b2.chunk.js": "/betterletter/static/js/2.bb28f8b2.chunk.js",
     "static/js/2.bb28f8b2.chunk.js.map": "/betterletter/static/js/2.bb28f8b2.chunk.js.map",
     "index.html": "/betterletter/index.html",
-    "precache-manifest.11b5b218f5dafccd9700c8467e407f64.js": "/betterletter/precache-manifest.11b5b218f5dafccd9700c8467e407f64.js",
+    "precache-manifest.e7ff1b890808ca771898fbc275991f26.js": "/betterletter/precache-manifest.e7ff1b890808ca771898fbc275991f26.js",
     "service-worker.js": "/betterletter/service-worker.js",
     "static/css/main.972ceb50.chunk.css.map": "/betterletter/static/css/main.972ceb50.chunk.css.map",
     "static/js/2.bb28f8b2.chunk.js.LICENSE.txt": "/betterletter/static/js/2.bb28f8b2.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.e2732c54.js",
     "static/js/2.bb28f8b2.chunk.js",
     "static/css/main.972ceb50.chunk.css",
-    "static/js/main.19fbc69c.chunk.js"
+    "static/js/main.ee5c807b.chunk.js"
   ]
 }

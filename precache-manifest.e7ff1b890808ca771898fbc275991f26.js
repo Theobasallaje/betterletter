@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3f5db932d2fb8c7d0309082dd5113363",
+    "revision": "cad2796956da0d8cf39245445f9a8414",
     "url": "/betterletter/index.html"
   },
   {
-    "revision": "0752746a8f156aeebe7c",
+    "revision": "e14cb7ee3e78f768c537",
     "url": "/betterletter/static/css/main.972ceb50.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/betterletter/static/js/2.bb28f8b2.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0752746a8f156aeebe7c",
-    "url": "/betterletter/static/js/main.19fbc69c.chunk.js"
+    "revision": "e14cb7ee3e78f768c537",
+    "url": "/betterletter/static/js/main.ee5c807b.chunk.js"
   },
   {
     "revision": "b723c4c8a8a4a9b4b857",
