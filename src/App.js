@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { HashRouter as Router, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
@@ -12,7 +12,7 @@ class App extends Component {
       <>
         <Router>
           <Route path="/" exact component={Home} />
-          <Route path="/about" exact component={About} />
+          <Route path="/about" component={About} />
         </Router>
       </>
     );
