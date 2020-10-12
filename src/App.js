@@ -1,20 +1,19 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import TextEditor from "./components/TextEditor";
-import Fab from "./components/Fab/Fab";
+import Home from "./components/pages/Home";
+import About from "./components/pages/About";
+
 import "./App.scss";
 
-import { handlePlaceHolder } from "./actions";
-
 class App extends Component {
-
   render() {
     return (
       <>
-        <div>
-          <TextEditor  />
-        </div>
-        <Fab />
+        <Router>
+          <Route path="/" exact component={Home} />
+          <Route path="/about" exact component={About} />
+        </Router>
       </>
     );
   }
@@ -22,4 +21,4 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({});
 
-export default connect(mapStateToProps, {  })(App);
+export default connect(mapStateToProps, {})(App);

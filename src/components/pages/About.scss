@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.aboutContainer {
+    display: flex;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 22px;
+    font-family: 'Montserrat', sans-serif;;
+}
+
+.aboutContent {
+    width: 80%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;;
+}
+
+.authors {
+    font-size: 18px;
+}

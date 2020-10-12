@@ -4,7 +4,7 @@ import { Editor, EditorState, RichUtils } from 'draft-js';
 // import Fab from './Fab/Fab';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faUnderline, faCode } from '@fortawesome/free-solid-svg-icons'
-import { handlePlaceHolder } from './../actions'
+import { handlePlaceHolder, handleFabIcon } from './../actions'
 import './TextEditor.scss';
 
 class TextEditor extends Component {
@@ -27,6 +27,7 @@ class TextEditor extends Component {
   handleClick = () => {
     console.log("handleClick ran!");
     this.props.handlePlaceHolder(false);
+    this.props.handleFabIcon('clipboard');
     this.textInput.current.focus();
     // document.getElementsByClassName("editorCoontainer").focus();
   };
@@ -75,6 +76,6 @@ const mapStateToProps = state => ({
   placeHolder: state.placeHolder.placeHolderShow
 });
 
-export default connect(mapStateToProps, { handlePlaceHolder })(
+export default connect(mapStateToProps, { handlePlaceHolder, handleFabIcon })(
   TextEditor
 );
