@@ -1,4 +1,4 @@
-import { PLACE_HOLDER_SHOW, FAB_ICON } from "./types";
+import { PLACE_HOLDER_SHOW, FAB_ICON, EDITOR_REF } from "./types";
 import {
   Editor,
   EditorState,
@@ -25,3 +25,12 @@ export const handleFabIcon = (icon) => {
   };
 };
 // End of Fab actions
+
+// Editor actions
+export const handleEditorRef = (ref) => {
+  return {
+    type: EDITOR_REF,
+    payload: ref,
+  };
+};
+// End of Editor actions

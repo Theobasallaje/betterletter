@@ -1,6 +1,5 @@
 // Editor
-export const EDITOR_TEXT = "EDITOR_TEXT";
-export const EDITOR_WITHOUT_TEXT = "EDITOR_WITHOUT_TEXT";
+export const EDITOR_REF = "EDITOR_TEXT";
 
 // Fab
 export const FAB_ICON = "FAB_ICON";

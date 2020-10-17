@@ -1,15 +1,14 @@
-import { EDITOR_TEXT, EDITOR_WITHOUT_TEXT } from '../actions/types';
+import { EDITOR_REF } from '../actions/types';
 
 const INTIAL_STATE = {
     hasText: null,
+    ref: null,
 };
 
 export default (state = INTIAL_STATE, action) => {
   switch (action.type) {
-    case EDITOR_TEXT:
-      return { ...state, hasText: true };
-    case EDITOR_WITHOUT_TEXT:
-      return { ...state, hasText: false };
+    case EDITOR_REF:
+      return { ...state, ref: action.payload };
     default:
       return state;
   }

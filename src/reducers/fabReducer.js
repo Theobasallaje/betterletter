@@ -1,7 +1,7 @@
 import { FAB_ICON } from '../actions/types';
 
 const INTIAL_STATE = {
-  fabIcon: ''
+  fabIcon: 'info'
 };
 
 export default (state = INTIAL_STATE, action) => {
