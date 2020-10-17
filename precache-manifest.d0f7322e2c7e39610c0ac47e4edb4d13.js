@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "02e6e969697f60cd68771aa7c0ed9b90",
+    "revision": "b2b2ef8e975f2fcba8bee0fd9cee4a89",
     "url": "/betterletter/index.html"
   },
   {
-    "revision": "09413d7f79b1445f807f",
+    "revision": "d9ac03c8c0e2f38d8a8c",
     "url": "/betterletter/static/css/main.5edd264b.chunk.css"
   },
   {
-    "revision": "c7f625e05a7d218d5485",
-    "url": "/betterletter/static/js/2.9996f662.chunk.js"
+    "revision": "4b29e348a5a909f7dcd1",
+    "url": "/betterletter/static/js/2.228f7339.chunk.js"
   },
   {
     "revision": "702e06c21f4db63e7e05a8a0eda9baf1",
-    "url": "/betterletter/static/js/2.9996f662.chunk.js.LICENSE.txt"
+    "url": "/betterletter/static/js/2.228f7339.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "09413d7f79b1445f807f",
-    "url": "/betterletter/static/js/main.8e417a6a.chunk.js"
+    "revision": "d9ac03c8c0e2f38d8a8c",
+    "url": "/betterletter/static/js/main.a6da90f7.chunk.js"
   },
   {
     "revision": "b723c4c8a8a4a9b4b857",
