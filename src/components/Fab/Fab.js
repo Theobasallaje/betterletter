@@ -5,18 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInfo,
   faClipboard,
-  faShare,
+  // faShare,
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
-// import { Route, Switch } from './node_modules/react-router-dom';
-// import InfoModal from './../../components/InfoModal/InfoModal';
 import "./Fab.scss";
 import { handleFabIcon } from "./../../actions";
 
 class Fab extends Component {
-  //   <Switch>
-  //      <Route exact path="/" component={InfoModal} />
-  //   </Switch>
 
   handleFabIcon = (icon) => {
     switch (icon) {
@@ -55,7 +50,7 @@ class Fab extends Component {
       <>
         <div class="fabContainer">
           {/* this.props.fabIcon == 'clipboard' this.props.fabIcon == 'back' */}
-          {this.props.fabIcon == "info" && (
+          {this.props.fabIcon === "info" && (
             <Link
               onClick={() => this.handleFabIcon("back")}
               className="icon noSelect"
@@ -66,7 +61,7 @@ class Fab extends Component {
               </button>
             </Link>
           )}
-          {this.props.fabIcon == "back" && (
+          {this.props.fabIcon === "back" && (
             <Link
               onClick={() => this.handleFabIcon("info")}
               className="icon noSelect"
@@ -81,7 +76,7 @@ class Fab extends Component {
               </button>
             </Link>
           )}
-          {this.props.fabIcon == "clipboard" && (
+          {this.props.fabIcon === "clipboard" && (
             <Link
               onClick={this.handleClipBoard}
               className="icon noSelect"

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { HashRouter as Router, Route, Redirect } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";

@@ -1,12 +1,11 @@
 import { PLACE_HOLDER_SHOW, FAB_ICON, EDITOR_REF } from "./types";
-import {
-  Editor,
-  EditorState,
-  convertToRaw,
-  convertFromRaw,
-  ContentState,
-} from "draft-js";
-import { text } from "@fortawesome/fontawesome-svg-core";
+// import {
+//   Editor,
+//   EditorState,
+//   convertToRaw,
+//   convertFromRaw,
+//   ContentState,
+// } from "draft-js";
 
 // Placeholder actions
 export const handlePlaceHolder = (placeHolderPresent) => {

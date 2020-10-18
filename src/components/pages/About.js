@@ -1,10 +1,15 @@
-import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { handleFabIcon } from "./../../actions";
 import Fab from "./../Fab/Fab";
 import "./About.scss";
-import { Link } from "react-router-dom";
 
-function About() {
+// function About(props) {
+function About({ handleFabIcon }) {
+  useEffect(() => {
+    handleFabIcon("back");
+  }, [handleFabIcon]); // dependencies
+
   return (
     <>
       <div className="aboutContainer">
@@ -27,4 +32,8 @@ function About() {
   );
 }
 
-export default About;
+const mapStateToProps = () => ({});
+
+export default connect(mapStateToProps, {
+  handleFabIcon,
+})(About);
