@@ -64,7 +64,7 @@ class TextEditor extends Component {
         <button onClick={this.onToggleCode}><FontAwesomeIcon icon={faCode} /> Code Block</button> */}
         <Editor
           editorState={this.state.editorState}
-          placeholder={this.props.placeHolder && "|  Tap anywhere"}
+          // placeholder={this.props.placeHolder && "|  Tap anywhere"}
           handleKeyCommand={this.handleKeyCommand}
           onChange={this.onChange}
           ref={this.textInput}

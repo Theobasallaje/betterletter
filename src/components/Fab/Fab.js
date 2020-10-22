@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInfo,
-  faClipboard,
+  faCopy,
   // faShare,
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
@@ -48,7 +48,7 @@ class Fab extends Component {
   render() {
     return (
       <>
-        <div class="fabContainer">
+        <div className="fabContainer">
           {/* this.props.fabIcon == 'clipboard' this.props.fabIcon == 'back' */}
           {this.props.fabIcon === "info" && (
             <Link
@@ -76,6 +76,7 @@ class Fab extends Component {
               </button>
             </Link>
           )}
+          {/* //TODO: rename in store to copy */}
           {this.props.fabIcon === "clipboard" && (
             <Link
               onClick={this.handleClipBoard}
@@ -85,7 +86,7 @@ class Fab extends Component {
               <button class="infoFabButton">
                 <FontAwesomeIcon
                   className="icon"
-                  icon={faClipboard}
+                  icon={faCopy}
                   size="xs"
                 />
               </button>

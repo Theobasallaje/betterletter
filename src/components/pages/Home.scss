@@ -1,0 +1,12 @@
+.placeholderContainer {
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.placeholder {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    max-width: 500px;
+}

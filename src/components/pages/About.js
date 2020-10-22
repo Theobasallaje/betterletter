@@ -12,11 +12,12 @@ function About({ handleFabIcon }) {
 
   return (
     <>
+      {/* //TODO: add tdraft logo here*/}
       <div className="aboutContainer">
         <div className="aboutContent">
           <div>
             <p>
-              Better Letter is a simple, mobile-optimized text editor for the
+              tdraft is a simple, mobile-optimized text editor for the
               web.
             </p>
             <p>Type distraction free and then move your text to other apps.</p>
