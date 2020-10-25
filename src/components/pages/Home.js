@@ -6,6 +6,7 @@ import { handlePlaceHolder } from './../../actions'
 // import placeholderSmall from "./../../images/tdraft_placeholder_small.png";
 import placeholderLowerCase from "./../../images/tdraft_placeholder_lower_case.png";
 import Fab from "./../Fab/Fab";
+import 'animate.css';
 import "./Home.scss";
 
 class Home extends Component {
@@ -22,7 +23,7 @@ class Home extends Component {
           <div className="placeholderContainer" onClick={this.handlePlaceHolder}>
             {/* <img className="placeholder" src={placeholder} alt="placeholder" /> */}
             {/* <img className="placeholder" src={placeholderSmall} alt="placeholder" /> */}
-            <img className="placeholder" src={placeholderLowerCase} alt="placeholder" />
+            <img className="placeholder animate__animated animate__rubberBand" src={placeholderLowerCase} alt="placeholder" />
           </div>
         )}
         <Fab />
