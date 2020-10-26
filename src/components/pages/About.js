@@ -14,7 +14,7 @@ function About({ handleFabIcon }) {
 
   return (
     <>
-      <div className="aboutContainer">
+      <div className="aboutContainer animate__animated animate__bounceInLeft">
         <div className="aboutContentContainer">
           <div className="aboutContent">
             <div>

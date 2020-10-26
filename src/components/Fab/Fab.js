@@ -17,6 +17,8 @@ class Fab extends Component {
     switch (icon) {
       case "back":
         this.props.handleFabIcon("back");
+        // ? Why is this not doing anything, home unmounting too quickly?
+        // this.props.handleHomeAnimation('animate__animated animate__bounceIn');
         break;
       case "clipboard":
         this.props.handleFabIcon("clipboard");
@@ -30,10 +32,11 @@ class Fab extends Component {
     }
   };
 
-  handleClipBoard = (e) => {
+  handleClipBoard = () => {
+    this.props.handleCopyConfirmationAnimation('copyConfirmation animate__animated animate__slideInUp')
     var text = this.props.editorRef.current.props.editorState
-    .getCurrentContent()
-    .getPlainText();
+      .getCurrentContent()
+      .getPlainText();
     navigator.clipboard.writeText(text).then(
       function () {
         console.log("Async: Copying to clipboard was successful!");
@@ -47,8 +50,8 @@ class Fab extends Component {
 
   render() {
     return (
-      <>
-        <div className="fabContainer">
+      <div class="fabContainer">
+        <div className="fabButtonContainer">
           {/* this.props.fabIcon == 'clipboard' this.props.fabIcon == 'back' */}
           {this.props.fabIcon === "info" && (
             <Link
@@ -56,7 +59,7 @@ class Fab extends Component {
               className="icon noSelect"
               to="/about"
             >
-              <button class="infoFabButton">
+              <button className="infoFabButton">
                 <FontAwesomeIcon className="icon" icon={faInfo} size="xs" />
               </button>
             </Link>
@@ -67,7 +70,7 @@ class Fab extends Component {
               className="icon noSelect"
               to="/"
             >
-              <button class="infoFabButton">
+              <button className="infoFabButton">
                 <FontAwesomeIcon
                   className="icon"
                   icon={faChevronLeft}
@@ -80,7 +83,7 @@ class Fab extends Component {
           {this.props.fabIcon === "clipboard" && (
             <Link
               onClick={this.handleClipBoard}
-              className="icon noSelect"
+              className="icon noSelect animate__animated animate__fadeInRightBig"
               to="/"
             >
               <button class="infoFabButton">
@@ -93,7 +96,7 @@ class Fab extends Component {
             </Link>
           )}
         </div>
-      </>
+      </div>
     );
   }
 }

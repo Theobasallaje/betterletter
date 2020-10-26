@@ -26,6 +26,7 @@ class TextEditor extends Component {
     console.log("handleClick ran!");
     if (this.props.placeHolder) {
       this.props.handlePlaceHolder(false);
+      // this.props.handleHomeAnimation('animate__animated animate__flipInY');
       this.props.handleFabIcon("clipboard");
       this.props.handleEditorRef(this.textInput);
     }
