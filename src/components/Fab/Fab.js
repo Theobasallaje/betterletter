@@ -12,7 +12,6 @@ import "./Fab.scss";
 import { handleFabIcon } from "./../../actions";
 
 class Fab extends Component {
-
   handleFabIcon = (icon) => {
     switch (icon) {
       case "back":
@@ -33,7 +32,10 @@ class Fab extends Component {
   };
 
   handleClipBoard = () => {
-    this.props.handleCopyConfirmationAnimation('copyConfirmation animate__animated animate__slideInUp')
+    this.props.handleCopyConfirmationAnimation(
+      "copyConfirmation animate__animated animate__backInDown",
+      "copyConfirmation animate__animated animate__fadeOut"
+    );
     var text = this.props.editorRef.current.props.editorState
       .getCurrentContent()
       .getPlainText();
@@ -83,15 +85,11 @@ class Fab extends Component {
           {this.props.fabIcon === "clipboard" && (
             <Link
               onClick={this.handleClipBoard}
-              className="icon noSelect animate__animated animate__fadeInRightBig"
+              className="icon noSelect"
               to="/"
             >
               <button class="infoFabButton">
-                <FontAwesomeIcon
-                  className="icon"
-                  icon={faCopy}
-                  size="xs"
-                />
+                <FontAwesomeIcon className="icon" icon={faCopy} size="xs" />
               </button>
             </Link>
           )}
