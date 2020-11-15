@@ -47,7 +47,8 @@ class Fab extends Component {
         console.error("Async: Could not copy text: ", err);
       }
     );
-    this.props.editorRef.current.focus();
+    // If you want to focus back into the editor after performing a copy
+    // this.props.editorRef.current.focus();
   };
 
   render() {
@@ -61,9 +62,9 @@ class Fab extends Component {
               className="icon noSelect"
               to="/about"
             >
-              <button className="infoFabButton">
+              <div className="infoFabButton">
                 <FontAwesomeIcon className="icon" icon={faInfo} size="xs" />
-              </button>
+              </div>
             </Link>
           )}
           {this.props.fabIcon === "back" && (
@@ -72,13 +73,13 @@ class Fab extends Component {
               className="icon noSelect"
               to="/"
             >
-              <button className="infoFabButton">
+              <div className="infoFabButton">
                 <FontAwesomeIcon
                   className="icon"
                   icon={faChevronLeft}
                   size="xs"
                 />
-              </button>
+              </div>
             </Link>
           )}
           {/* //TODO: rename in store to copy */}
@@ -88,9 +89,9 @@ class Fab extends Component {
               className="icon noSelect"
               to="/"
             >
-              <button class="infoFabButton">
+              <div class="infoFabButton">
                 <FontAwesomeIcon className="icon" icon={faCopy} size="xs" />
-              </button>
+              </div>
             </Link>
           )}
         </div>

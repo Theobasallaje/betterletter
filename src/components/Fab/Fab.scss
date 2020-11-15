@@ -20,9 +20,13 @@
     float: right;
     margin-left: 80%;
     // margin: 0;
-    bottom: 0;
+    bottom: 12px;
     position: fixed;
     ////Fab Placement////
+}
+
+.infoFabButton:hover {
+    // background: green;
 }
 
 .fabButtonContainer {
