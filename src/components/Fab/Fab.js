@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import ShareButton from "./../ShareButton/ShareButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInfo,
@@ -67,6 +68,7 @@ class Fab extends Component {
               </div>
             </Link>
           )}
+          <ShareButton />
           {this.props.fabIcon === "back" && (
             <Link
               onClick={() => this.handleFabIcon("info")}

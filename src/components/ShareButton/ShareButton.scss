@@ -1,0 +1,38 @@
+.shareButton {
+    background: white;
+    text-align: center;
+    // margin-right: .3em;
+    // margin-bottom: 6em;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: #666666;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 5px 10px 20px;
+    // border: solid #666666;
+    ////Fab Placement////
+    float: right;
+    margin-left: 65%;
+    // margin: 0;
+    bottom: 12px;
+    position: fixed;
+    ////Fab Placement////
+}
+
+.infoFabButton:hover {
+    // background: green;
+}
+
+.fabButtonContainer {
+    height: 100%;
+    width: 100%;
+    // border: 2px solid blue;
+    // display: flex;
+    // justify-content: right;
+}
