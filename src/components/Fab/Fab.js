@@ -68,7 +68,7 @@ class Fab extends Component {
               </div>
             </Link>
           )}
-          <ShareButton />
+          {!this.props.showShareButton && <ShareButton />}
           {this.props.fabIcon === "back" && (
             <Link
               onClick={() => this.handleFabIcon("info")}
@@ -105,6 +105,7 @@ class Fab extends Component {
 const mapStateToProps = (state) => ({
   fabIcon: state.fab.fabIcon,
   editorRef: state.textEditor.ref,
+  showShareButton: state.placeHolder.placeHolderShow
 });
 
 export default connect(mapStateToProps, { handleFabIcon })(Fab);
