@@ -16,7 +16,13 @@ class Home extends Component {
     showCopyConfrimation: false,
   };
 
-  // componentWillUnmount () {
+  componentDidMount() {
+    window.onbeforeunload = function () {
+      return "Data will be lost if you leave the page, are you sure?";
+    };
+  }
+
+  // componentWillUnmount() {
   //   document.getElementById('homeContainer').className = 'animate__animated animate__bounceOutLeft';
   // }
 
