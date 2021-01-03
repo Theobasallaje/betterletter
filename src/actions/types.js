@@ -6,3 +6,4 @@ export const FAB_ICON = "FAB_ICON";
 
 // Placeholder
 export const PLACE_HOLDER_SHOW = "PLACE_HOLDER_SHOW";
+export const IS_MOBILE = "IS_MOBILE";

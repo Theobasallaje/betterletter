@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import TextEditor from "./../TextEditor";
-import { handlePlaceHolder } from "./../../actions";
+import { handleFabIcon, handlePlaceHolder } from "./../../actions";
 // import placeholder from "./../../images/tdraft_placeholder.png";
 // import placeholderSmall from "./../../images/tdraft_placeholder_small.png";
 import placeholderLowerCase from "./../../images/tdraft_placeholder_lower_case.png";
+import placeholderDesktop from "./../../images/tdraft_desktop_placeholder_lower_case.png"
 import Fab from "./../Fab/Fab";
 import "./Home.scss";
 import "animate.css";
@@ -17,7 +18,11 @@ class Home extends Component {
   };
 
   componentDidMount() {
+    // if (!this.props.placeHolder) alert("Test!");
     window.onbeforeunload = function () {
+      // TODO: Figure out how to change the message on the alert
+      // ? Can we change the placeholder back to true here?
+      // ? For when launching from homescreen app - back on mobile exits?
       return "Data will be lost if you leave the page, are you sure?";
     };
   }
@@ -28,6 +33,7 @@ class Home extends Component {
 
   handlePlaceHolder = () => {
     this.props.handlePlaceHolder(false);
+    this.props.handleFabIcon('clipboard');
   };
 
   handleHomeAnimation = (className) => {
@@ -58,7 +64,11 @@ class Home extends Component {
 
   render() {
     return (
-      <div id="homeContainer" className={this.state.homeContainerClass}>
+      <div
+        id="homeContainer"
+        className={this.state.homeContainerClass}
+        onClick={this.handlePlaceHolder}
+      >
         {/* //! adding animation here made the fab have unexpected behavior, not coming up with keyboard on Android */}
         {this.state.showCopyConfrimation && (
           <div className="copyConfirmationContainer">
@@ -69,13 +79,13 @@ class Home extends Component {
         {this.props.placeHolder && (
           <div
             className="placeholderContainer"
-            onClick={this.handlePlaceHolder}
+            // onClick={this.handlePlaceHolder}
           >
             {/* <img className="placeholder" src={placeholder} alt="placeholder" /> */}
             {/* <img className="placeholder" src={placeholderSmall} alt="placeholder" /> */}
             <img
               className="placeholder animate__animated animate__rubberBand"
-              src={placeholderLowerCase}
+              src={this.props.isMobile ? placeholderLowerCase : placeholderDesktop }
               alt="placeholder"
             />
           </div>
@@ -91,6 +101,7 @@ class Home extends Component {
 const mapStateToProps = (state) => ({
   placeHolder: state.placeHolder.placeHolderShow,
   editorRef: state.textEditor.ref,
+  isMobile: state.placeHolder.isMobile,
 });
 
-export default connect(mapStateToProps, { handlePlaceHolder })(Home);
+export default connect(mapStateToProps, { handleFabIcon, handlePlaceHolder })(Home);

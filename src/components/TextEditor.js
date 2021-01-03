@@ -16,8 +16,14 @@ class TextEditor extends Component {
     this.textInput = React.createRef();
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    if (!this.props.placeHolder) this.textInput.current.focus();
+  }
 
+  componentDidUpdate() {
+    if (!this.props.placeHolder) this.textInput.current.focus();
+  }
+  
   onChange = (editorState) => {
     this.setState({ editorState });
   };

@@ -47,18 +47,21 @@ pre > pre {
 .public-DraftEditor-content {
   width: 85vw;
   max-width: 800px;
-  height: 90vh;
+  // height: 90vh;
 }
 
 .DraftEditor-root {
-  height: 90vh;
+  // height: 90vh;
+  // overflow-y: auto;
 }
 
 .editorCoontainer {
   display: flex;
   justify-content: center;
   font-size: large;
-  margin-top: 40px;
+  margin: 40px 0 40px 0;
   // border: 2px solid red;
-  height: 100vh;
+  // height: 100vh;
+  // position: fixed;
+  // overflow-y: auto;
 }

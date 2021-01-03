@@ -1,4 +1,4 @@
-import { PLACE_HOLDER_SHOW, FAB_ICON, EDITOR_REF } from "./types";
+import { EDITOR_REF, FAB_ICON, IS_MOBILE, PLACE_HOLDER_SHOW  } from "./types";
 // import {
 //   Editor,
 //   EditorState,
@@ -12,6 +12,13 @@ export const handlePlaceHolder = (placeHolderPresent) => {
   return {
     type: PLACE_HOLDER_SHOW,
     payload: placeHolderPresent,
+  };
+};
+
+export const detectMobile = (isMobile) => {
+  return {
+    type: IS_MOBILE,
+    payload: isMobile,
   };
 };
 // End of Placeholder actions

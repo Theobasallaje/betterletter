@@ -2,7 +2,11 @@
 
 .logoContainer {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+}
+
+.logo {
+    max-width: 300px;
 }
 
 .aboutContainer {
@@ -22,6 +26,10 @@
     flex-direction: column;
     justify-content: space-around;
     padding: 0 30px 0 30px;
+}
+
+.aboutParagraph, .authors {
+    padding-left: 25px;
 }
 
 .authors {
