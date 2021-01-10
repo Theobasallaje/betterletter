@@ -1,8 +1,9 @@
 // Editor
-export const EDITOR_REF = "EDITOR_TEXT";
+export const EDITOR_REF = "EDITOR_REF";
 
 // Fab
 export const FAB_ICON = "FAB_ICON";
+export const SHARE_BUTTON_SHOW = "SHARE_BUTTON_SHOW";
 
 // Placeholder
 export const PLACE_HOLDER_SHOW = "PLACE_HOLDER_SHOW";

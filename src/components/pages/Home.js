@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import TextEditor from "./../TextEditor";
-import { handleFabIcon, handlePlaceHolder } from "./../../actions";
+import { handleFabIcon, handlePlaceHolder, showShareButton } from "./../../actions";
 // import placeholder from "./../../images/tdraft_placeholder.png";
 // import placeholderSmall from "./../../images/tdraft_placeholder_small.png";
 import placeholderLowerCase from "./../../images/tdraft_placeholder_lower_case.png";
@@ -33,7 +33,8 @@ class Home extends Component {
 
   handlePlaceHolder = () => {
     this.props.handlePlaceHolder(false);
-    this.props.handleFabIcon('clipboard');
+    this.props.handleFabIcon('share');
+    this.props.showShareButton(true);
   };
 
   handleHomeAnimation = (className) => {
@@ -104,4 +105,4 @@ const mapStateToProps = (state) => ({
   isMobile: state.placeHolder.isMobile,
 });
 
-export default connect(mapStateToProps, { handleFabIcon, handlePlaceHolder })(Home);
+export default connect(mapStateToProps, { handleFabIcon, handlePlaceHolder, showShareButton })(Home);

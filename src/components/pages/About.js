@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { handleFabIcon } from "./../../actions";
+import { handleFabIcon, showShareButton } from "./../../actions";
 import Fab from "./../Fab/Fab";
 import "./About.scss";
 import "animate.css";
 import tangerineLogo from "./../../images/tdraft_tangerine.png";
 
 // function About(props) {
-function About({ handleFabIcon }) {
+function About({ handleFabIcon, showShareButton }) {
   useEffect(() => {
     handleFabIcon("back");
-  }, [handleFabIcon]); // dependencies
+    showShareButton(false);
+  }, [handleFabIcon, showShareButton]); // dependencies
 
   return (
     <>
@@ -66,4 +67,5 @@ const mapStateToProps = () => ({});
 
 export default connect(mapStateToProps, {
   handleFabIcon,
+  showShareButton,
 })(About);

@@ -1,62 +1,53 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import ShareButton from "./../ShareButton/ShareButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInfo,
-  faCopy,
-  // faShare,
+  faShare,
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Fab.scss";
-import { handleFabIcon } from "./../../actions";
+import { handleFabIcon, handlePlaceHolder } from "./../../actions";
 
 class Fab extends Component {
+
   handleFabIcon = (icon) => {
     switch (icon) {
       case "back":
         this.props.handleFabIcon("back");
+        this.props.handlePlaceHolder(true);
         // ? Why is this not doing anything, home unmounting too quickly?
         // this.props.handleHomeAnimation('animate__animated animate__bounceIn');
         break;
-      case "clipboard":
-        this.props.handleFabIcon("clipboard");
-        break;
       case "info":
         this.props.handleFabIcon("info");
+        this.props.handlePlaceHolder(true);
         break;
       default:
         this.props.handleFabIcon("info");
+        this.props.handlePlaceHolder(true);
         break;
     }
   };
 
-  handleClipBoard = () => {
-    this.props.handleCopyConfirmationAnimation(
-      "copyConfirmation animate__animated animate__backInDown",
-      "copyConfirmation animate__animated animate__fadeOut"
-    );
-    var text = this.props.editorRef.current.props.editorState
-      .getCurrentContent()
-      .getPlainText();
-    navigator.clipboard.writeText(text).then(
-      function () {
-        console.log("Async: Copying to clipboard was successful!");
-      },
-      function (err) {
-        console.error("Async: Could not copy text: ", err);
-      }
-    );
-    // If you want to focus back into the editor after performing a copy
-    // this.props.editorRef.current.focus();
+  handleShare = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          // title: "tdraft",
+          text: this.props.editorRef.current.props.editorState.getCurrentContent().getPlainText(),
+          // url: "https://tdraft.io",
+        })
+        .then(() => console.log("Successful share"))
+        .catch((error) => console.log("Error sharing", error));
+    }
   };
 
   render() {
     return (
       <div class="fabContainer">
         <div className="fabButtonContainer">
-          {/* this.props.fabIcon == 'clipboard' this.props.fabIcon == 'back' */}
           {this.props.fabIcon === "info" && (
             <Link
               onClick={() => this.handleFabIcon("back")}
@@ -68,7 +59,6 @@ class Fab extends Component {
               </div>
             </Link>
           )}
-          {!this.props.showShareButton && <ShareButton />}
           {this.props.fabIcon === "back" && (
             <Link
               onClick={() => this.handleFabIcon("info")}
@@ -84,15 +74,14 @@ class Fab extends Component {
               </div>
             </Link>
           )}
-          {/* //TODO: rename in store to copy */}
-          {this.props.fabIcon === "clipboard" && (
+          {this.props.fabIcon === "share" && (
             <Link
-              onClick={this.handleClipBoard}
+              onClick={this.handleShare}
               className="icon noSelect"
               to="/"
             >
               <div class="infoFabButton">
-                <FontAwesomeIcon className="icon" icon={faCopy} size="xs" />
+                <FontAwesomeIcon className="icon" icon={faShare} size="xs" />
               </div>
             </Link>
           )}
@@ -105,7 +94,6 @@ class Fab extends Component {
 const mapStateToProps = (state) => ({
   fabIcon: state.fab.fabIcon,
   editorRef: state.textEditor.ref,
-  showShareButton: state.placeHolder.placeHolderShow
 });
 
-export default connect(mapStateToProps, { handleFabIcon })(Fab);
+export default connect(mapStateToProps, { handleFabIcon, handlePlaceHolder })(Fab);

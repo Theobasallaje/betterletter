@@ -1,4 +1,4 @@
-import { EDITOR_REF, FAB_ICON, IS_MOBILE, PLACE_HOLDER_SHOW  } from "./types";
+import { EDITOR_REF, FAB_ICON, IS_MOBILE, PLACE_HOLDER_SHOW, SHARE_BUTTON_SHOW  } from "./types";
 // import {
 //   Editor,
 //   EditorState,
@@ -29,6 +29,13 @@ export const handleFabIcon = (icon) => {
     type: FAB_ICON,
     payload: icon,
   };
+};
+
+export const showShareButton = (shareButtonPresent) => { 
+  return { 
+    type: SHARE_BUTTON_SHOW, 
+    payload: shareButtonPresent,
+  }; 
 };
 // End of Fab actions
 

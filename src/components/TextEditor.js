@@ -26,6 +26,8 @@ class TextEditor extends Component {
   
   onChange = (editorState) => {
     this.setState({ editorState });
+    // this.props.handleEditorRef(this.textInput);
+    // console.log('content updated!');
   };
 
   handleClick = () => {
@@ -65,7 +67,7 @@ class TextEditor extends Component {
 
   render() {
     return (
-      <div className="editorCoontainer" onClick={this.handleClick}>
+      <div className="editorContainer" onClick={this.handleClick}>
         {/* <h1>Better Letter</h1> */}
         {/* <button onClick={this.onUnderlineClick}><FontAwesomeIcon icon={faUnderline} /> Underline</button>
         <button onClick={this.onToggleCode}><FontAwesomeIcon icon={faCode} /> Code Block</button> */}
