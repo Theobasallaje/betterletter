@@ -37,9 +37,12 @@ class Fab extends Component {
         .share({
           // title: "tdraft",
           text: this.props.editorRef.current.props.editorState.getCurrentContent().getPlainText(),
+          // text: this.props.editorRef.current.editor.innerText,
           // url: "https://tdraft.io",
         })
-        .then(() => console.log("Successful share"))
+        .then(() => {
+          console.log("Successful share"); 
+        })
         .catch((error) => console.log("Error sharing", error));
     }
   };

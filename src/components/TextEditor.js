@@ -1,95 +1,95 @@
-import React, { Component } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { connect } from "react-redux";
-import { Editor, EditorState, RichUtils } from "draft-js";
-// import Fab from './Fab/Fab';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faUnderline, faCode } from '@fortawesome/free-solid-svg-icons'
-import { handlePlaceHolder, handleFabIcon, handleEditorRef } from "./../actions";
+import {
+  createEditor,
+  changeEditor,
+  handlePlaceHolder,
+  handleFabIcon,
+  handleEditorRef,
+} from "./../actions";
+import { Editor } from "draft-js";
 import "./TextEditor.scss";
 
-class TextEditor extends Component {
-  constructor() {
-    super();
-    this.state = {
-      editorState: EditorState.createEmpty(),
-    };
-    this.textInput = React.createRef();
-  }
+// FIXME:
+function TextEditor({
+  createEditor,
+  placeHolder,
+  handlePlaceHolder,
+  handleFabIcon,
+  editorState,
+  changeEditor,
+}) {
+  // console.log(props);
+  let refEditor = useRef("editor");
+  const hydrate = useCallback(() => {
+    console.log("hydrate()");
+    createEditor();
+  }, [createEditor]);
+  useEffect(() => {
+    console.log("Inside UseEffect");
+    hydrate();
+  }, [hydrate]); //! When I put props in the dependency array, it keeps looping and running the useEffect, WHY??
 
-  componentDidMount() {
-    if (!this.props.placeHolder) this.textInput.current.focus();
-  }
+  // https://dev.to/r3wt/useeffect-missing-dependency-need-advice-4d6b
+  // https://stackoverflow.com/questions/54219238/how-to-stop-editor-draftjs-cursor-jumping-to-beginning-of-text-while-typing-in-r
 
-  componentDidUpdate() {
-    if (!this.props.placeHolder) this.textInput.current.focus();
-  }
-  
-  onChange = (editorState) => {
-    this.setState({ editorState });
-    // this.props.handleEditorRef(this.textInput);
-    // console.log('content updated!');
-  };
-
-  handleClick = () => {
+  const handleClick = () => {
     console.log("handleClick ran!");
-    if (this.props.placeHolder) {
-      this.props.handlePlaceHolder(false);
-      // this.props.handleHomeAnimation('animate__animated animate__flipInY');
-      this.props.handleFabIcon("clipboard");
-      this.props.handleEditorRef(this.textInput);
+    if (placeHolder) {
+      handlePlaceHolder(false);
+      // handleHomeAnimation('animate__animated animate__flipInY');
+      handleFabIcon("clipboard");
     }
-    this.textInput.current.focus();
+    refEditor.current.focus();
   };
 
-  handleKeyCommand = (command) => {
-    const newState = RichUtils.handleKeyCommand(
-      this.state.editorState,
-      command
-    );
-
-    if (newState) {
-      this.onChange(newState);
-      return "handled";
-    }
-
-    return "not-handled";
-  };
-
-  onUnderlineClick = () => {
-    this.onChange(
-      RichUtils.toggleInlineStyle(this.state.editorState, "UNDERLINE")
-    );
-  };
-
-  onToggleCode = () => {
-    this.onChange(RichUtils.toggleCode(this.state.editorState));
-  };
-
-  render() {
-    return (
-      <div className="editorContainer" onClick={this.handleClick}>
-        {/* <h1>Better Letter</h1> */}
-        {/* <button onClick={this.onUnderlineClick}><FontAwesomeIcon icon={faUnderline} /> Underline</button>
-        <button onClick={this.onToggleCode}><FontAwesomeIcon icon={faCode} /> Code Block</button> */}
-        <Editor
-          editorState={this.state.editorState}
-          // placeholder={this.props.placeHolder && "|  Tap anywhere"}
-          handleKeyCommand={this.handleKeyCommand}
-          onChange={this.onChange}
-          ref={this.textInput}
-        />
-        {/* <Fab /> */}
+  return (
+    <div className="RichEditor-root editorContainer" onClick={handleClick}>
+      <div>
+        {editorState ? (
+          <Editor
+            blockStyleFn={getBlockStyle}
+            customStyleMap={styleMap}
+            editorState={editorState}
+            onChange={changeEditor}
+            ref={refEditor}
+            spellCheck={true}
+          />
+        ) : (
+          <></>
+        )}
       </div>
-    );
+    </div>
+  );
+}
+
+const styleMap = {
+  CODE: {
+    backgroundColor: "rgba(0, 0, 0, 0.05)",
+    fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
+    fontSize: 16,
+    padding: 2,
+  },
+};
+
+function getBlockStyle(block) {
+  switch (block.getType()) {
+    case "blockquote":
+      return "RichEditor-blockquote";
+    default:
+      return null;
   }
 }
 
-// export default TextEditor;
-
 const mapStateToProps = (state) => ({
   placeHolder: state.placeHolder.placeHolderShow,
+  editorState: state.textEditor.editorState,
 });
 
-export default connect(mapStateToProps, { handlePlaceHolder, handleFabIcon, handleEditorRef })(
-  TextEditor
-);
+export default connect(mapStateToProps, {
+  changeEditor,
+  createEditor,
+  handlePlaceHolder,
+  handleFabIcon,
+  handleEditorRef,
+})(TextEditor);
