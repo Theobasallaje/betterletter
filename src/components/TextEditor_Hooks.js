@@ -1,26 +1,30 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import {
+  createEditor,
   changeEditor,
   handlePlaceHolder,
   handleFabIcon,
   handleEditorRef,
 } from "./../actions";
+import { Editor } from "draft-js";
 import "./TextEditor.scss";
 
 // FIXME:
 function TextEditor({
+  createEditor,
   placeHolder,
   handlePlaceHolder,
   handleFabIcon,
+  editorState,
   changeEditor,
 }) {
   // console.log(props);
-  // TODO: uninstall Draftjs
   let refEditor = useRef("editor");
   const hydrate = useCallback(() => {
     console.log("hydrate()");
-  }, []);
+    createEditor();
+  }, [createEditor]);
   useEffect(() => {
     console.log("Inside UseEffect");
     hydrate();
@@ -39,15 +43,42 @@ function TextEditor({
     refEditor.current.focus();
   };
 
-  const handleChange = (event) => {
-    changeEditor(event.target.value);
-  };
-  
   return (
-    <div className="editorContainer" onClick={handleClick}>
-      <textarea onChange={handleChange} ref={refEditor} />
+    <div className="RichEditor-root editorContainer" onClick={handleClick}>
+      <div>
+        {editorState ? (
+          <Editor
+            blockStyleFn={getBlockStyle}
+            customStyleMap={styleMap}
+            editorState={editorState}
+            onChange={changeEditor}
+            ref={refEditor}
+            spellCheck={true}
+          />
+        ) : (
+          <></>
+        )}
+      </div>
     </div>
   );
+}
+
+const styleMap = {
+  CODE: {
+    backgroundColor: "rgba(0, 0, 0, 0.05)",
+    fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
+    fontSize: 16,
+    padding: 2,
+  },
+};
+
+function getBlockStyle(block) {
+  switch (block.getType()) {
+    case "blockquote":
+      return "RichEditor-blockquote";
+    default:
+      return null;
+  }
 }
 
 const mapStateToProps = (state) => ({
@@ -57,6 +88,7 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   changeEditor,
+  createEditor,
   handlePlaceHolder,
   handleFabIcon,
   handleEditorRef,

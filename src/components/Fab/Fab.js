@@ -36,7 +36,7 @@ class Fab extends Component {
       navigator
         .share({
           // title: "tdraft",
-          text: this.props.editorRef.current.props.editorState.getCurrentContent().getPlainText(),
+          text: this.props.editorState,
           // text: this.props.editorRef.current.editor.innerText,
           // url: "https://tdraft.io",
         })
@@ -96,7 +96,7 @@ class Fab extends Component {
 
 const mapStateToProps = (state) => ({
   fabIcon: state.fab.fabIcon,
-  editorRef: state.textEditor.ref,
+  editorState: state.textEditor.editorState,
 });
 
 export default connect(mapStateToProps, { handleFabIcon, handlePlaceHolder })(Fab);

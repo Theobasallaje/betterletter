@@ -1,6 +1,6 @@
 import {
   EDITOR_CHANGE,
-  EDITOR_CREATE,
+  // EDITOR_CREATE,
   EDITOR_REF,
   FAB_ICON,
   IS_MOBILE,
@@ -9,9 +9,9 @@ import {
 } from "./types";
 import {
   // Editor,
-  EditorState,
+  // EditorState,
   // convertToRaw,
-  convertFromRaw,
+  // convertFromRaw,
   // ContentState,
 } from "draft-js";
 
@@ -55,28 +55,27 @@ export const handleEditorRef = (ref) => {
   };
 };
 
-export const createEditor = (state) => async (dispatch, getState) => {
-  // let state = await getState();
-  console.log(state);
-  if (state) {
-    // let currentContent = editorState.textEditor.editorState.getCurrentContent().getPlainText();
-    let currentContent = state.textEditor.editorState.getCurrentContent().getPlainText();
-    console.log("Current Content: ", currentContent);
-    const contentState = convertFromRaw(currentContent);
-    let editorState = await EditorState.createWithContent(contentState);
+// export const createEditor = (state) => async (dispatch, getState) => {
+//   // let state = await getState();
+//   console.log(state);
+//   if (state) {
+//     // let currentContent = editorState.textEditor.editorState.getCurrentContent().getPlainText();
+//     let currentContent = state.textEditor.editorState.getCurrentContent().getPlainText();
+//     console.log("Current Content: ", currentContent);
+//     const contentState = convertFromRaw(currentContent);
+//     let editorState = await EditorState.createWithContent(contentState);
 
-    dispatch({ type: EDITOR_CREATE, payload: { editorState } });
-  } else {
-    let editorState = await EditorState.createEmpty();
-    dispatch({ type: EDITOR_CREATE, payload: { editorState } });
-  }
-};
+//     dispatch({ type: EDITOR_CREATE, payload: { editorState } });
+//   } else {
+//     let editorState = await EditorState.createEmpty();
+//     dispatch({ type: EDITOR_CREATE, payload: { editorState } });
+//   }
+// };
 
 export const changeEditor = (editorState) => async (dispatch, getState) => {
   console.log("editorState: ", editorState);
-  if (editorState) {
-    dispatch({ type: EDITOR_CHANGE, payload: { editorState } });
-  }
+  dispatch({ type: EDITOR_CHANGE, payload: { editorState } });
+  
   // console.log('Get Plain Text editorState AFTER 2nd getState: ', state.textEditor.editorState.getCurrentContent().getPlainText())
 };
 

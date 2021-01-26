@@ -1,7 +1,7 @@
 import { EDITOR_CHANGE, EDITOR_CREATE, EDITOR_REF } from "../actions/types";
 
 const INTIAL_STATE = {
-  editorState: false,
+  editorState: "",
   hasText: null,
   ref: null,
 };

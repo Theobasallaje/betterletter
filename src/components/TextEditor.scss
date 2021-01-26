@@ -5,63 +5,39 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
-button {
-  background: #999;
-  color: #fff;
-  border: none;
-  padding: 0.5em;
-  cursor: pointer;
-  margin-bottom: .3em;
-  border-radius: 0.2em;
-}
+// button {
+//   background: #999;
+//   color: #fff;
+//   border: none;
+//   padding: 0.5em;
+//   cursor: pointer;
+//   margin-bottom: .3em;
+//   border-radius: 0.2em;
+// }
 
-button:hover {
-  background: #888;
-}
-
-pre {
-  border: 1px solid #ccc;
-  background: #f0f0f0;
-  border-radius: 0.2em;
-  padding: 0.5em;
-  margin: 0;
-}
-
-pre > pre {
-  background: none;
-  border: none;
-  padding: 0;
-}
-
-// This fixes the placeholder being on top of the cursor issue
-.public-DraftEditorPlaceholder-root {
-  margin-top: 20vw;
-  color: #666666;
-  font-size: xx-large;
-  position: absolute;
-  z-index: 0;
-  margin-left: 20px;
-  vertical-align: center;
-}
-
-.public-DraftEditor-content {
-  width: 85vw;
-  max-width: 800px;
-  // height: 90vh;
-}
-
-.DraftEditor-root {
-  // height: 90vh;
-  // overflow-y: auto;
-}
+// button:hover {
+//   background: #888;
+// }
 
 .editorContainer {
   display: flex;
   justify-content: center;
+}
+
+textarea {
   font-size: large;
-  margin: 40px 0 40px 0;
+  resize: none;
+  margin-top: 40px;
+  border: none;
+  overflow: auto;
+  outline: none;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  resize: none; 
   // border: 2px solid red;
-  height: 94vh;
-  // position: fixed;
-  // overflow-y: auto;
+  height: 99vh;
+  width: 80vw;
 }
