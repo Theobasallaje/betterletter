@@ -101,7 +101,6 @@ class Home extends Component {
 
 const mapStateToProps = (state) => ({
   placeHolder: state.placeHolder.placeHolderShow,
-  editorRef: state.textEditor.ref,
   isMobile: state.placeHolder.isMobile,
 });
 
