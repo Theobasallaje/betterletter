@@ -24,12 +24,16 @@
     height: 90vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    margin-top: 5vh;
     padding: 0 30px 0 30px;
 }
 
 .aboutParagraph, .authors {
     padding-left: 25px;
+}
+
+.authorsDiv {
+    // margin-bottom: 50px;
 }
 
 .authors {

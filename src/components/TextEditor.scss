@@ -22,10 +22,12 @@ body {
 .editorContainer {
   display: flex;
   justify-content: center;
+  // border: 2px solid red;
 }
 
 textarea {
   font-size: large;
+  font-family: 'Montserrat';
   resize: none;
   margin-top: 40px;
   border: none;
@@ -39,5 +41,11 @@ textarea {
   resize: none; 
   // border: 2px solid red;
   height: 99vh;
-  width: 80vw;
+  width: 50vw;
+}
+
+@media only screen and (max-width: 600px) {
+  textarea {
+    width: 85vw;
+  }
 }

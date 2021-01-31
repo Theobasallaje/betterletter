@@ -21,7 +21,7 @@ function About({ handleFabIcon, showShareButton }) {
             <div>
               <div className="logoContainer">
                 <img
-                  className="logo animate__animated animate__heartBeat"
+                  className="logo animate__animated"
                   src={tangerineLogo}
                   alt="tdraft Tangerine Logo"
                 />
@@ -34,7 +34,7 @@ function About({ handleFabIcon, showShareButton }) {
                 Type distraction free and then move your text to other apps.
               </p>
             </div>
-            <div>
+            <div className="authorsDiv">
               <p className="authors">Made by:</p>
               <p className="authors">
                 <a
