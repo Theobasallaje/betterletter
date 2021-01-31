@@ -42,10 +42,10 @@ function TextEditor({
   const handleChange = (event) => {
     changeEditor(event.target.value);
   };
-  
+
   return (
     <div className="editorContainer" onClick={handleClick}>
-      <textarea onChange={handleChange} ref={refEditor} />
+      <textarea tabIndex={-1} onChange={handleChange} ref={refEditor} />
     </div>
   );
 }
