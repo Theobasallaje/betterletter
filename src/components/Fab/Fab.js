@@ -77,7 +77,7 @@ class Fab extends Component {
               </div>
             </Link>
           )}
-          {this.props.fabIcon === "share" && (
+          {this.props.isMobile && this.props.fabIcon === "share" && (
             <Link
               onClick={this.handleShare}
               className="icon noSelect"
@@ -97,6 +97,7 @@ class Fab extends Component {
 const mapStateToProps = (state) => ({
   fabIcon: state.fab.fabIcon,
   editorState: state.textEditor.editorState,
+  isMobile: state.placeHolder.isMobile,
 });
 
 export default connect(mapStateToProps, { handleFabIcon, handlePlaceHolder })(Fab);

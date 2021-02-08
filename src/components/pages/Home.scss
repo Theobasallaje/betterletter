@@ -8,9 +8,8 @@
 
 .placeholder {
     position: fixed;
-    top: 15vh;
-    width: 100vw;
-    max-width: 800px;
+    max-height: 78vh;
+    max-width: 100vw;
 }
 
 @media only screen and (max-width: 600px) {
@@ -44,4 +43,9 @@
 #homeContainer {
     // border: 2px solid orange;
     height: 100vh;
+}
+
+.editorDiv {
+  display: flex;
+  justify-content: center;
 }

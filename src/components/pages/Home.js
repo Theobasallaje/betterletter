@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import TextEditor from "./../TextEditor";
-import { handleFabIcon, handlePlaceHolder, showShareButton } from "./../../actions";
+import {
+  handleFabIcon,
+  handlePlaceHolder,
+  showShareButton,
+} from "./../../actions";
 // import placeholder from "./../../images/tdraft_placeholder.png";
 // import placeholderSmall from "./../../images/tdraft_placeholder_small.png";
 import placeholderLowerCase from "./../../images/tdraft_placeholder_lower_case.png";
-import placeholderDesktop from "./../../images/tdraft_desktop_placeholder_lower_case.png"
+import placeholderDesktop from "./../../images/tdraft_desktop_placeholder_lower_case.png";
 import Fab from "./../Fab/Fab";
 import "./Home.scss";
 import "animate.css";
@@ -33,7 +37,7 @@ class Home extends Component {
 
   handlePlaceHolder = () => {
     this.props.handlePlaceHolder(false);
-    this.props.handleFabIcon('share');
+    this.props.handleFabIcon("share");
     this.props.showShareButton(true);
   };
 
@@ -76,7 +80,9 @@ class Home extends Component {
             <div className={this.state.copyConfirmationClass}>Copied!</div>
           </div>
         )}
-        <TextEditor handleHomeAnimation={this.handleHomeAnimation} />
+        <div className='editorDiv'>
+          <TextEditor handleHomeAnimation={this.handleHomeAnimation} />
+        </div>
         {this.props.placeHolder && (
           <div
             className="placeholderContainer"
@@ -86,7 +92,9 @@ class Home extends Component {
             {/* <img className="placeholder" src={placeholderSmall} alt="placeholder" /> */}
             <img
               className="placeholder animate__animated animate__rubberBand"
-              src={this.props.isMobile ? placeholderLowerCase : placeholderDesktop }
+              src={
+                this.props.isMobile ? placeholderLowerCase : placeholderDesktop
+              }
               alt="placeholder"
             />
           </div>
@@ -104,4 +112,8 @@ const mapStateToProps = (state) => ({
   isMobile: state.placeHolder.isMobile,
 });
 
-export default connect(mapStateToProps, { handleFabIcon, handlePlaceHolder, showShareButton })(Home);
+export default connect(mapStateToProps, {
+  handleFabIcon,
+  handlePlaceHolder,
+  showShareButton,
+})(Home);

@@ -22,6 +22,8 @@ body {
 .editorContainer {
   display: flex;
   justify-content: center;
+  position: absolute;
+  top: 0;
   // border: 2px solid red;
 }
 
@@ -41,7 +43,7 @@ textarea {
   resize: none; 
   // border: 2px solid red;
   height: 99vh;
-  width: 50vw;
+  width: 60vw;
 }
 
 @media only screen and (max-width: 600px) {
