@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { isMobile } from 'react-device-detect';
+import { isMobile, isIOS } from 'react-device-detect';
 import { HashRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import { detectMobile } from './actions/index'
+import { detectMobile, detectIOS } from './actions/index'
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 
@@ -14,6 +14,9 @@ class App extends Component {
     if (isMobile) {
       console.log(`isMobile: ${isMobile}`)
       this.props.detectMobile(true);
+    }
+    if (isIOS) {
+      this.props.detectIOS(true);
     }
   }
 
@@ -31,4 +34,4 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({});
 
-export default connect(mapStateToProps, { detectMobile })(App);
+export default connect(mapStateToProps, { detectMobile, detectIOS })(App);

@@ -1,38 +1,67 @@
 .infoFabButton {
-    background: white;
-    text-align: center;
-    // margin-right: .3em;
-    // margin-bottom: 6em;
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    color: #666666;
-    font-weight: bold;
-    text-decoration: none;
-    box-shadow: 5px 10px 20px;
-    // border: solid #666666;
-    ////Fab Placement////
-    float: right;
-    margin-left: 80%;
-    // margin: 0;
-    bottom: 12px;
+  background: white;
+  text-align: center;
+  // margin-right: .3em;
+  // margin-bottom: 6em;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: #666666;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 5px 10px 20px;
+  // border: solid #666666;
+  ////Fab Placement////
+  float: right;
+  margin-left: 80%;
+  // margin: 0;
+  bottom: 12px;
+  position: fixed;
+  ////Fab Placement////
+}
+
+.iosShare {
+  bottom: 32vh; // protrait
+  //top: 500px;
+  // position: fixed;
+  // bottom: 500px;
+  position: absolute;
+}
+
+@media only screen and (orientation: landscape) {
+  .iosShare {
+    // bottom: 56vh;
     position: fixed;
-    ////Fab Placement////
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .iosShare {
+    // bottom: 44vh;
+    position: fixed;
+  }
+}
+
+@media screen and (max-width: 812px) and (orientation: landscape) {
+  .iosShare {
+    // bottom: 75vh;    
+    position: fixed;
+  }
 }
 
 .infoFabButton:hover {
-    // background: green;
+  // background: green;
 }
 
 .fabButtonContainer {
-    height: 100%;
-    width: 100%;
-    // border: 2px solid blue;
-    // display: flex;
-    // justify-content: right;
+  height: 100%;
+  width: 100%;
+  // border: 2px solid blue;
+  // display: flex;
+  // justify-content: right;
 }

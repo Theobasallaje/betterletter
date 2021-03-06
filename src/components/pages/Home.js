@@ -29,6 +29,7 @@ class Home extends Component {
       // ? For when launching from homescreen app - back on mobile exits?
       return "Data will be lost if you leave the page, are you sure?";
     };
+    console.log('isIOS from Home: ', this.props.isIOS);
   }
 
   // componentWillUnmount() {
@@ -110,6 +111,7 @@ class Home extends Component {
 const mapStateToProps = (state) => ({
   placeHolder: state.placeHolder.placeHolderShow,
   isMobile: state.placeHolder.isMobile,
+  isIOS: state.fab.isIOS,
 });
 
 export default connect(mapStateToProps, {

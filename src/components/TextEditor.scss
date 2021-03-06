@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 body {
-  overflow: auto; /* Hide scrollbars */
+  // overflow: auto; /* Hide scrollbars */
   font-family: "Montserrat", sans-serif;
 }
 
@@ -24,26 +24,30 @@ body {
   justify-content: center;
   position: absolute;
   top: 0;
-  // border: 2px solid red;
+  height: 60vh;
+  border: 2px solid red;
+  position: fixed;
+  overflow-y: hidden;
 }
 
 textarea {
   font-size: large;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   resize: none;
   margin-top: 40px;
   border: none;
-  overflow: auto;
+  // overflow: auto;
   outline: none;
 
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
 
-  resize: none; 
-  // border: 2px solid red;
-  height: 99vh;
+  border: 2px solid blue;
+  height: 60vh;
   width: 60vw;
+  // touch-action: none;
+  // -ms-touch-action: none;
 }
 
 @media only screen and (max-width: 600px) {

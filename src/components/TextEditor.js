@@ -5,6 +5,7 @@ import {
   handlePlaceHolder,
   handleFabIcon,
   handleEditorRef,
+  checkFocus,
 } from "./../actions";
 import "./TextEditor.scss";
 
@@ -14,6 +15,8 @@ function TextEditor({
   handlePlaceHolder,
   handleFabIcon,
   changeEditor,
+  isIOS,
+  checkFocus,
 }) {
   // console.log(props);
   // TODO: uninstall Draftjs
@@ -37,15 +40,33 @@ function TextEditor({
       handleFabIcon("clipboard");
     }
     refEditor.current.focus();
+    if (isIOS) {
+      //TODO: detect onBlur here somehow
+    }
   };
 
   const handleChange = (event) => {
     changeEditor(event.target.value);
   };
 
+  const handleFocus = (isFocus) => {
+    if (isFocus) {
+      checkFocus(true);
+    } else {
+      checkFocus(false);
+    }
+  };
+
   return (
     <div className="editorContainer" onClick={handleClick}>
-      <textarea tabIndex={-1} onChange={handleChange} ref={refEditor} />
+      <textarea
+        id="editor"
+        tabIndex={-1}
+        onChange={handleChange}
+        onFocus={() => handleFocus(true)}
+        onBlur={() => handleFocus(false)}
+        ref={refEditor}
+      />
     </div>
   );
 }
@@ -53,6 +74,7 @@ function TextEditor({
 const mapStateToProps = (state) => ({
   placeHolder: state.placeHolder.placeHolderShow,
   editorState: state.textEditor.editorState,
+  isIOS: state.fab.isIOS,
 });
 
 export default connect(mapStateToProps, {
@@ -60,4 +82,5 @@ export default connect(mapStateToProps, {
   handlePlaceHolder,
   handleFabIcon,
   handleEditorRef,
+  checkFocus,
 })(TextEditor);

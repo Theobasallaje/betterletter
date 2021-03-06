@@ -1,8 +1,9 @@
-import { FAB_ICON, SHARE_BUTTON_SHOW } from '../actions/types';
+import { FAB_ICON, IS_IOS, SHARE_BUTTON_SHOW } from "../actions/types";
 
 const INTIAL_STATE = {
-  fabIcon: 'info',
+  fabIcon: "info",
   showShareButton: false,
+  isIOS: false,
 };
 
 export default (state = INTIAL_STATE, action) => {
@@ -11,6 +12,8 @@ export default (state = INTIAL_STATE, action) => {
       return { ...state, fabIcon: action.payload };
     case SHARE_BUTTON_SHOW:
       return { ...state, showShareButton: action.payload };
+    case IS_IOS:
+      return { ...state, isIOS: action.payload };
     default:
       return state;
   }
