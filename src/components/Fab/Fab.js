@@ -7,35 +7,11 @@ import {
   faInfo,
   faShare,
   faChevronLeft,
-  faChevronDown
 } from "@fortawesome/free-solid-svg-icons";
 import "./Fab.scss";
 import { handleFabIcon, handlePlaceHolder } from "./../../actions";
 
 class Fab extends Component {
-  state = {
-    iosShareClass: "",
-    iosCheck: this.props.isIOS,
-  };
-
-  componentDidMount() {
-    console.log("isIOS from Fab: ", this.props.isIOS);
-    console.log("isIOS from Fab from package: ", isIOS);
-    console.log("iosCheck from Fab: ", this.iosCheck);
-    if (isIOS) {
-      this.setState({
-        iosShareClass: "iosShare",
-      });
-      console.log("iosShareClass", this.iosShareClass);
-    }
-    console.log("iosShareClass AFTER setState()", this.iosShareClass);
-    // if (this.props.isIOS) {
-    //   this.setState({
-    //     iosShareClass: "iosShare",
-    //   });
-    // console.log(this.iosShareClass);
-    // }
-  }
 
   handleFabIcon = (icon) => {
     switch (icon) {
@@ -105,8 +81,8 @@ class Fab extends Component {
           {this.props.isMobile && this.props.fabIcon === "share" && (
             <Link onClick={this.handleShare} className="icon noSelect" to="/">
               {/* <div class={`infoFabButton ${this.props.isIOS && this.iosShareClass}`}> */}
-              <div class={`infoFabButton ${isIOS && this.props.isFocused ? 'iosShare' : ''}`}>
-                <FontAwesomeIcon className="icon" icon={isIOS && this.props.isFocused ? faChevronDown : faShare} size="xs" />
+              <div class={`infoFabButton ${isIOS && 'iosShare'}`}>
+                <FontAwesomeIcon className="icon" icon={faShare} size="xs" />
               </div>
             </Link>
           )}

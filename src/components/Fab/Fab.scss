@@ -25,35 +25,6 @@
   ////Fab Placement////
 }
 
-.iosShare {
-  bottom: 32vh; // protrait
-  //top: 500px;
-  // position: fixed;
-  // bottom: 500px;
-  position: absolute;
-}
-
-@media only screen and (orientation: landscape) {
-  .iosShare {
-    // bottom: 56vh;
-    position: fixed;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .iosShare {
-    // bottom: 44vh;
-    position: fixed;
-  }
-}
-
-@media screen and (max-width: 812px) and (orientation: landscape) {
-  .iosShare {
-    // bottom: 75vh;    
-    position: fixed;
-  }
-}
-
 .infoFabButton:hover {
   // background: green;
 }
@@ -64,4 +35,11 @@
   // border: 2px solid blue;
   // display: flex;
   // justify-content: right;
+}
+
+.iosShare {
+  position: fixed;
+  top: 20vh;
+  right: 0;
+  z-index: 1;
 }

@@ -1,19 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
-// html,
 // body {
-//   overflow: hidden;
-//   position: relative;
-//   height: 100%;
-//   touch-action: none;
-//   -ms-touch-action: none;
+//   min-height: 100vh;
+//   min-height: -webkit-fill-available;
 // }
-
-html,
-body {
-  position: fixed;
-  overflow-y: hidden !important;
-}
+// html {
+//   height: -webkit-fill-available;
+// }
 
 .placeholderContainer {
   display: flex;
@@ -22,18 +15,13 @@ body {
 }
 
 .placeholder {
-  position: absolute;
-  top: 0;
-  // TODO: Change back to 78
-  // max-height: 78vh;
-  max-height: 60vh;
+  position: fixed;
+  max-height: 78vh;
   max-width: 100vw;
-  border: 2px solid hotpink;
 }
 
 @media only screen and (max-width: 600px) {
   .placeholder {
-    position: fixed;
     top: 5vh;
   }
 }
@@ -61,10 +49,8 @@ body {
 }
 
 #homeContainer {
-  position: relative;
-  border: 2px solid black;
-  height: 60vh;
-  width: 100vw;
+  // border: 2px solid orange;
+  height: 100vh;
   touch-action: none;
   -ms-touch-action: none;
 }
@@ -72,8 +58,4 @@ body {
 .editorDiv {
   display: flex;
   justify-content: center;
-  border: 2px solid purple;
-  height: 60vh;
-  // touch-action: none;
-  // -ms-touch-action: none;
 }

@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Fab from "./../Fab/Fab";
+import Navbar from "./../Navbar/Navbar";
 import TextEditor from "./../TextEditor";
 import {
   handleFabIcon,
   handlePlaceHolder,
   showShareButton,
 } from "./../../actions";
-// import placeholder from "./../../images/tdraft_placeholder.png";
-// import placeholderSmall from "./../../images/tdraft_placeholder_small.png";
 import placeholderLowerCase from "./../../images/tdraft_placeholder_lower_case.png";
 import placeholderDesktop from "./../../images/tdraft_desktop_placeholder_lower_case.png";
-import Fab from "./../Fab/Fab";
 import "./Home.scss";
 import "animate.css";
 
@@ -75,6 +74,7 @@ class Home extends Component {
         className={this.state.homeContainerClass}
         onClick={this.handlePlaceHolder}
       >
+        {!this.props.placeHolder && <Navbar />}
         {/* //! adding animation here made the fab have unexpected behavior, not coming up with keyboard on Android */}
         {this.state.showCopyConfrimation && (
           <div className="copyConfirmationContainer">
