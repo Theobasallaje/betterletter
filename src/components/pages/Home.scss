@@ -8,6 +8,10 @@
 //   height: -webkit-fill-available;
 // }
 
+html, body {
+  overflow: hidden;
+}
+
 .placeholderContainer {
   display: flex;
   justify-content: center;
@@ -53,6 +57,12 @@
   height: 100vh;
   touch-action: none;
   -ms-touch-action: none;
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  // -webkit-justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  // justify-content: flex-start;
 }
 
 .editorDiv {
