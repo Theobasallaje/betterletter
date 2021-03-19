@@ -8,6 +8,7 @@ import {
   IS_IOS,
   PLACE_HOLDER_SHOW,
   SHARE_BUTTON_SHOW,
+  VIEW_PORT_HIEGHT,
 } from "./types";
 
 // Placeholder actions
@@ -64,7 +65,7 @@ export const changeEditor = (editorState) => async (dispatch, getState) => {
 };
 
 export const checkFocus = (isFocused) => { 
-  console.log('isFocused from checkFocus ', isFocused);
+  console.log('isFocused from checkFocus: ', isFocused);
   return {
     type: EDITOR_FOCUS, 
     payload: isFocused,
@@ -72,3 +73,15 @@ export const checkFocus = (isFocused) => {
 };
 
 // End of Editor actions
+
+// Home actions
+
+export const setViewportHieght = (hieght) => { 
+  console.log('hieght from setViewportHieght: ', hieght);
+  return {
+    type: VIEW_PORT_HIEGHT, 
+    payload: hieght,
+  };
+};
+
+// End of Home actions

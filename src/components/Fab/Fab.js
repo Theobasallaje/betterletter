@@ -50,7 +50,7 @@ class Fab extends Component {
 
   render() {
     return (
-      <div class="fabContainer">
+      <div className="fabContainer">
         <div className="fabButtonContainer">
           {this.props.fabIcon === "info" && (
             <Link
@@ -80,8 +80,8 @@ class Fab extends Component {
           )}
           {this.props.isMobile && this.props.fabIcon === "share" && (
             <Link onClick={this.handleShare} className="icon noSelect" to="/">
-              {/* <div class={`infoFabButton ${this.props.isIOS && this.iosShareClass}`}> */}
-              <div class={`infoFabButton ${isIOS && 'iosShare'}`}>
+              {/* <div className={`infoFabButton ${this.props.isIOS && this.iosShareClass}`}> */}
+              <div className={`infoFabButton ${isIOS && 'iosShare'}`}>
                 <FontAwesomeIcon className="icon" icon={faShare} size="xs" />
               </div>
             </Link>

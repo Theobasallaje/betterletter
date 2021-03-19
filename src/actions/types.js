@@ -12,3 +12,7 @@ export const IS_IOS = "IS_IOS";
 // Placeholder
 export const PLACE_HOLDER_SHOW = "PLACE_HOLDER_SHOW";
 export const IS_MOBILE = "IS_MOBILE";
+
+// Home
+export const VIEW_PORT_HIEGHT = "VIEW_PORT_HIEGHT";
+

@@ -59,7 +59,7 @@ class ShareButton extends Component {
 
   render() {
     return (
-      <div class="fabContainer">
+      <div className="fabContainer">
         <div className="fabButtonContainer">
           <div className="shareButton" onClick={this.handleShare}>
             <FontAwesomeIcon className="icon" icon={faShare} size="xs" />

@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
-import textEditorReducer from './textEditorReducer';
-import placeHolderReducer from './placeHolderReducer'
 import fabReducer from './fabReducer';
+import homeReducer from './homeReducer';
+import placeHolderReducer from './placeHolderReducer'
+import textEditorReducer from './textEditorReducer';
 
 export default combineReducers({
-    textEditor: textEditorReducer,
-    placeHolder: placeHolderReducer,
     fab: fabReducer,
+    home: homeReducer,
+    placeHolder: placeHolderReducer,
+    textEditor: textEditorReducer,
 });

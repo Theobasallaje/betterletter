@@ -7,7 +7,7 @@ import tangerineLogo from "./../../images/tdraft_tangerine.png";
 class Navbar extends Component {
   render() {
     return (
-      <div class="navContainer">
+      <div className="navContainer">
         <nav className="logoContainer">
           <img
             // className="logo animate__animated"
