@@ -24,7 +24,7 @@ body {
   justify-content: center;
   position: absolute;
   top: 0;
-  border: 2px solid blue;
+  // border: 2px solid blue;
 }
 
 textarea {
@@ -44,8 +44,9 @@ textarea {
   border: 2px solid red;
   height: 90vh;
   // height: 50vh;
-  width: 60vw;
-  // padding: 50px; //? can add padding to achieve the side margins instead
+  width: 66vw;
+  // width: 60vw;
+  padding: 0 325px 0;
 }
 
 @media only screen and (max-width: 600px) {
