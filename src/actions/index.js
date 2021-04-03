@@ -7,13 +7,6 @@ import {
   PLACE_HOLDER_SHOW,
   SHARE_BUTTON_SHOW,
 } from "./types";
-import {
-  // Editor,
-  // EditorState,
-  // convertToRaw,
-  // convertFromRaw,
-  // ContentState,
-} from "draft-js";
 
 // Placeholder actions
 export const handlePlaceHolder = (placeHolderPresent) => {
