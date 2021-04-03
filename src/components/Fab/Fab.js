@@ -78,7 +78,8 @@ class Fab extends Component {
               </div>
             </Link>
           )}
-          {this.props.isMobile && this.props.fabIcon === "share" && (
+          {/* {this.props.isMobile && this.props.fabIcon === "share" && ( */}
+          {this.props.fabIcon === "share" && (
             <Link onClick={this.handleShare} className="icon noSelect" to="/">
               {/* <div className={`infoFabButton ${this.props.isIOS && this.iosShareClass}`}> */}
               <div className={`infoFabButton ${isIOS && 'iosShare'}`}>

@@ -53,10 +53,8 @@ html, body {
 }
 
 #homeContainer {
-  // border: 2px solid orange;
+  border: 2px solid rgb(255, 81, 0);
   height: 100vh;
-  touch-action: none;
-  -ms-touch-action: none;
   display: -webkit-flex;
   -webkit-flex-direction: column;
   // -webkit-justify-content: flex-start;
@@ -66,6 +64,7 @@ html, body {
 }
 
 .editorDiv {
+  border: 2px solid black;
   display: flex;
   justify-content: center;
 }

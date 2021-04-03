@@ -8,6 +8,7 @@ import {
   handlePlaceHolder,
   showShareButton,
   setViewportHieght,
+  changeFocus,
 } from "./../../actions";
 import placeholderLowerCase from "./../../images/tdraft_placeholder_lower_case.png";
 import placeholderDesktop from "./../../images/tdraft_desktop_placeholder_lower_case.png";
@@ -25,8 +26,8 @@ class Home extends Component {
     // if (!this.props.placeHolder) alert("Test!");
     // let viewport = window.visualViewport;
     // console.log({viewport});
-    window.visualViewport.addEventListener("scroll", this.viewportHandler);
-    window.visualViewport.addEventListener("resize", this.viewportHandler);
+    // window.visualViewport.addEventListener("scroll", this.viewportHandler);
+    // window.visualViewport.addEventListener("resize", this.viewportHandler);
     window.onbeforeunload = function () {
       // TODO: Figure out how to change the message on the alert
       // ? Can we change the placeholder back to true here?
@@ -36,32 +37,32 @@ class Home extends Component {
     console.log("isIOS from Home: ", this.props.isIOS);
   }
 
-  viewportHandler = () => {
-    var fab = document.getElementsByClassName("fab");
-    var viewport = window.visualViewport;
-    var layoutViewport = document.getElementById("homeContainer");
-    console.log(fab, viewport, layoutViewport);
+  // viewportHandler = () => {
+  //   var fab = document.getElementsByClassName("fab");
+  //   var viewport = window.visualViewport;
+  //   var layoutViewport = document.getElementById("homeContainer");
+  //   console.log(fab, viewport, layoutViewport);
 
-    // Since the bar is position: fixed we need to offset it by the visual
-    // viewport's offset from the layout viewport origin.
-    var offsetLeft = viewport.offsetLeft;
-    var offsetTop =
-      viewport.height -
-      layoutViewport.getBoundingClientRect().height +
-      viewport.offsetTop;
+  //   // Since the bar is position: fixed we need to offset it by the visual
+  //   // viewport's offset from the layout viewport origin.
+  //   var offsetLeft = viewport.offsetLeft;
+  //   var offsetTop =
+  //     viewport.height -
+  //     layoutViewport.getBoundingClientRect().height +
+  //     viewport.offsetTop;
 
-    // You could also do this by setting style.left and style.top if you
-    // use width: 100% instead.
-    fab.style.transform =
-      "translate(" +
-      offsetLeft +
-      "px," +
-      offsetTop +
-      "px) " +
-      "scale(" +
-      1 / viewport.scale +
-      ")";
-  };
+  //   // You could also do this by setting style.left and style.top if you
+  //   // use width: 100% instead.
+  //   fab.style.transform =
+  //     "translate(" +
+  //     offsetLeft +
+  //     "px," +
+  //     offsetTop +
+  //     "px) " +
+  //     "scale(" +
+  //     1 / viewport.scale +
+  //     ")";
+  // };
 
   // componentWillUnmount() {
   //   document.getElementById('homeContainer').className = 'animate__animated animate__bounceOutLeft';
@@ -71,6 +72,7 @@ class Home extends Component {
     this.props.handlePlaceHolder(false);
     this.props.handleFabIcon("share");
     this.props.showShareButton(true);
+    !this.props.isFocused && this.props.changeFocus(true);
     // let viewport = window.visualViewport;
     // console.log({viewport});
   };
@@ -113,7 +115,7 @@ class Home extends Component {
         className={this.state.homeContainerClass}
         onClick={this.handlePlaceHolder}
       >
-        {!this.props.placeHolder && <Navbar />}
+        {/* {!this.props.placeHolder && <Navbar />}         */}
         {/* //! adding animation here made the fab have unexpected behavior, not coming up with keyboard on Android */}
         {this.state.showCopyConfrimation && (
           <div className="copyConfirmationContainer">
@@ -121,6 +123,7 @@ class Home extends Component {
           </div>
         )}
         <div className="editorDiv">
+        <p>{`isFocused: ${this.props.isFocused} makeFocused ${this.props.makeFocused}`}</p>
           <TextEditor
             handleHomeAnimation={this.handleHomeAnimation}
             // onClick={}
@@ -155,6 +158,8 @@ const mapStateToProps = (state) => ({
   placeHolder: state.placeHolder.placeHolderShow,
   isMobile: state.placeHolder.isMobile,
   isIOS: state.fab.isIOS,
+  isFocused: state.textEditor.isFocused,
+  makeFocused: state.textEditor.makeFocused,
 });
 
 export default connect(mapStateToProps, {
@@ -162,4 +167,5 @@ export default connect(mapStateToProps, {
   handlePlaceHolder,
   showShareButton,
   setViewportHieght,
+  changeFocus
 })(Home);

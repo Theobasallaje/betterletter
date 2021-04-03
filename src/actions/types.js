@@ -3,6 +3,7 @@ export const EDITOR_REF = "EDITOR_REF";
 export const EDITOR_CREATE = "EDITOR_CREATE";
 export const EDITOR_CHANGE = "EDITOR_CHANGE";
 export const EDITOR_FOCUS = "EDITOR_FOCUS";
+export const MAKE_EDITOR_FOCUS = "MAKE_EDITOR_FOCUS";
 
 // Fab
 export const FAB_ICON = "FAB_ICON";

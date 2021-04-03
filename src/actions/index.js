@@ -6,6 +6,7 @@ import {
   FAB_ICON,
   IS_MOBILE,
   IS_IOS,
+  MAKE_EDITOR_FOCUS,
   PLACE_HOLDER_SHOW,
   SHARE_BUTTON_SHOW,
   VIEW_PORT_HIEGHT,
@@ -69,6 +70,14 @@ export const checkFocus = (isFocused) => {
   return {
     type: EDITOR_FOCUS, 
     payload: isFocused,
+  };
+};
+
+export const changeFocus = (makeFocused) => { 
+  console.log('makeFocused from changeFocus: ', makeFocused);
+  return {
+    type: MAKE_EDITOR_FOCUS, 
+    payload: makeFocused,
   };
 };
 

@@ -6,6 +6,7 @@ import {
   handleFabIcon,
   handleEditorRef,
   checkFocus,
+  changeFocus,
 } from "./../actions";
 import "./TextEditor.scss";
 
@@ -17,13 +18,18 @@ function TextEditor({
   changeEditor,
   isIOS,
   checkFocus,
+  changeFocus,
+  makeFocused,
 }) {
   // console.log(props);
   // TODO: uninstall Draftjs
   let refEditor = useRef("editor");
-  const hydrate = useCallback(() => {
+  const hydrate = useCallback((e) => {
+    // e.preventDefault();
     console.log("hydrate()");
-  }, []);
+    console.log("TextEditor Useffect() ran!");
+    if (makeFocused) handleFocus(true);
+  }, [makeFocused]);
   useEffect(() => {
     console.log("Inside UseEffect");
     hydrate();
@@ -49,11 +55,18 @@ function TextEditor({
     changeEditor(event.target.value);
   };
 
-  const handleFocus = (isFocus) => {
+  const handleFocus = (focus) => {
+    if (focus) {
+      refEditor.current.focus();
+    }
+  }
+
+  const handleOnFocusOnBlur = (isFocus) => {
     if (isFocus) {
       checkFocus(true);
     } else {
       checkFocus(false);
+      changeFocus(false);
     }
   };
 
@@ -63,8 +76,8 @@ function TextEditor({
         id="editor"
         tabIndex={-1}
         onChange={handleChange}
-        onFocus={() => handleFocus(true)}
-        onBlur={() => handleFocus(false)}
+        onFocus={() => handleOnFocusOnBlur(true)}
+        onBlur={() => handleOnFocusOnBlur(false)}
         ref={refEditor}
       />
     </div>
@@ -75,6 +88,7 @@ const mapStateToProps = (state) => ({
   placeHolder: state.placeHolder.placeHolderShow,
   editorState: state.textEditor.editorState,
   isIOS: state.fab.isIOS,
+  makeFocused: state.textEditor.makeFocused,
 });
 
 export default connect(mapStateToProps, {
@@ -83,4 +97,5 @@ export default connect(mapStateToProps, {
   handleFabIcon,
   handleEditorRef,
   checkFocus,
+  changeFocus,
 })(TextEditor);
