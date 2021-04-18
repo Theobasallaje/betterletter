@@ -7,6 +7,7 @@ import {
   handleFabIcon,
   handleEditorRef,
 } from "./../actions";
+import { Editor } from "draft-js";
 import "./TextEditor.scss";
 
 // FIXME:

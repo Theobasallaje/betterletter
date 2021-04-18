@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Fab from "./../Fab/Fab";
-import Navbar from "./../Navbar/Navbar";
 import TextEditor from "./../TextEditor";
 import {
   handleFabIcon,
   handlePlaceHolder,
   showShareButton,
-  setViewportHieght,
 } from "./../../actions";
+// import placeholder from "./../../images/tdraft_placeholder.png";
+// import placeholderSmall from "./../../images/tdraft_placeholder_small.png";
 import placeholderLowerCase from "./../../images/tdraft_placeholder_lower_case.png";
 import placeholderDesktop from "./../../images/tdraft_desktop_placeholder_lower_case.png";
+import Fab from "./../Fab/Fab";
 import "./Home.scss";
 import "animate.css";
 
@@ -22,14 +22,18 @@ class Home extends Component {
   };
 
   componentDidMount() {
+    // if (!this.props.placeHolder) alert("Test!");
     window.onbeforeunload = function () {
       // TODO: Figure out how to change the message on the alert
       // ? Can we change the placeholder back to true here?
       // ? For when launching from homescreen app - back on mobile exits?
       return "Data will be lost if you leave the page, are you sure?";
     };
-    console.log("isIOS from Home: ", this.props.isIOS);
   }
+
+  // componentWillUnmount() {
+  //   document.getElementById('homeContainer').className = 'animate__animated animate__bounceOutLeft';
+  // }
 
   handlePlaceHolder = () => {
     this.props.handlePlaceHolder(false);
@@ -63,11 +67,6 @@ class Home extends Component {
     console.log("Inisde handleHomeExit!");
   };
 
-  componentWillUnmount() {
-    window.visualViewport.removeEventListener("scroll", this.viewportHandler);
-    window.visualViewport.removeEventListener("resize", this.viewportHandler);
-  }
-
   render() {
     return (
       <div
@@ -75,7 +74,6 @@ class Home extends Component {
         className={this.state.homeContainerClass}
         onClick={this.handlePlaceHolder}
       >
-        {!this.props.placeHolder && <Navbar />}        
         {/* //! adding animation here made the fab have unexpected behavior, not coming up with keyboard on Android */}
         {this.state.showCopyConfrimation && (
           <div className="copyConfirmationContainer">
@@ -83,9 +81,7 @@ class Home extends Component {
           </div>
         )}
         <div className="editorDiv">
-          <TextEditor
-            handleHomeAnimation={this.handleHomeAnimation}
-          />
+          <TextEditor handleHomeAnimation={this.handleHomeAnimation} />
         </div>
         {this.props.placeHolder && (
           <div
@@ -104,7 +100,6 @@ class Home extends Component {
           </div>
         )}
         <Fab
-          className="fab"
           handleCopyConfirmationAnimation={this.handleCopyConfirmationAnimation}
         />
       </div>
@@ -115,14 +110,10 @@ class Home extends Component {
 const mapStateToProps = (state) => ({
   placeHolder: state.placeHolder.placeHolderShow,
   isMobile: state.placeHolder.isMobile,
-  isIOS: state.fab.isIOS,
-  isFocused: state.textEditor.isFocused,
-  makeFocused: state.textEditor.makeFocused,
 });
 
 export default connect(mapStateToProps, {
   handleFabIcon,
   handlePlaceHolder,
   showShareButton,
-  setViewportHieght,
 })(Home);

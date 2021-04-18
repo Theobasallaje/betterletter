@@ -1,16 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
+// html,
 // body {
-//   min-height: 100vh;
-//   min-height: -webkit-fill-available;
+//   // max-width: 100%;
+//   overflow-x: hidden;
 // }
-// html {
-//   height: -webkit-fill-available;
-// }
-
-html, body {
-  overflow: hidden;
-}
 
 .placeholderContainer {
   display: flex;
@@ -53,18 +47,11 @@ html, body {
 }
 
 #homeContainer {
-  // border: 2px solid rgb(255, 81, 0);
+  // border: 2px solid rgb(255, 123, 0);
   height: 100vh;
-  display: -webkit-flex;
-  -webkit-flex-direction: column;
-  // -webkit-justify-content: flex-start;
-  display: flex;
-  flex-direction: column;
-  // justify-content: flex-start;
 }
 
 .editorDiv {
-  // border: 2px solid black;
   display: flex;
   justify-content: center;
 }

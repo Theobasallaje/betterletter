@@ -24,14 +24,14 @@ body {
   justify-content: center;
   position: absolute;
   top: 0;
-  // border: 2px solid blue;
+  // border: 2px solid red;
 }
 
 textarea {
   font-size: large;
   font-family: 'Montserrat';
   resize: none;
-  margin-top: 75px;
+  margin-top: 40px;
   border: none;
   overflow: auto;
   outline: none;
@@ -41,16 +41,26 @@ textarea {
   box-shadow: none;
 
   resize: none; 
-  border: 2px solid red;
-  height: 90vh;
-  // height: 50vh;
-  width: 66vw;
-  // width: 60vw;
+  // border: 2px solid red;
+  height: 99vh;
+  width: 65vw;
   padding: 0 325px 0;
 }
 
+// Phone
 @media only screen and (max-width: 600px) {
   textarea {
-    width: 85vw;
+    // border: 2px solid red;
+    width: 78vw;
+    padding: 0 30px 0;
+  }
+}
+
+// Tablet
+@media screen and (min-device-width: 600px) and (max-device-width: 1024px) { 
+  textarea {
+    // border: 2px solid blue;
+    width: 60vw;
+    padding: 0 165px 0;
   }
 }

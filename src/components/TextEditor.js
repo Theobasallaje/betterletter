@@ -5,8 +5,6 @@ import {
   handlePlaceHolder,
   handleFabIcon,
   handleEditorRef,
-  checkFocus,
-  changeFocus,
 } from "./../actions";
 import "./TextEditor.scss";
 
@@ -16,20 +14,13 @@ function TextEditor({
   handlePlaceHolder,
   handleFabIcon,
   changeEditor,
-  isIOS,
-  checkFocus,
-  changeFocus,
-  makeFocused,
 }) {
   // console.log(props);
   // TODO: uninstall Draftjs
   let refEditor = useRef("editor");
-  const hydrate = useCallback((e) => {
-    // e.preventDefault();
+  const hydrate = useCallback(() => {
     console.log("hydrate()");
-    console.log("TextEditor Useffect() ran!");
-    if (makeFocused) handleFocus(true);
-  }, [makeFocused]);
+  }, []);
   useEffect(() => {
     console.log("Inside UseEffect");
     hydrate();
@@ -46,40 +37,15 @@ function TextEditor({
       handleFabIcon("clipboard");
     }
     refEditor.current.focus();
-    if (isIOS) {
-      //TODO: detect onBlur here somehow
-    }
   };
 
   const handleChange = (event) => {
     changeEditor(event.target.value);
   };
 
-  const handleFocus = (focus) => {
-    if (focus) {
-      refEditor.current.focus();
-    }
-  }
-
-  const handleOnFocusOnBlur = (isFocus) => {
-    if (isFocus) {
-      checkFocus(true);
-    } else {
-      checkFocus(false);
-      changeFocus(false);
-    }
-  };
-
   return (
     <div className="editorContainer" onClick={handleClick}>
-      <textarea
-        id="editor"
-        tabIndex={-1}
-        onChange={handleChange}
-        onFocus={() => handleOnFocusOnBlur(true)}
-        onBlur={() => handleOnFocusOnBlur(false)}
-        ref={refEditor}
-      />
+      <textarea tabIndex={-1} onChange={handleChange} ref={refEditor} />
     </div>
   );
 }
@@ -87,8 +53,6 @@ function TextEditor({
 const mapStateToProps = (state) => ({
   placeHolder: state.placeHolder.placeHolderShow,
   editorState: state.textEditor.editorState,
-  isIOS: state.fab.isIOS,
-  makeFocused: state.textEditor.makeFocused,
 });
 
 export default connect(mapStateToProps, {
@@ -96,6 +60,4 @@ export default connect(mapStateToProps, {
   handlePlaceHolder,
   handleFabIcon,
   handleEditorRef,
-  checkFocus,
-  changeFocus,
 })(TextEditor);

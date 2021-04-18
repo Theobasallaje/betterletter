@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Editor, EditorState, RichUtils } from "draft-js";
 // import Fab from './Fab/Fab';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faUnderline, faCode } from '@fortawesome/free-solid-svg-icons'

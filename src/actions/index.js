@@ -2,14 +2,10 @@ import {
   EDITOR_CHANGE,
   // EDITOR_CREATE,
   EDITOR_REF,
-  EDITOR_FOCUS,
   FAB_ICON,
   IS_MOBILE,
-  IS_IOS,
-  MAKE_EDITOR_FOCUS,
   PLACE_HOLDER_SHOW,
   SHARE_BUTTON_SHOW,
-  VIEW_PORT_HIEGHT,
 } from "./types";
 
 // Placeholder actions
@@ -42,14 +38,6 @@ export const showShareButton = (shareButtonPresent) => {
     payload: shareButtonPresent,
   };
 };
-
-export const detectIOS = (isIOS) => {
-  return {
-    type: IS_IOS,
-    payload: isIOS,
-  };
-};
-
 // End of Fab actions
 
 // Editor actions
@@ -60,37 +48,28 @@ export const handleEditorRef = (ref) => {
   };
 };
 
+// export const createEditor = (state) => async (dispatch, getState) => {
+//   // let state = await getState();
+//   console.log(state);
+//   if (state) {
+//     // let currentContent = editorState.textEditor.editorState.getCurrentContent().getPlainText();
+//     let currentContent = state.textEditor.editorState.getCurrentContent().getPlainText();
+//     console.log("Current Content: ", currentContent);
+//     const contentState = convertFromRaw(currentContent);
+//     let editorState = await EditorState.createWithContent(contentState);
+
+//     dispatch({ type: EDITOR_CREATE, payload: { editorState } });
+//   } else {
+//     let editorState = await EditorState.createEmpty();
+//     dispatch({ type: EDITOR_CREATE, payload: { editorState } });
+//   }
+// };
+
 export const changeEditor = (editorState) => async (dispatch, getState) => {
   console.log("editorState: ", editorState);
   dispatch({ type: EDITOR_CHANGE, payload: { editorState } });
-};
-
-export const checkFocus = (isFocused) => { 
-  console.log('isFocused from checkFocus: ', isFocused);
-  return {
-    type: EDITOR_FOCUS, 
-    payload: isFocused,
-  };
-};
-
-export const changeFocus = (makeFocused) => { 
-  console.log('makeFocused from changeFocus: ', makeFocused);
-  return {
-    type: MAKE_EDITOR_FOCUS, 
-    payload: makeFocused,
-  };
+  
+  // console.log('Get Plain Text editorState AFTER 2nd getState: ', state.textEditor.editorState.getCurrentContent().getPlainText())
 };
 
 // End of Editor actions
-
-// Home actions
-
-export const setViewportHieght = (hieght) => { 
-  console.log('hieght from setViewportHieght: ', hieght);
-  return {
-    type: VIEW_PORT_HIEGHT, 
-    payload: hieght,
-  };
-};
-
-// End of Home actions

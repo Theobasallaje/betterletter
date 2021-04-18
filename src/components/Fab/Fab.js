@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { isIOS } from "react-device-detect";
 import {
   faInfo,
   faShare,
@@ -42,7 +41,7 @@ class Fab extends Component {
           // url: "https://tdraft.io",
         })
         .then(() => {
-          console.log("Successful share");
+          console.log("Successful share"); 
         })
         .catch((error) => console.log("Error sharing", error));
     }
@@ -50,7 +49,7 @@ class Fab extends Component {
 
   render() {
     return (
-      <div className="fabContainer">
+      <div class="fabContainer">
         <div className="fabButtonContainer">
           {this.props.fabIcon === "info" && (
             <Link
@@ -78,11 +77,13 @@ class Fab extends Component {
               </div>
             </Link>
           )}
-          {/* {this.props.isMobile && this.props.fabIcon === "share" && ( */}
-          {this.props.fabIcon === "share" && (
-            <Link onClick={this.handleShare} className="icon noSelect" to="/">
-              {/* <div className={`infoFabButton ${this.props.isIOS && this.iosShareClass}`}> */}
-              <div className={`infoFabButton ${isIOS && 'iosShare'}`}>
+          {this.props.isMobile && this.props.fabIcon === "share" && (
+            <Link
+              onClick={this.handleShare}
+              className="icon noSelect"
+              to="/"
+            >
+              <div class="infoFabButton">
                 <FontAwesomeIcon className="icon" icon={faShare} size="xs" />
               </div>
             </Link>
@@ -97,10 +98,6 @@ const mapStateToProps = (state) => ({
   fabIcon: state.fab.fabIcon,
   editorState: state.textEditor.editorState,
   isMobile: state.placeHolder.isMobile,
-  isIOS: state.fab.isIOS,
-  isFocused: state.textEditor.isFocused,
 });
 
-export default connect(mapStateToProps, { handleFabIcon, handlePlaceHolder })(
-  Fab
-);
+export default connect(mapStateToProps, { handleFabIcon, handlePlaceHolder })(Fab);
