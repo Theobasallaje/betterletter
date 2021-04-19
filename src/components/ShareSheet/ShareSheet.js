@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import "./Navbar.scss";
-import {} from "../../actions";
+import "./ShareSheet.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import { toggleDesktopShareSheet } from "../../actions";
 import tangerineLogo from "./../../images/tdraft_tangerine.png";
 import {
-  // EmailShareButton,
+  EmailShareButton,
   FacebookShareButton,
   // HatenaShareButton,
   // InstapaperShareButton,
@@ -16,15 +19,15 @@ import {
   // PinterestShareButton,
   // PocketShareButton,
   // RedditShareButton,
-  // TelegramShareButton,
+  TelegramShareButton,
   // TumblrShareButton,
   // TwitterShareButton,
   // ViberShareButton,
   // VKShareButton,
   // WhatsappShareButton,
   // WorkplaceShareButton,
-  // EmailIcon,
-  // FacebookIcon,
+  EmailIcon,
+  FacebookIcon,
   // FacebookMessengerIcon,
   // HatenaIcon,
   // InstapaperIcon,
@@ -36,7 +39,7 @@ import {
   // PinterestIcon,
   // PocketIcon,
   // RedditIcon,
-  // TelegramIcon,
+  TelegramIcon,
   // TumblrIcon,
   // TwitterIcon,
   // ViberIcon,
@@ -51,22 +54,127 @@ class ShareSheet extends Component {
   render() {
     return (
       <div className="shareSheetContainer">
-        <div className="Demo__some-network">
+        <Link
+          onClick={this.props.handleCopy}
+          className="noSelect"
+          to="/"
+        >
+          <div className="shareButtonDiv copyIconDiv">
+            <FontAwesomeIcon className="icon" icon={faCopy} size="s" />
+          </div>
+        </Link>
+        <div className="shareButton">
           <FacebookShareButton
-            url='http://github.com'
-            quote='Github'
-            className="Demo__some-network__share-button"
-            >
+            beforeOnClick={(() => this.props.toggleDesktopShareSheet(false))}
+            url='https://tdraft.io'
+            quote={this.props.editorState}
+            className="shareButtonDiv"
+          >
             <FacebookIcon size={32} round />
           </FacebookShareButton>
-          </div>
+        </div>
+        <div className="shareButtonDiv">
+          <TelegramShareButton
+            beforeOnClick={(() => this.props.toggleDesktopShareSheet(false))}
+            url='https://tdraft.io'
+            title={this.props.editorState}
+            className="shareButton"
+          >
+            <TelegramIcon size={32} round />
+          </TelegramShareButton>
+        </div>
+        <div className="shareButton">
+          <EmailShareButton
+            beforeOnClick={(() => this.props.toggleDesktopShareSheet(false))}
+            url=''
+            subject='sent from tdraft.io'
+            body={this.props.editorState}
+            className="shareButtonDiv"
+          >
+            <EmailIcon size={32} round />
+          </EmailShareButton>
+        </div>
+        <div className="shareButtonDiv">
+          <FacebookShareButton
+            url='https://tdraft.io'
+            quote={this.props.editorState}
+            className="shareButton"
+          >
+            <FacebookIcon size={32} round />
+          </FacebookShareButton>
+        </div>
+        <div className="shareButton">
+          <FacebookShareButton
+            url='https://tdraft.io'
+            quote={this.props.editorState}
+            className="shareButtonDiv"
+          >
+            <FacebookIcon size={32} round />
+          </FacebookShareButton>
+        </div>
+        <div className="shareButtonDiv">
+          <FacebookShareButton
+            url='https://tdraft.io'
+            quote={this.props.editorState}
+            className="shareButton"
+          >
+            <FacebookIcon size={32} round />
+          </FacebookShareButton>
+        </div>
+        <div className="shareButton">
+          <FacebookShareButton
+            url='https://tdraft.io'
+            quote={this.props.editorState}
+            className="shareButtonDiv"
+          >
+            <FacebookIcon size={32} round />
+          </FacebookShareButton>
+        </div>
+        <div className="shareButtonDiv">
+          <FacebookShareButton
+            url='https://tdraft.io'
+            quote={this.props.editorState}
+            className="shareButton"
+          >
+            <FacebookIcon size={32} round />
+          </FacebookShareButton>
+        </div>
+        <div className="shareButton">
+          <FacebookShareButton
+            url='https://tdraft.io'
+            quote={this.props.editorState}
+            className="shareButtonDiv"
+          >
+            <FacebookIcon size={32} round />
+          </FacebookShareButton>
+        </div>
+        <div className="shareButtonDiv">
+          <FacebookShareButton
+            url='https://tdraft.io'
+            quote={this.props.editorState}
+            className="shareButton"
+          >
+            <FacebookIcon size={32} round />
+          </FacebookShareButton>
+        </div>
+        <div className="shareButton">
+          <FacebookShareButton
+            url='https://tdraft.io'
+            quote={this.props.editorState}
+            className="shareButtonDiv"
+          >
+            <FacebookIcon size={32} round />
+          </FacebookShareButton>
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  editorState: state.textEditor.editorState,
+});
 
-export default connect(mapStateToProps, { })(
+export default connect(mapStateToProps, { toggleDesktopShareSheet })(
   ShareSheet
 );

@@ -6,6 +6,7 @@ import {
   IS_MOBILE,
   PLACE_HOLDER_SHOW,
   SHARE_BUTTON_SHOW,
+  SHARE_SHEET_SHOW_DESKTOP
 } from "./types";
 
 // Placeholder actions
@@ -36,6 +37,13 @@ export const showShareButton = (shareButtonPresent) => {
   return {
     type: SHARE_BUTTON_SHOW,
     payload: shareButtonPresent,
+  };
+};
+
+export const toggleDesktopShareSheet = (desktopShareSheet) => {
+  return {
+    type: SHARE_SHEET_SHOW_DESKTOP,
+    payload: desktopShareSheet,
   };
 };
 // End of Fab actions

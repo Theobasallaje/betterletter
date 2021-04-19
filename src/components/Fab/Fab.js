@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import ShareSheet from '../ShareSheet/ShareSheet';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInfo,
@@ -8,7 +9,7 @@ import {
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Fab.scss";
-import { handleFabIcon, handlePlaceHolder } from "./../../actions";
+import { handleFabIcon, handlePlaceHolder, toggleDesktopShareSheet } from "./../../actions";
 
 class Fab extends Component {
 
@@ -31,19 +32,41 @@ class Fab extends Component {
     }
   };
 
+  handleCopy = () => {
+    // this.props.handleCopyConfirmationAnimation(
+    //   "copyConfirmation animate__animated animate__backInDown",
+    //   "copyConfirmation animate__animated animate__fadeOut"
+    // );
+    var text = this.props.editorState;
+    navigator.clipboard.writeText(text).then(
+      function () {
+        console.log("Async: Copying to clipboard was successful!");
+      },
+      function (err) {
+        console.error("Async: Could not copy text: ", err);
+      }
+    );
+    this.props.toggleDesktopShareSheet(false)
+  }
+
   handleShare = () => {
-    if (navigator.share) {
-      navigator
-        .share({
-          // title: "tdraft",
-          text: this.props.editorState,
-          // text: this.props.editorRef.current.editor.innerText,
-          // url: "https://tdraft.io",
-        })
-        .then(() => {
-          console.log("Successful share"); 
-        })
-        .catch((error) => console.log("Error sharing", error));
+    if (this.props.isMobile) {
+      if (navigator.share) {
+        navigator
+          .share({
+            // title: "tdraft",
+            text: this.props.editorState,
+            // text: this.props.editorRef.current.editor.innerText,
+            // url: "https://tdraft.io",
+          })
+          .then(() => {
+            console.log("Successful share");
+          })
+          .catch((error) => console.log("Error sharing", error));
+      }
+    } else { // on Desktop
+      console.log('this.props.showDesktopShareSheet: ', this.props.showDesktopShareSheet);
+      this.props.showDesktopShareSheet ? this.props.toggleDesktopShareSheet(false) : this.props.toggleDesktopShareSheet(true);
     }
   };
 
@@ -77,7 +100,9 @@ class Fab extends Component {
               </div>
             </Link>
           )}
-          {this.props.isMobile && this.props.fabIcon === "share" && (
+          {this.props.showDesktopShareSheet && <ShareSheet handleCopy={this.handleCopy} />}
+          {/* {this.props.isMobile && this.props.fabIcon === "share" && ( */}
+          {this.props.fabIcon === "share" && (
             <Link
               onClick={this.handleShare}
               className="icon noSelect"
@@ -96,8 +121,9 @@ class Fab extends Component {
 
 const mapStateToProps = (state) => ({
   fabIcon: state.fab.fabIcon,
+  showDesktopShareSheet: state.fab.showDesktopShareSheet,
   editorState: state.textEditor.editorState,
   isMobile: state.placeHolder.isMobile,
 });
 
-export default connect(mapStateToProps, { handleFabIcon, handlePlaceHolder })(Fab);
+export default connect(mapStateToProps, { handleFabIcon, handlePlaceHolder, toggleDesktopShareSheet })(Fab);
