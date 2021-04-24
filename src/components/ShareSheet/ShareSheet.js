@@ -56,11 +56,11 @@ class ShareSheet extends Component {
       <div className="shareSheetContainer">
         <Link
           onClick={this.props.handleCopy}
-          className="noSelect"
+          className="copyLink noSelect"
           to="/"
         >
           <div className="shareButtonDiv copyIconDiv">
-            <FontAwesomeIcon className="icon" icon={faCopy} size="s" />
+            <FontAwesomeIcon className="copyIcon" icon={faCopy} size="2x" />
           </div>
         </Link>
         <div className="shareButton">
@@ -76,7 +76,7 @@ class ShareSheet extends Component {
         <div className="shareButtonDiv">
           <TelegramShareButton
             beforeOnClick={(() => this.props.toggleDesktopShareSheet(false))}
-            url='https://tdraft.io'
+            url=' '
             title={this.props.editorState}
             className="shareButton"
           >
@@ -87,7 +87,7 @@ class ShareSheet extends Component {
           <EmailShareButton
             beforeOnClick={(() => this.props.toggleDesktopShareSheet(false))}
             url=''
-            subject='sent from tdraft.io'
+            subject=''
             body={this.props.editorState}
             className="shareButtonDiv"
           >
