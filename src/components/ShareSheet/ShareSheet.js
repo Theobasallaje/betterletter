@@ -49,34 +49,14 @@ import {
   // WorkplaceIcon
 } from "react-share";
 
-
 class ShareSheet extends Component {
   render() {
     return (
       <div className="shareSheetContainer">
-        <Link
-          onClick={this.props.handleCopy}
-          className="copyLink noSelect"
-          to="/"
-        >
-          <div className="shareButtonDiv copyIconDiv">
-            <FontAwesomeIcon className="copyIcon" icon={faCopy} size="2x" />
-          </div>
-        </Link>
-        <div className="shareButton">
-          <FacebookShareButton
-            beforeOnClick={(() => this.props.toggleDesktopShareSheet(false))}
-            url='https://tdraft.io'
-            quote={this.props.editorState}
-            className="shareButtonDiv"
-          >
-            <FacebookIcon size={32} round />
-          </FacebookShareButton>
-        </div>
         <div className="shareButtonDiv">
           <TelegramShareButton
-            beforeOnClick={(() => this.props.toggleDesktopShareSheet(false))}
-            url=' '
+            beforeOnClick={() => this.props.toggleDesktopShareSheet(false)}
+            url=" "
             title={this.props.editorState}
             className="shareButton"
           >
@@ -84,17 +64,36 @@ class ShareSheet extends Component {
           </TelegramShareButton>
         </div>
         <div className="shareButton">
+          <FacebookShareButton
+            beforeOnClick={() => this.props.toggleDesktopShareSheet(false)}
+            url="https://tdraft.io"
+            quote={this.props.editorState}
+            className="shareButtonDiv"
+          >
+            <FacebookIcon size={32} round />
+          </FacebookShareButton>
+        </div>
+        <div className="shareButton">
           <EmailShareButton
-            beforeOnClick={(() => this.props.toggleDesktopShareSheet(false))}
-            url=''
-            subject=''
+            beforeOnClick={() => this.props.toggleDesktopShareSheet(false)}
+            url=""
+            subject=""
             body={this.props.editorState}
             className="shareButtonDiv"
           >
             <EmailIcon size={32} round />
           </EmailShareButton>
         </div>
-        <div className="shareButtonDiv">
+        <Link
+          onClick={this.props.handleCopy}
+          className="copyLink noSelect"
+          to="/"
+        >
+          <div className="shareButtonDiv copyIconDiv">
+            <FontAwesomeIcon className="copyIcon" icon={faCopy} size="s" />
+          </div>
+        </Link>
+        {/* <div className="shareButtonDiv">
           <FacebookShareButton
             url='https://tdraft.io'
             quote={this.props.editorState}
@@ -165,7 +164,7 @@ class ShareSheet extends Component {
           >
             <FacebookIcon size={32} round />
           </FacebookShareButton>
-        </div>
+        </div> */}
       </div>
     );
   }

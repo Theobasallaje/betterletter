@@ -6,6 +6,8 @@ import {
   handlePlaceHolder,
   showShareButton,
 } from "./../../actions";
+import { faShare } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import placeholder from "./../../images/tdraft_placeholder.png";
 // import placeholderSmall from "./../../images/tdraft_placeholder_small.png";
 import placeholderLowerCase from "./../../images/tdraft_placeholder_lower_case.png";
@@ -13,7 +15,14 @@ import placeholderDesktop from "./../../images/tdraft_desktop_placeholder_lower_
 import Fab from "./../Fab/Fab";
 import "./Home.scss";
 import "animate.css";
-
+import { Fab as TinyFab, Action } from "react-tiny-fab";
+// import { SpeedDial, BubbleList, BubbleListItem } from "react-speed-dial";
+import SpeedDial from "@material-ui/lab/SpeedDial";
+import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
+import ShareIcon from "@material-ui/icons/Share";
+import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
+import EditIcon from "@material-ui/icons/Edit";
+import PrintIcon from "@material-ui/icons/Print";
 class Home extends Component {
   state = {
     homeContainerClass: "",
