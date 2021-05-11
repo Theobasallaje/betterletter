@@ -4,10 +4,19 @@ import {
   EDITOR_REF,
   FAB_ICON,
   IS_MOBILE,
+  KEY_PRESSED,
   PLACE_HOLDER_SHOW,
   SHARE_BUTTON_SHOW,
-  SHARE_SHEET_SHOW_DESKTOP
+  SHARE_SHEET_SHOW_DESKTOP,
 } from "./types";
+
+// Home actions
+export const handleKeyPress = (keyPressed) => {
+  return {
+    type: KEY_PRESSED,
+    payload: keyPressed,
+  };
+};
 
 // Placeholder actions
 export const handlePlaceHolder = (placeHolderPresent) => {

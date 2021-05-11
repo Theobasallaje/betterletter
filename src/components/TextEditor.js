@@ -19,7 +19,11 @@ function TextEditor({
   // TODO: uninstall Draftjs
   let refEditor = useRef("editor");
   const hydrate = useCallback(() => {
+    window.addEventListener("keydown", handleKeyPressFocus);
     console.log("hydrate()");
+    return () => {
+      window.removeEventListener("keydown", handleKeyPressFocus);
+    };
   }, []);
   useEffect(() => {
     console.log("Inside UseEffect");
@@ -37,6 +41,10 @@ function TextEditor({
       handleFabIcon("clipboard");
     }
     refEditor.current.focus();
+  };
+
+  const handleKeyPressFocus = (event) => {
+    handleClick();
   };
 
   const handleChange = (event) => {

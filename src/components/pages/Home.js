@@ -40,9 +40,9 @@ class Home extends Component {
     };
   }
 
-  // componentWillUnmount() {
-  //   document.getElementById('homeContainer').className = 'animate__animated animate__bounceOutLeft';
-  // }
+  componentWillUnmount() {
+    // document.getElementById('homeContainer').className = 'animate__animated animate__bounceOutLeft';
+  }
 
   handlePlaceHolder = () => {
     this.props.handlePlaceHolder(false);
@@ -75,6 +75,12 @@ class Home extends Component {
     }, 2200);
     console.log("Inisde handleHomeExit!");
   };
+
+  handleKeyPressFocus = () => {
+    if (!this.props.keyPress) {
+      this.handleKeyPress(true)
+    }
+  }
 
   render() {
     return (
