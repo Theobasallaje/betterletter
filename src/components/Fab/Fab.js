@@ -7,6 +7,7 @@ import {
   faInfo,
   faShare,
   faChevronLeft,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Fab.scss";
 import { handleFabIcon, handlePlaceHolder, toggleDesktopShareSheet } from "./../../actions";
@@ -25,6 +26,12 @@ class Fab extends Component {
         this.props.handleFabIcon("info");
         this.props.handlePlaceHolder(true);
         break;
+      case "share":
+        this.props.handleFabIcon("share");
+        break;
+      case "shareSheetClose":
+        this.props.handleFabIcon("shareSheetClose");
+        break;
       default:
         this.props.handleFabIcon("info");
         this.props.handlePlaceHolder(true);
@@ -33,10 +40,10 @@ class Fab extends Component {
   };
 
   handleCopy = () => {
-    // this.props.handleCopyConfirmationAnimation(
-    //   "copyConfirmation animate__animated animate__backInDown",
-    //   "copyConfirmation animate__animated animate__fadeOut"
-    // );
+    this.props.handleCopyConfirmationAnimation(
+      "copyConfirmation animate__animated animate__backInDown",
+      "copyConfirmation animate__animated animate__fadeOut"
+    );
     var text = this.props.editorState;
     navigator.clipboard.writeText(text).then(
       function () {
@@ -49,7 +56,19 @@ class Fab extends Component {
     this.props.toggleDesktopShareSheet(false)
   }
 
-  handleShare = () => {
+  handleShareShow = () => {
+    console.log("handleShareShow Ran!");
+    this.props.toggleDesktopShareSheet(true);
+    this.handleFabIcon("shareSheetClose");
+  }
+  
+  handleShareClose = () => {
+    console.log("handleShareClose Ran!");
+    this.props.toggleDesktopShareSheet(false);
+    this.handleFabIcon("share");
+  }
+
+  handleShare = (e) => {
     if (this.props.isMobile) {
       if (navigator.share) {
         navigator
@@ -65,10 +84,35 @@ class Fab extends Component {
           .catch((error) => console.log("Error sharing", error));
       }
     } else { // on Desktop
-      console.log('this.props.showDesktopShareSheet: ', this.props.showDesktopShareSheet);
-      this.props.showDesktopShareSheet ? this.props.toggleDesktopShareSheet(false) : this.props.toggleDesktopShareSheet(true);
+      e.stopPropagation();      
+      // console.log('this.props.showDesktopShareSheet: ', this.props.showDesktopShareSheet);
+      console.log('this.props.shareSheetClose: ', this.props.fabIcon);
+      this.props.showDesktopShareSheet ? this.handleShareClose() : this.handleShareShow();
     }
   };
+
+  // handleShareClose = () => {
+  //   if (this.props.isMobile) {
+  //     if (navigator.share) {
+  //       navigator
+  //         .share({
+  //           // title: "tdraft",
+  //           text: this.props.editorState,
+  //           // text: this.props.editorRef.current.editor.innerText,
+  //           // url: "https://tdraft.io",
+  //         })
+  //         .then(() => {
+  //           console.log("Successful share");
+  //         })
+  //         .catch((error) => console.log("Error sharing", error));
+  //     }
+  //   } else { // on Desktop
+  //     this.handleFabIcon("shareSheet");
+  //     // console.log('this.props.showDesktopShareSheet: ', this.props.showDesktopShareSheet);
+  //     console.log('this.props.shareSheetX: ', this.props.fabIcon);
+  //     this.props.showDesktopShareSheet ? this.props.toggleDesktopShareSheet(false) : this.props.toggleDesktopShareSheet(true);
+  //   }
+  // };
 
   render() {
     return (
@@ -102,7 +146,7 @@ class Fab extends Component {
           )}
           {this.props.showDesktopShareSheet && <ShareSheet handleCopy={this.handleCopy} />}
           {/* {this.props.isMobile && this.props.fabIcon === "share" && ( */}
-          {this.props.fabIcon === "share" && (
+          {(this.props.fabIcon === "share") && (
             <Link
               onClick={this.handleShare}
               className="icon noSelect"
@@ -110,6 +154,17 @@ class Fab extends Component {
             >
               <div class="infoFabButton">
                 <FontAwesomeIcon className="icon" icon={faShare} size="xs" />
+              </div>
+            </Link>
+          )}
+          {(this.props.fabIcon === "shareSheetClose") && (
+            <Link
+              onClick={this.handleShare}
+              className="icon noSelect"
+              to="/"
+            >
+              <div class="infoFabButton">
+                <FontAwesomeIcon className="icon" icon={faTimes} size="xs" />
               </div>
             </Link>
           )}

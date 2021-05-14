@@ -5,6 +5,7 @@ import {
   handlePlaceHolder,
   handleFabIcon,
   handleEditorRef,
+  toggleDesktopShareSheet,
 } from "./../actions";
 import "./TextEditor.scss";
 
@@ -14,6 +15,7 @@ function TextEditor({
   handlePlaceHolder,
   handleFabIcon,
   changeEditor,
+  toggleDesktopShareSheet,
 }) {
   // console.log(props);
   // TODO: uninstall Draftjs
@@ -38,7 +40,8 @@ function TextEditor({
     if (placeHolder) {
       handlePlaceHolder(false);
       // handleHomeAnimation('animate__animated animate__flipInY');
-      handleFabIcon("clipboard");
+      handleFabIcon("share");
+      toggleDesktopShareSheet(false);
     }
     refEditor.current.focus();
   };
@@ -68,4 +71,5 @@ export default connect(mapStateToProps, {
   handlePlaceHolder,
   handleFabIcon,
   handleEditorRef,
+  toggleDesktopShareSheet,
 })(TextEditor);

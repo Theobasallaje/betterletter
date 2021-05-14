@@ -5,6 +5,7 @@ import {
   handleFabIcon,
   handlePlaceHolder,
   showShareButton,
+  toggleDesktopShareSheet,
 } from "./../../actions";
 import { faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -45,8 +46,10 @@ class Home extends Component {
   }
 
   handlePlaceHolder = () => {
+    console.log("handlePlaceHolder Ran!");
     this.props.handlePlaceHolder(false);
     this.props.handleFabIcon("share");
+    this.props.toggleDesktopShareSheet(false);
     this.props.showShareButton(true);
   };
 
@@ -90,7 +93,7 @@ class Home extends Component {
         onClick={this.handlePlaceHolder}
       >
         {/* //! adding animation here made the fab have unexpected behavior, not coming up with keyboard on Android */}
-        {this.state.showCopyConfrimation && (
+        {!this.props.isMobile && this.state.showCopyConfrimation && (
           <div className="copyConfirmationContainer">
             <div className={this.state.copyConfirmationClass}>Copied!</div>
           </div>
@@ -131,4 +134,5 @@ export default connect(mapStateToProps, {
   handleFabIcon,
   handlePlaceHolder,
   showShareButton,
+  toggleDesktopShareSheet,
 })(Home);
