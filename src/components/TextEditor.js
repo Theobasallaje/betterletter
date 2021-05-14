@@ -23,13 +23,13 @@ function TextEditor({
   const hydrate = useCallback(() => {
     window.addEventListener("keydown", handleKeyPressFocus);
     console.log("hydrate()");
-    return () => {
-      window.removeEventListener("keydown", handleKeyPressFocus);
-    };
   }, []);
   useEffect(() => {
     console.log("Inside UseEffect");
     hydrate();
+    return () => {
+      window.removeEventListener("keydown", handleKeyPressFocus);
+    };
   }, [hydrate]); //! When I put props in the dependency array, it keeps looping and running the useEffect, WHY??
 
   // https://dev.to/r3wt/useeffect-missing-dependency-need-advice-4d6b
