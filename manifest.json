@@ -1,6 +1,6 @@
 {
+  "name": "tdraft",
   "short_name": "tdraft",
-  "name": "draft your dreams...",
   "icons": [
     {
       "src": "favicon.ico",
@@ -15,7 +15,8 @@
     {
       "src": "favicon.ico",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
