@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { detectMobile } from './actions/index'
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
+import EditorPage from "./components/pages/EditorPage";
 
 import "./App.scss";
 
@@ -23,6 +24,7 @@ class App extends Component {
         <Router>
           <Route path="/" exact component={Home} />
           <Route path="/about" component={About} />
+          <Route path="/editor" component={EditorPage} />
         </Router>
       </>
     );

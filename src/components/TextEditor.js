@@ -21,6 +21,7 @@ function TextEditor({
   // TODO: uninstall Draftjs
   let refEditor = useRef("editor");
   const hydrate = useCallback(() => {
+    handleClick();
     window.addEventListener("keydown", handleKeyPressFocus);
     console.log("hydrate()");
   }, []);

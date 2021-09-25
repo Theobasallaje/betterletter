@@ -6,11 +6,11 @@
 //   overflow-x: hidden;
 // }
 
-.placeholderContainer {
-  display: flex;
-  justify-content: center;
-  pointer-events: none;
-}
+// .placeholderContainer {
+//   display: flex;
+//   justify-content: center;
+//   pointer-events: none;
+// }
 
 .placeholder {
   position: fixed;
@@ -48,10 +48,10 @@
   font-family: "Montserrat", sans-serif;
 }
 
-#homeContainer {
-  // border: 2px solid rgb(255, 123, 0);
-  height: 100vh;
-}
+// #homeContainer {
+//   // border: 2px solid rgb(255, 123, 0);
+//   height: 100vh;
+// }
 
 .editorDiv {
   display: flex;

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import TextEditor from "./../TextEditor";
+
 import {
   handleFabIcon,
   handlePlaceHolder,
@@ -24,50 +24,21 @@ class Home extends Component {
   };
 
   componentDidMount() {
-    // if (!this.props.placeHolder) alert("Test!");
-    window.onbeforeunload = function () {
-      // TODO: Figure out how to change the message on the alert
-      // ? Can we change the placeholder back to true here?
-      // ? For when launching from homescreen app - back on mobile exits?
-      return "Data will be lost if you leave the page, are you sure?";
-    };
-  }
-
-  componentWillUnmount() {
-    // document.getElementById('homeContainer').className = 'animate__animated animate__bounceOutLeft';
   }
 
   handlePlaceHolder = () => {
     console.log("handlePlaceHolder Ran!");
-    this.props.handlePlaceHolder(false);
-    this.props.handleFabIcon("share");
-    this.props.toggleDesktopShareSheet(false);
-    this.props.showShareButton(true);
+    // this.props.handlePlaceHolder(false);
+    // this.props.handleFabIcon("share");
+    // this.props.toggleDesktopShareSheet(false);
+    // this.props.showShareButton(true);
+    this.props.history.push("/editor");
   };
 
   handleHomeAnimation = (className) => {
     this.setState({
       homeContainerClass: className,
     });
-    console.log("Inisde handleHomeExit!");
-  };
-
-  handleCopyConfirmationAnimation = (classEnter, ClassExtit) => {
-    this.setState({
-      showCopyConfrimation: true,
-      copyConfirmationClass: classEnter,
-    });
-    // TODO: Look into making this a promise.
-    setTimeout(() => {
-      this.setState({
-        copyConfirmationClass: ClassExtit,
-      });
-    }, 1200);
-    setTimeout(() => {
-      this.setState({
-        showCopyConfrimation: false,
-      });
-    }, 2200);
     console.log("Inisde handleHomeExit!");
   };
 
@@ -84,19 +55,11 @@ class Home extends Component {
         className={this.state.homeContainerClass}
         onClick={this.handlePlaceHolder}
       >
-        {/* //! adding animation here made the fab have unexpected behavior, not coming up with keyboard on Android */}
-        {!this.props.isMobile && this.state.showCopyConfrimation && (
-          <div className="copyConfirmationContainer">
-            <div className={this.state.copyConfirmationClass}>Copied!</div>
-          </div>
-        )}
-        <div className="editorDiv">
-          <TextEditor handleHomeAnimation={this.handleHomeAnimation} />
-        </div>
         {this.props.placeHolder && (
           <div
             className="placeholderContainer"
-            // onClick={this.handlePlaceHolder}
+            //! Why is this not triggering??
+            // onClick={this.handlePlaceHolder} 
           >
             {/* <img className="placeholder" src={placeholder} alt="placeholder" /> */}
             {/* <img className="placeholder" src={placeholderSmall} alt="placeholder" /> */}
@@ -109,9 +72,7 @@ class Home extends Component {
             />
           </div>
         )}
-        <Fab
-          handleCopyConfirmationAnimation={this.handleCopyConfirmationAnimation}
-        />
+        <Fab />
       </div>
     );
   }

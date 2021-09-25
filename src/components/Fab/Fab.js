@@ -120,7 +120,10 @@ class Fab extends Component {
         <div className="fabButtonContainer">
           {this.props.fabIcon === "info" && (
             <Link
-              onClick={() => this.handleFabIcon("back")}
+              onClick={(e) => {
+                e.stopPropagation();
+                this.handleFabIcon("back");
+              }}
               className="icon noSelect"
               to="/about"
             >
