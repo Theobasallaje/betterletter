@@ -30,6 +30,10 @@ class EditorPage extends Component {
     };
   }
 
+  componentWillUnmount() {
+    window.location.reload();
+  }
+
   handleCopyConfirmationAnimation = (classEnter, ClassExtit) => {
     this.setState({
       showCopyConfrimation: true,
