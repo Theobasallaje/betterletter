@@ -24,6 +24,10 @@ class Home extends Component {
   };
 
   componentDidMount() {
+    window.addEventListener("keydown", this.handleKeyPressFocus);
+    return () => {
+      window.removeEventListener("keydown", this.handleKeyPressFocus);
+    };
   }
 
   handlePlaceHolder = () => {
@@ -43,9 +47,7 @@ class Home extends Component {
   };
 
   handleKeyPressFocus = () => {
-    if (!this.props.keyPress) {
-      this.handleKeyPress(true)
-    }
+    this.props.history.push("/editor");
   }
 
   render() {
