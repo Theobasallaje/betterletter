@@ -153,7 +153,6 @@ class Fab extends Component {
             <Link
               onClick={this.handleShare}
               className="icon noSelect"
-              to="/"
             >
               <div class="infoFabButton">
                 <FontAwesomeIcon className="icon" icon={faShare} size="xs" />
@@ -164,7 +163,6 @@ class Fab extends Component {
             <Link
               onClick={this.handleShare}
               className="icon noSelect"
-              to="/"
             >
               <div class="infoFabButton">
                 <FontAwesomeIcon className="icon" icon={faTimes} size="xs" />

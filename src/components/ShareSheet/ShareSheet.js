@@ -87,7 +87,6 @@ class ShareSheet extends Component {
         <Link
           onClick={this.props.handleCopy}
           className="copyLink noSelect"
-          to="/"
         >
           <div className="shareButtonDiv copyIconDiv">
             <FontAwesomeIcon className="copyIcon" icon={faCopy} size="s" />

@@ -12,6 +12,7 @@ import "./TextEditor.scss";
 // FIXME:
 function TextEditor({
   placeHolder,
+  fabIcon,
   handlePlaceHolder,
   handleFabIcon,
   changeEditor,
@@ -23,8 +24,9 @@ function TextEditor({
   const hydrate = useCallback(() => {
     handleClick();
     window.addEventListener("keydown", handleKeyPressFocus);
+    // if (fabIcon === "share") refEditor.current.focus(); // Not needed cause the handle click gets called when fabIcon changes
     console.log("hydrate()");
-  }, []);
+  }, [fabIcon]);
   useEffect(() => {
     console.log("Inside UseEffect");
     hydrate();
@@ -49,6 +51,10 @@ function TextEditor({
 
   const handleKeyPressFocus = (event) => {
     handleClick();
+    if (fabIcon === "shareSheetClose") {
+      handleFabIcon("share");
+      toggleDesktopShareSheet(false);
+    }
   };
 
   const handleChange = (event) => {
@@ -65,6 +71,7 @@ function TextEditor({
 const mapStateToProps = (state) => ({
   placeHolder: state.placeHolder.placeHolderShow,
   editorState: state.textEditor.editorState,
+  fabIcon: state.fab.fabIcon,
 });
 
 export default connect(mapStateToProps, {
