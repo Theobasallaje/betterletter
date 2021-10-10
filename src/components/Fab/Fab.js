@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import ShareSheet from '../ShareSheet/ShareSheet';
+import ShareSheet from "../ShareSheet/ShareSheet";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { InfoOutlined } from "@mui/icons-material";
 import {
   faInfo,
   faShare,
@@ -10,10 +11,13 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Fab.scss";
-import { handleFabIcon, handlePlaceHolder, toggleDesktopShareSheet } from "./../../actions";
+import {
+  handleFabIcon,
+  handlePlaceHolder,
+  toggleDesktopShareSheet,
+} from "./../../actions";
 
 class Fab extends Component {
-
   handleFabIcon = (icon) => {
     switch (icon) {
       case "back":
@@ -53,20 +57,20 @@ class Fab extends Component {
         console.error("Async: Could not copy text: ", err);
       }
     );
-    this.props.toggleDesktopShareSheet(false)
-  }
+    this.props.toggleDesktopShareSheet(false);
+  };
 
   handleShareShow = () => {
     console.log("handleShareShow Ran!");
     this.props.toggleDesktopShareSheet(true);
     this.handleFabIcon("shareSheetClose");
-  }
-  
+  };
+
   handleShareClose = () => {
     console.log("handleShareClose Ran!");
     this.props.toggleDesktopShareSheet(false);
     this.handleFabIcon("share");
-  }
+  };
 
   handleShare = (e) => {
     if (this.props.isMobile) {
@@ -83,11 +87,14 @@ class Fab extends Component {
           })
           .catch((error) => console.log("Error sharing", error));
       }
-    } else { // on Desktop
-      e.stopPropagation();      
+    } else {
+      // on Desktop
+      e.stopPropagation();
       // console.log('this.props.showDesktopShareSheet: ', this.props.showDesktopShareSheet);
-      console.log('this.props.shareSheetClose: ', this.props.fabIcon);
-      this.props.showDesktopShareSheet ? this.handleShareClose() : this.handleShareShow();
+      console.log("this.props.shareSheetClose: ", this.props.fabIcon);
+      this.props.showDesktopShareSheet
+        ? this.handleShareClose()
+        : this.handleShareShow();
     }
   };
 
@@ -124,13 +131,24 @@ class Fab extends Component {
                 e.stopPropagation();
                 this.handleFabIcon("back");
               }}
-              className="icon noSelect"
               to="/about"
             >
               <div className="infoFabButton">
-                <FontAwesomeIcon className="icon" icon={faInfo} size="xs" />
+                <InfoOutlined className="icon" />
               </div>
             </Link>
+            // <Link
+            //   onClick={(e) => {
+            //     e.stopPropagation();
+            //     this.handleFabIcon("back");
+            //   }}
+            //   className="icon noSelect"
+            //   to="/about"
+            // >
+            //   <div className="infoFabButton">
+            //     <FontAwesomeIcon className="icon" icon={faInfo} size="xs" />
+            //   </div>
+            // </Link>
           )}
           {this.props.fabIcon === "back" && (
             <Link
@@ -147,23 +165,19 @@ class Fab extends Component {
               </div>
             </Link>
           )}
-          {this.props.showDesktopShareSheet && <ShareSheet handleCopy={this.handleCopy} />}
+          {this.props.showDesktopShareSheet && (
+            <ShareSheet handleCopy={this.handleCopy} />
+          )}
           {/* {this.props.isMobile && this.props.fabIcon === "share" && ( */}
-          {(this.props.fabIcon === "share") && (
-            <Link
-              onClick={this.handleShare}
-              className="icon noSelect"
-            >
+          {this.props.fabIcon === "share" && (
+            <Link onClick={this.handleShare} className="icon noSelect">
               <div class="infoFabButton">
                 <FontAwesomeIcon className="icon" icon={faShare} size="xs" />
               </div>
             </Link>
           )}
-          {(this.props.fabIcon === "shareSheetClose") && (
-            <Link
-              onClick={this.handleShare}
-              className="icon noSelect"
-            >
+          {this.props.fabIcon === "shareSheetClose" && (
+            <Link onClick={this.handleShare} className="icon noSelect">
               <div class="infoFabButton">
                 <FontAwesomeIcon className="icon" icon={faTimes} size="xs" />
               </div>
@@ -182,4 +196,8 @@ const mapStateToProps = (state) => ({
   isMobile: state.placeHolder.isMobile,
 });
 
-export default connect(mapStateToProps, { handleFabIcon, handlePlaceHolder, toggleDesktopShareSheet })(Fab);
+export default connect(mapStateToProps, {
+  handleFabIcon,
+  handlePlaceHolder,
+  toggleDesktopShareSheet,
+})(Fab);
