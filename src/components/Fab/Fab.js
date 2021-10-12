@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import ShareSheet from "../ShareSheet/ShareSheet";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { InfoOutlined } from "@mui/icons-material";
+import { InfoOutlined, ArrowBackIosNew, Send, Clear } from "@mui/icons-material";
 import {
   faInfo,
   faShare,
@@ -137,31 +137,17 @@ class Fab extends Component {
                 <InfoOutlined className="icon" />
               </div>
             </Link>
-            // <Link
-            //   onClick={(e) => {
-            //     e.stopPropagation();
-            //     this.handleFabIcon("back");
-            //   }}
-            //   className="icon noSelect"
-            //   to="/about"
-            // >
-            //   <div className="infoFabButton">
-            //     <FontAwesomeIcon className="icon" icon={faInfo} size="xs" />
-            //   </div>
-            // </Link>
           )}
           {this.props.fabIcon === "back" && (
             <Link
-              onClick={() => this.handleFabIcon("info")}
-              className="icon noSelect"
+              onClick={(e) => {
+                e.stopPropagation();
+                this.handleFabIcon("info");
+              }}
               to="/"
             >
               <div className="infoFabButton">
-                <FontAwesomeIcon
-                  className="icon"
-                  icon={faChevronLeft}
-                  size="xs"
-                />
+                <ArrowBackIosNew className="icon" />
               </div>
             </Link>
           )}
@@ -170,16 +156,16 @@ class Fab extends Component {
           )}
           {/* {this.props.isMobile && this.props.fabIcon === "share" && ( */}
           {this.props.fabIcon === "share" && (
-            <Link onClick={this.handleShare} className="icon noSelect">
+            <Link onClick={this.handleShare} className="noSelect">
               <div class="infoFabButton">
-                <FontAwesomeIcon className="icon" icon={faShare} size="xs" />
+                <Send className="icon" />
               </div>
             </Link>
           )}
           {this.props.fabIcon === "shareSheetClose" && (
-            <Link onClick={this.handleShare} className="icon noSelect">
+            <Link onClick={this.handleShare} className="noSelect">
               <div class="infoFabButton">
-                <FontAwesomeIcon className="icon" icon={faTimes} size="xs" />
+                <Clear className="icon" icon={faTimes} />
               </div>
             </Link>
           )}
