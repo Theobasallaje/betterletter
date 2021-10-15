@@ -9,7 +9,7 @@ import {
   Clear,
 } from "@mui/icons-material";
 import { Fab } from "@mui/material";
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
 import { grey } from "@mui/material/colors";
@@ -36,6 +36,16 @@ const useStyles = makeStyles({
     margin: "0 0 0 80%",
     bottom: "16px",
     position: "fixed",
+  },
+  shareSheetDesktop: {
+    bottom: '80px',
+    margin: '0 0 0 80%',
+    position: 'fixed',
+    // border: '2px solid red',
+    width: '56px',
+    height: '186px',
+    display: 'flex',
+    justifyContent: 'center',
   },
 });
 
@@ -114,9 +124,7 @@ const FabWrapper = (props) => {
       e.stopPropagation();
       // console.log('props.showDesktopShareSheet: ', props.showDesktopShareSheet);
       console.log("props.shareSheetClose: ", props.fabIcon);
-      props.showDesktopShareSheet
-        ? handleShareClose()
-        : handleShareShow();
+      props.showDesktopShareSheet ? handleShareClose() : handleShareShow();
     }
   };
 
@@ -124,55 +132,55 @@ const FabWrapper = (props) => {
   return (
     <ThemeProvider theme={theme}>
       <Box className={classes.root}>
-          {props.fabIcon === "info" && (
-            <Link
-              onClick={(e) => {
-                e.stopPropagation();
-                handleFabIcon("back");
-              }}
-              to="/about"
-            >
-              {/* <Fab color="primary" > */}
-              <Fab >
-                <InfoOutlined className="icon" />
-              </Fab>
-            </Link>
-          )}
-          {props.fabIcon === "back" && (
-            <Link
-              onClick={(e) => {
-                e.stopPropagation();
-                handleFabIcon("info");
-              }}
-              to="/"
-            >
-              <Fab className="infoFabButton">
-                <ArrowBackIosNew className="icon" />
-              </Fab>
-            </Link>
-          )}
-          {props.showDesktopShareSheet && (
-            <ShareSheet handleCopy={handleCopy} />
-          )}
-          {/* {props.isMobile && props.fabIcon === "share" && ( */}
-          {props.fabIcon === "share" && (
-            <Link onClick={handleShare} className="noSelect">
-              <Fab className="infoFabButton">
-                <Send className="icon" />
-              </Fab>
-            </Link>
-          )}
-          {props.fabIcon === "shareSheetClose" && (
-            <Link onClick={handleShare} className="noSelect">
-              <Fab className="infoFabButton">
-                <Clear className="icon" />
-              </Fab>
-            </Link>
-          )}
-      </ Box>
+        {props.fabIcon === "info" && (
+          <Link
+            onClick={(e) => {
+              e.stopPropagation();
+              handleFabIcon("back");
+            }}
+            to="/about"
+          >
+            {/* <Fab color="primary" > */}
+            <Fab>
+              <InfoOutlined className="icon" />
+            </Fab>
+          </Link>
+        )}
+        {props.fabIcon === "back" && (
+          <Link
+            onClick={(e) => {
+              e.stopPropagation();
+              handleFabIcon("info");
+            }}
+            to="/"
+          >
+            <Fab className="infoFabButton">
+              <ArrowBackIosNew className="icon" />
+            </Fab>
+          </Link>
+        )}
+        {/* {props.isMobile && props.fabIcon === "share" && ( */}
+        {props.fabIcon === "share" && (
+          <Link onClick={handleShare} className="noSelect">
+            <Fab className="infoFabButton">
+              <Send className="icon" />
+            </Fab>
+          </Link>
+        )}
+        {props.fabIcon === "shareSheetClose" && (
+          <Link onClick={handleShare} className="noSelect">
+            <Fab className="infoFabButton">
+              <Clear className="icon" />
+            </Fab>
+          </Link>
+        )}
+      </Box>
+      <Box className={classes.shareSheetDesktop}>
+        {props.showDesktopShareSheet && <ShareSheet handleCopy={handleCopy} />}
+      </Box>
     </ThemeProvider>
   );
-}
+};
 
 const mapStateToProps = (state) => ({
   fabIcon: state.fab.fabIcon,
