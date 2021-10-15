@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { isMobile } from 'react-device-detect';
+import { HashRouter as Router, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import { detectMobile } from './actions/index'
+import Home from "./components/pages/Home";
+import About from "./components/pages/About";
+import EditorPage from "./components/pages/EditorPage";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.scss";
+
+class App extends Component {
+
+  componentDidMount() {
+    if (isMobile) {
+      console.log(`isMobile: ${isMobile}`)
+      this.props.detectMobile(true);
+    }
+  }
+
+  render() {
+    return (
+      <>
+        <Router>
+          <Route path="/" exact component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/editor" component={EditorPage} />
+        </Router>
+      </>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => ({});
+
+export default connect(mapStateToProps, { detectMobile })(App);
