@@ -13,7 +13,6 @@ import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
 import { grey } from "@mui/material/colors";
-// import "./FabWrapper.scss";
 import {
   handleFabIcon,
   handlePlaceHolder,
