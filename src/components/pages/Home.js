@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import placeholderSmall from "./../../images/tdraft_placeholder_small.png";
 import placeholderLowerCase from "./../../images/tdraft_placeholder_lower_case.png";
 import placeholderDesktop from "./../../images/tdraft_desktop_placeholder_lower_case.png";
-import Fab from "./../Fab/Fab";
+import FabWrapper from "../FabWrapper/FabWrapper";
 import "./Home.scss";
 import "animate.css";
 class Home extends Component {
@@ -74,7 +74,7 @@ class Home extends Component {
             />
           </div>
         )}
-        <Fab />
+        <FabWrapper />
       </div>
     );
   }

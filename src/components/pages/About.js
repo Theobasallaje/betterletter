@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { handleFabIcon, showShareButton } from "./../../actions";
-import Fab from "./../Fab/Fab";
+import FabWapper from "../FabWrapper/FabWrapper";
 import "./About.scss";
 import "animate.css";
 import tangerineLogo from "./../../images/tdraft_tangerine.png";
@@ -58,7 +58,7 @@ function About({ handleFabIcon, showShareButton }) {
           </div>
         </div>
       </div>
-      <Fab />
+      <FabWapper />
     </>
   );
 }
