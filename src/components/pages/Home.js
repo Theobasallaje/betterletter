@@ -11,8 +11,8 @@ import { faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import placeholder from "./../../images/tdraft_placeholder.png";
 // import placeholderSmall from "./../../images/tdraft_placeholder_small.png";
-import placeholderLowerCase from "./../../images/tdraft_placeholder_lower_case.png";
-import placeholderDesktop from "./../../images/tdraft_desktop_placeholder_lower_case.png";
+import placeholderLowerCase from "./../../images/tdraft_logo.png";
+import placeholderDesktop from "./../../images/tdraft_logo.png";
 import FabWrapper from "../FabWrapper/FabWrapper";
 import "./Home.scss";
 import "animate.css";
@@ -59,19 +59,22 @@ class Home extends Component {
       >
         {this.props.placeHolder && (
           <div
-            className="placeholderContainer"
-            //! Why is this not triggering??
-            // onClick={this.handlePlaceHolder} 
+            className="placeholderContainer animate__animated animate__rubberBand"
+          //! Why is this not triggering??
+          // onClick={this.handlePlaceHolder} 
           >
             {/* <img className="placeholder" src={placeholder} alt="placeholder" /> */}
             {/* <img className="placeholder" src={placeholderSmall} alt="placeholder" /> */}
+            <p className="title">tdraft.io</p>
             <img
-              className="placeholder animate__animated animate__rubberBand"
+              className="placeholder"
               src={
                 this.props.isMobile ? placeholderLowerCase : placeholderDesktop
               }
               alt="placeholder"
             />
+            <br /><br />
+            <p className="instructions">Click anywhere or press any key</p>
           </div>
         )}
         <FabWrapper />
