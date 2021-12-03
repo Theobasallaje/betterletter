@@ -65,6 +65,7 @@ class Home extends Component {
           >
             {/* <img className="placeholder" src={placeholder} alt="placeholder" /> */}
             {/* <img className="placeholder" src={placeholderSmall} alt="placeholder" /> */}
+            {/* //TODO: make h1 */}
             <p className="title">tdraft.io</p>
             <img
               className="placeholder"
@@ -74,7 +75,8 @@ class Home extends Component {
               alt="placeholder"
             />
             <br /><br />
-            <p className="instructions">Click anywhere or press any key</p>
+            <p className="instructions">{this.props.isMobile ? 'Tap anywhere to start typing' : 'Click anywhere or press any key'}</p>
+            <hr />
           </div>
         )}
         <FabWrapper />

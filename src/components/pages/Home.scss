@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
-// html,
-// body {
-//   // max-width: 100%;
-//   overflow-x: hidden;
-// }
+html,
+body {
+  // max-width: 100%;
+  // overflow-y: hidden;
+}
 
 .placeholderContainer {
   display: flex;
@@ -25,23 +25,23 @@
 
 .title {
   font-weight: 400;
-  font-size: 100px;
+  font-size: 90px;
   margin-top: 144px;
   margin-bottom: 32px;
 }
 
 .instructions {
   font-family: "Montserrat", sans-serif;
-  font-size: 35px;
+  font-size: 28px;
 }
 
 .placeholder {
   // position: fixed;
-  max-height: 18vh;
-  max-width: 18vw;
+  max-height: 20vh;
+  max-width: 20vw;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 600px) { //Phone
   .title {
     font-weight: 400;
     font-size: 50px;
@@ -84,10 +84,37 @@
 
 #homeContainer {
   // border: 2px solid rgb(255, 123, 0);
-  height: 100vh;
+  height: 92vh;
+  width: 99vw;
+  // border: 2px solid red;
+  // overflow-y: hidden;
 }
 
 .editorDiv {
   display: flex;
   justify-content: center;
 }
+
+hr {
+  width: 50%;
+  max-width: 300px;
+  margin-top: 14px;
+  height: 1px;
+  background-color: rgb(0, 0, 0);
+  border: none;
+}
+
+// /* Extra small devices (phones, 600px and down) */
+// @media only screen and (max-width: 600px) {...}
+
+// /* Small devices (portrait tablets and large phones, 600px and up) */
+// @media only screen and (min-width: 600px) {...}
+
+// /* Medium devices (landscape tablets, 768px and up) */
+// @media only screen and (min-width: 768px) {...}
+
+// /* Large devices (laptops/desktops, 992px and up) */
+// @media only screen and (min-width: 992px) {...}
+
+// /* Extra large devices (large laptops and desktops, 1200px and up) */
+// @media only screen and (min-width: 1200px) {...}
