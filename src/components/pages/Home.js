@@ -59,23 +59,23 @@ class Home extends Component {
       >
         {this.props.placeHolder && (
           <div
-            className="placeholderContainer animate__animated animate__rubberBand"
+            className="placeholderContainer"
           //! Why is this not triggering??
           // onClick={this.handlePlaceHolder} 
           >
             {/* <img className="placeholder" src={placeholder} alt="placeholder" /> */}
             {/* <img className="placeholder" src={placeholderSmall} alt="placeholder" /> */}
             {/* //TODO: make h1 */}
-            <p className="title">tdraft.io</p>
+            <p className="title animate__animated animate__fadeIn">tdraft.io</p>
             <img
-              className="placeholder"
+              className="placeholder animate__animated animate__fadeIn"
               src={
                 this.props.isMobile ? placeholderLowerCase : placeholderDesktop
               }
               alt="placeholder"
             />
             <br /><br />
-            <p className="instructions">{this.props.isMobile ? 'Tap anywhere to start typing' : 'Click anywhere or press any key'}</p>
+            <p className="instructions animate__animated animate__fadeIn">{this.props.isMobile ? 'Tap anywhere to start typing' : 'Click anywhere or press any key'}</p>
             <hr />
           </div>
         )}
