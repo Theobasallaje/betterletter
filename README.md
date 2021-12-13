@@ -2,7 +2,7 @@
 https://tdraft.io/
 
 # Screenshots
-![Homepage](https://tdraft.io/#/img/tdraft.jpg)
+![Homepage](https://tdraft.io/img/tdraft.jpg)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
