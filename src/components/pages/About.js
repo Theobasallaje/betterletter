@@ -4,7 +4,7 @@ import { handleFabIcon, showShareButton } from "./../../actions";
 import FabWapper from "../FabWrapper/FabWrapper";
 import "./About.scss";
 import "animate.css";
-import tangerineLogo from "./../../images/tdraft_tangerine.png";
+import tangerineLogo from "./../../images/tdraft_logo.png";
 
 // function About(props) {
 function About({ handleFabIcon, showShareButton }) {
@@ -25,6 +25,7 @@ function About({ handleFabIcon, showShareButton }) {
                   src={tangerineLogo}
                   alt="tdraft Tangerine Logo"
                 />
+                <h1 className="aboutHeader">tdraft.io</h1>
               </div>
               {/* <img className="logo animate__animated animate__rubberBand" src={tangerineLogo} alt="tdraft Tangerine Logo" /> */}
               <p className="aboutParagraph">

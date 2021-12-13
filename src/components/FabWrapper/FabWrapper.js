@@ -1,3 +1,4 @@
+// Author: Theo Basallaje
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -35,12 +36,12 @@ const useStyles = makeStyles({
     // float: "right",
     margin: "0 0 0 80%",
     bottom: "16px",
-    position: "fixed",
+    position: "absolute",
   },
   shareSheetDesktop: {
     bottom: '80px',
     margin: '0 0 0 80%',
-    position: 'fixed',
+    position: 'absolute',
     // border: '2px solid red',
     width: '56px',
     height: '186px',
