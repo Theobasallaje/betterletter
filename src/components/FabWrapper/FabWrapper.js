@@ -91,6 +91,7 @@ const FabWrapper = (props) => {
       }
     );
     props.toggleDesktopShareSheet(false);
+    props.handleFabIcon('share');
   };
 
   const handleShareShow = () => {

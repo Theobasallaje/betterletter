@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import "./ShareSheet.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
-import { toggleDesktopShareSheet } from "../../actions";
+import { handleFabIcon, toggleDesktopShareSheet } from "../../actions";
 import tangerineLogo from "./../../images/tdraft_tangerine.png";
 import {
   EmailShareButton,
@@ -55,7 +55,7 @@ class ShareSheet extends Component {
       <div className="shareSheetContainer">
         <div className="shareButtonDiv">
           <TelegramShareButton
-            beforeOnClick={() => this.props.toggleDesktopShareSheet(false)}
+            beforeOnClick={() => { this.props.toggleDesktopShareSheet(false); this.props.handleFabIcon('share'); }}
             url=" "
             title={this.props.editorState}
             className="shareButton"
@@ -65,7 +65,7 @@ class ShareSheet extends Component {
         </div>
         <div className="shareButton">
           <FacebookShareButton
-            beforeOnClick={() => this.props.toggleDesktopShareSheet(false)}
+            beforeOnClick={() => { this.props.toggleDesktopShareSheet(false); this.props.handleFabIcon('share'); }}
             url="https://tdraft.io"
             quote={this.props.editorState}
             className="shareButtonDiv"
@@ -75,7 +75,7 @@ class ShareSheet extends Component {
         </div>
         <div className="shareButton">
           <EmailShareButton
-            beforeOnClick={() => this.props.toggleDesktopShareSheet(false)}
+            beforeOnClick={() => { this.props.toggleDesktopShareSheet(false); this.props.handleFabIcon('share'); }}
             url=""
             subject=""
             body={this.props.editorState}
@@ -173,6 +173,6 @@ const mapStateToProps = (state) => ({
   editorState: state.textEditor.editorState,
 });
 
-export default connect(mapStateToProps, { toggleDesktopShareSheet })(
+export default connect(mapStateToProps, { handleFabIcon, toggleDesktopShareSheet })(
   ShareSheet
 );
