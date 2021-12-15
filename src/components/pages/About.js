@@ -23,7 +23,7 @@ function About({ handleFabIcon, showShareButton }) {
                 <img
                   className="logo animate__animated"
                   src={tangerineLogo}
-                  alt="tdraft Tangerine Logo"
+                  alt="tdraft logo"
                 />
                 <h1 className="aboutHeader">tdraft.io</h1>
               </div>

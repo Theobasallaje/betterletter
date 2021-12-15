@@ -72,7 +72,7 @@ class Home extends Component {
               src={
                 this.props.isMobile ? placeholderLowerCase : placeholderDesktop
               }
-              alt="placeholder"
+              alt="tdraft logo"
             />
             <br /><br />
             <p className="instructions animate__animated animate__fadeIn">{this.props.isMobile ? 'Tap anywhere to start typing' : 'Click anywhere or press any key'}</p>
