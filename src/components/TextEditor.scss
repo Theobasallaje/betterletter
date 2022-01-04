@@ -1,8 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
+html {
+  // border: 2px solid blue;
+}
+
 body {
-  overflow: auto; /* Hide scrollbars */
+  overflow: hidden; /* Hide scrollbars */
+  // overflow: auto; /* Hide scrollbars */
   font-family: "Montserrat", sans-serif;
+  // border: 2px solid red;
 }
 
 // button {
@@ -22,16 +28,17 @@ body {
 .editorContainer {
   display: flex;
   justify-content: center;
-  position: absolute;
-  top: 0;
-  // border: 2px solid red;
+  position: fixed;
+  margin-top: 15px;
+  border: 2px solid blue;
+  height: 90%;
 }
 
 textarea {
   font-size: large;
   font-family: 'Montserrat';
   resize: none;
-  margin-top: 40px;
+  // margin-top: 75px;
   border: none;
   overflow: auto;
   outline: none;
@@ -41,8 +48,8 @@ textarea {
   box-shadow: none;
 
   resize: none; 
-  // border: 2px solid red;
-  height: 95vh;
+  // border: 2px solid blue;
+  // height: 85vh;
   width: 65vw;
   padding: 0 16vw 0;
 }
@@ -50,9 +57,17 @@ textarea {
 // Phone
 @media only screen and (max-width: 600px) {
   textarea {
+    // margin-top: 65px;
+    // height: 100%;
     // border: 2px solid red;
     width: 78vw;
     padding: 0 30px 0;
+  }
+  
+  .editorContainer {
+    margin-top: 65px;
+    // border: 2px solid red;
+    height: 300px;
   }
 }
 
@@ -62,5 +77,11 @@ textarea {
     // border: 2px solid blue;
     width: 60vw;
     padding: 0 165px 0;
+  }
+
+  .editorContainer {
+    margin-top: 80px;
+    // border: 2px solid red;
+    height: 25%;
   }
 }

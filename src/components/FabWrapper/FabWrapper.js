@@ -107,6 +107,7 @@ const FabWrapper = (props) => {
   };
 
   const handleShare = (e) => {
+    console.log(props.isMobile);
     if (props.isMobile) {
       if (navigator.share) {
         navigator

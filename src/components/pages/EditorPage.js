@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Navbar from '../Navbar/Navbar'
 import TextEditor from "./../TextEditor";
 import {
   handleFabIcon,
@@ -71,13 +72,15 @@ class EditorPage extends Component {
             <div className={this.state.copyConfirmationClass}>Copied!</div>
           </div>
         )}
+        <Navbar />
         <div className="editorDiv">
           {/* //? Is this prop needed, doesnt seem to be used in the TextEditor component */}
           <TextEditor handleHomeAnimation={this.handleHomeAnimation} /> 
         </div>
-        <FabWrapper
+        <img src='https://image.pngaaa.com/218/4268218-middle.png' className="squirtle"/>
+        {!this.props.isMobile && <FabWrapper
           handleCopyConfirmationAnimation={this.handleCopyConfirmationAnimation}
-        />
+        />}
       </div>
     );
   }
