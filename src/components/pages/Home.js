@@ -31,11 +31,6 @@ class Home extends Component {
   }
 
   handlePlaceHolder = () => {
-    console.log("handlePlaceHolder Ran!");
-    // this.props.handlePlaceHolder(false);
-    // this.props.handleFabIcon("share");
-    // this.props.toggleDesktopShareSheet(false);
-    // this.props.showShareButton(true);
     this.props.history.push("/editor");
   };
 

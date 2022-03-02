@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import {
   changeEditor,
@@ -9,7 +9,6 @@ import {
 } from "./../actions";
 import "./TextEditor.scss";
 
-// FIXME:
 function TextEditor({
   placeHolder,
   fabIcon,
@@ -19,11 +18,9 @@ function TextEditor({
   changeEditor,
   toggleDesktopShareSheet,
 }) {
-  // console.log(props);
   let refEditor = useRef("editor");
   const [editorContainerClass, setEditorContainerClass] =
     useState("editorContainer");
-  // const [height, setHeight] = useState(window.innerHeight);
   const [focused, setFocused] = useState(false);
   const [prevViewport, setPrevViewport] = useState(null);
 
@@ -47,25 +44,7 @@ function TextEditor({
     }
     refEditor.current.focus();
     alert(`HANDLE CLICK viewport: ${visualViewport.height}, focus: ${focused}, prevViewport: ${prevViewport}`);
-    // set some sort of bool flag 
-    // based on bool flag check in useEffect and if the hieght has changed do logic to resize text area.
-    // does blur work on ios keyboard dismiss???
-
-    // check if hieght has changed, if the same recall click function???
-    //! why is textarea disapearing?
   };
-
-  // const handleResize = () => {
-  //   setHeight(window.innerHeight);
-  // };
-
-  // const handleKeyPressFocus = (event) => {
-  //   handleClick();
-  //   if (fabIcon === "shareSheetClose") {
-  //     handleFabIcon("share");
-  //     toggleDesktopShareSheet(false);
-  //   }
-  // };
 
   const handleChange = (event) => {
     changeEditor(event.target.value);
@@ -76,20 +55,17 @@ function TextEditor({
   };
 
   const handleMobileBlur = () => {
-    // setFocused(false);
-    // alert("BLUR!");
+    setFocused(false);
+    alert("BLUR!");
   };
 
   return (
     <div className={editorContainerClass} onClick={handleClick}>
-      {/* <div className={editorContainerClass}> */}
       <textarea
         tabIndex={-1}
         onChange={handleChange}
         ref={refEditor}
         onFocus={handleMobileFocus}
-        // placeHolder={`Type Something...`}
-        // placeHolder={`${height} ${editorContainerClass} ${window.innerHeight}`}
         placeHolder={`${visualViewport.height}`}
         onBlur={handleMobileBlur}
       />
