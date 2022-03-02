@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import placeholderLowerCase from "./../../images/tdraft_placeholder_lower_case.png";
 import placeholderDesktop from "./../../images/tdraft_desktop_placeholder_lower_case.png";
 import FabWrapper from "../FabWrapper/FabWrapper";
+import SpeedDial from '../SpeedDial/SpeedDial'
 import "./EditorPage.scss";
 import "animate.css";
 class EditorPage extends Component {
@@ -74,13 +75,16 @@ class EditorPage extends Component {
         )}
         <Navbar />
         <div className="editorDiv">
-          {/* //? Is this prop needed, doesnt seem to be used in the TextEditor component */}
+          {/* //! Is this prop needed, doesnt seem to be used in the TextEditor component */}
           <TextEditor handleHomeAnimation={this.handleHomeAnimation} /> 
         </div>
-        <img src='https://image.pngaaa.com/218/4268218-middle.png' className="squirtle"/>
-        {!this.props.isMobile && <FabWrapper
+        {/* <img alt='squirtle' src='https://image.pngaaa.com/218/4268218-middle.png' className="squirtle" /> */}
+        {!this.props.isMobile && <FabWrapper />}
+        {/* //TODO: Implement for Desktop? */}
+        {/* <SpeedDial /> */}
+        <FabWrapper
           handleCopyConfirmationAnimation={this.handleCopyConfirmationAnimation}
-        />}
+        />
       </div>
     );
   }

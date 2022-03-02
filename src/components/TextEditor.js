@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import {
   changeEditor,
@@ -13,57 +13,86 @@ import "./TextEditor.scss";
 function TextEditor({
   placeHolder,
   fabIcon,
+  isMobile,
   handlePlaceHolder,
   handleFabIcon,
   changeEditor,
   toggleDesktopShareSheet,
 }) {
   // console.log(props);
-  // TODO: uninstall Draftjs
   let refEditor = useRef("editor");
-  const hydrate = useCallback(() => {
-    handleClick();
-    window.addEventListener("keydown", handleKeyPressFocus);
-    // if (fabIcon === "share") refEditor.current.focus(); // Not needed cause the handle click gets called when fabIcon changes
-    console.log("hydrate()");
-  }, [fabIcon]);
-  useEffect(() => {
-    console.log("Inside UseEffect");
-    hydrate();
-    return () => {
-      window.removeEventListener("keydown", handleKeyPressFocus);
-    };
-  }, [hydrate]); //! When I put props in the dependency array, it keeps looping and running the useEffect, WHY??
+  const [editorContainerClass, setEditorContainerClass] =
+    useState("editorContainer");
+  // const [height, setHeight] = useState(window.innerHeight);
+  const [focused, setFocused] = useState(false);
+  const [prevViewport, setPrevViewport] = useState(null);
 
-  // https://dev.to/r3wt/useeffect-missing-dependency-need-advice-4d6b
-  // https://stackoverflow.com/questions/54219238/how-to-stop-editor-draftjs-cursor-jumping-to-beginning-of-text-while-typing-in-r
+  useEffect(() => {
+    setPrevViewport(visualViewport.height);
+    if (focused === false) {
+      handleClick();
+    }
+    alert(
+      `USEFFECT viewport: ${visualViewport.height}, focus: ${focused}, prevViewport: ${prevViewport}`
+    );
+  }, [focused, visualViewport.height]);
 
   const handleClick = () => {
     console.log("handleClick ran!");
     if (placeHolder) {
+      setFocused(true);
       handlePlaceHolder(false);
-      // handleHomeAnimation('animate__animated animate__flipInY');
       handleFabIcon("share");
       toggleDesktopShareSheet(false);
     }
     refEditor.current.focus();
+    alert(`HANDLE CLICK viewport: ${visualViewport.height}, focus: ${focused}, prevViewport: ${prevViewport}`);
+    // set some sort of bool flag 
+    // based on bool flag check in useEffect and if the hieght has changed do logic to resize text area.
+    // does blur work on ios keyboard dismiss???
+
+    // check if hieght has changed, if the same recall click function???
+    //! why is textarea disapearing?
   };
 
-  const handleKeyPressFocus = (event) => {
-    handleClick();
-    if (fabIcon === "shareSheetClose") {
-      handleFabIcon("share");
-      toggleDesktopShareSheet(false);
-    }
-  };
+  // const handleResize = () => {
+  //   setHeight(window.innerHeight);
+  // };
+
+  // const handleKeyPressFocus = (event) => {
+  //   handleClick();
+  //   if (fabIcon === "shareSheetClose") {
+  //     handleFabIcon("share");
+  //     toggleDesktopShareSheet(false);
+  //   }
+  // };
 
   const handleChange = (event) => {
     changeEditor(event.target.value);
   };
 
+  const handleMobileFocus = () => {
+    isMobile && setEditorContainerClass("editorContainerKeyboard");
+  };
+
+  const handleMobileBlur = () => {
+    // setFocused(false);
+    // alert("BLUR!");
+  };
+
   return (
-    <div className="editorContainer" onClick={handleClick}>
-      <textarea tabIndex={-1} onChange={handleChange} ref={refEditor} />
+    <div className={editorContainerClass} onClick={handleClick}>
+      {/* <div className={editorContainerClass}> */}
+      <textarea
+        tabIndex={-1}
+        onChange={handleChange}
+        ref={refEditor}
+        onFocus={handleMobileFocus}
+        // placeHolder={`Type Something...`}
+        // placeHolder={`${height} ${editorContainerClass} ${window.innerHeight}`}
+        placeHolder={`${visualViewport.height}`}
+        onBlur={handleMobileBlur}
+      />
     </div>
   );
 }
@@ -72,6 +101,7 @@ const mapStateToProps = (state) => ({
   placeHolder: state.placeHolder.placeHolderShow,
   editorState: state.textEditor.editorState,
   fabIcon: state.fab.fabIcon,
+  isMobile: state.placeHolder.isMobile,
 });
 
 export default connect(mapStateToProps, {

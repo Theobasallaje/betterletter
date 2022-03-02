@@ -29,9 +29,9 @@ body {
   display: flex;
   justify-content: center;
   position: fixed;
-  margin-top: 15px;
+  margin-top: 80px;
   border: 2px solid blue;
-  height: 90%;
+  height: 100%;
 }
 
 textarea {
@@ -65,9 +65,18 @@ textarea {
   }
   
   .editorContainer {
-    margin-top: 65px;
-    // border: 2px solid red;
-    height: 300px;
+    margin-top: 80px;
+    border: 2px solid red;
+    height: 85%;
+  }
+
+  .editorContainerKeyboard {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    margin-top: 80px;
+    border: 2px solid blue;
+    height: 70%;
   }
 }
 
