@@ -26,7 +26,6 @@ function TextEditor({
   const ua = navigator.userAgent;
 
   useEffect(() => {
-    setPrevViewport(visualViewport.height);
     //! look into this condition
     if (editorContainerClass === 'editorContainerKeyboard') {
       handleClick();
@@ -37,10 +36,23 @@ function TextEditor({
     // }
     //! make textarea smaller/bigger when viewport changes - ignore focus on load issue for now
     // alert('ios');
-    alert(
-      `USEFFECT viewport: ${visualViewport.height}, focus: ${focused}, prevViewport: ${prevViewport}`
-    );
-  }, [editorContainerClass, visualViewport.height]);
+    // alert(
+    //   `USEFFECT viewport: ${visualViewport.height}, focus: ${focused}, prevViewport: ${prevViewport}`
+    // );
+    visualViewport.addEventListener('resize', function () {
+      // alert(`resized! ${visualViewport.height}`)
+      setPrevViewport(visualViewport.height);
+      // alert(`COMPARE ${prevViewport} ${visualViewport.height} ${prevViewport > visualViewport.height}`);
+      if (prevViewport < visualViewport.height) {
+        (ua.indexOf("like Mac OS X") > -1 ) && setEditorContainerClass("editorContainer");
+      }
+    });
+    return () => {
+      visualViewport.removeEventListener('resize', function () {
+        /* ... */
+      });
+    };
+  }, [editorContainerClass]);
 
   const handleClick = () => {
     console.log("handleClick ran!");
@@ -83,7 +95,8 @@ function TextEditor({
         onFocus={handleMobileFocus}
         placeHolder={`${visualViewport.height} ${focused} ${prevViewport} ${editorContainerClass} ${refEditor.current}`}
         onBlur={handleMobileBlur}
-        // onMouseLeave={handleMouseLeave}
+        onTouchLeave={handleMobileBlur}
+      // onMouseLeave={handleMouseLeave}
       />
     </div>
   );
