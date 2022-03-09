@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 html {
   // border: 2px solid blue;
@@ -36,7 +36,7 @@ body {
 
 textarea {
   font-size: large;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   resize: none;
   // margin-top: 75px;
   border: none;
@@ -47,7 +47,7 @@ textarea {
   -moz-box-shadow: none;
   box-shadow: none;
 
-  resize: none; 
+  resize: none;
   // border: 2px solid blue;
   // height: 85vh;
   width: 65vw;
@@ -63,8 +63,10 @@ textarea {
     width: 78vw;
     padding: 0 30px 0;
   }
-  
+
   .editorContainer {
+    display: flex;
+    justify-content: center;
     margin-top: 80px;
     border: 2px solid red;
     height: 85%;
@@ -81,7 +83,7 @@ textarea {
 }
 
 // Tablet
-@media screen and (min-device-width: 600px) and (max-device-width: 1024px) { 
+@media screen and (min-device-width: 600px) and (max-device-width: 1024px) {
   textarea {
     // border: 2px solid blue;
     width: 60vw;
@@ -89,8 +91,20 @@ textarea {
   }
 
   .editorContainer {
+    display: flex;
+    justify-content: center;
+    position: fixed;
     margin-top: 80px;
-    // border: 2px solid red;
+    border: 2px solid red;
+    height: 90%;
+  }
+
+  .editorContainerKeyboard {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    margin-top: 80px;
+    border: 2px solid blue;
     height: 25%;
   }
 }

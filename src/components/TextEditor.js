@@ -23,12 +23,19 @@ function TextEditor({
     useState("editorContainer");
   const [focused, setFocused] = useState(false);
   const [prevViewport, setPrevViewport] = useState(null);
+  const ua = navigator.userAgent;
 
   useEffect(() => {
     setPrevViewport(visualViewport.height);
-    if (focused === false) {
+    //! look into this condition
+    if (focused === false && editorContainerClass === 'editorContainerKeyboard') {
       handleClick();
     }
+    if (ua.indexOf("like Mac OS X") > -1) {
+      setFocused(true);
+    }
+    //! make textarea smaller/bigger when viewport changes - ignore focus on load issue for now
+    // alert('ios');
     alert(
       `USEFFECT viewport: ${visualViewport.height}, focus: ${focused}, prevViewport: ${prevViewport}`
     );
@@ -36,6 +43,7 @@ function TextEditor({
 
   const handleClick = () => {
     console.log("handleClick ran!");
+    // alert('click')
     if (placeHolder) {
       setFocused(true);
       handlePlaceHolder(false);
@@ -43,7 +51,7 @@ function TextEditor({
       toggleDesktopShareSheet(false);
     }
     refEditor.current.focus();
-    alert(`HANDLE CLICK viewport: ${visualViewport.height}, focus: ${focused}, prevViewport: ${prevViewport}`);
+    // alert(`HANDLE CLICK viewport: ${visualViewport.height}, focus: ${focused}, prevViewport: ${prevViewport}`);
   };
 
   const handleChange = (event) => {
@@ -56,7 +64,7 @@ function TextEditor({
 
   const handleMobileBlur = () => {
     setFocused(false);
-    alert("BLUR!");
+    // alert("BLUR!");
   };
 
   return (
@@ -66,7 +74,7 @@ function TextEditor({
         onChange={handleChange}
         ref={refEditor}
         onFocus={handleMobileFocus}
-        placeHolder={`${visualViewport.height}`}
+        placeHolder={`${visualViewport.height} ${focused} ${prevViewport}`}
         onBlur={handleMobileBlur}
       />
     </div>
