@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useCallback, useRef, useState } from "react";
 import { connect } from "react-redux";
 import {
   changeEditor,
@@ -22,41 +22,51 @@ function TextEditor({
   const [editorContainerClass, setEditorContainerClass] =
     useState("editorContainer");
   const [focused, setFocused] = useState(false);
-  const [prevViewport, setPrevViewport] = useState(null);
+  const [prevViewport, setPrevViewport] = useState(0);
   const ua = navigator.userAgent;
 
-  useEffect(() => {
-    //! look into this condition
-    if (editorContainerClass === 'editorContainerKeyboard') {
+  // const handleMobileBlur = () => {
+  //   setFocused(false);
+  //   setPrevViewport(visualViewport.height);
+  //   isMobile && setEditorContainerClass("editorContainer");
+  //   // refEditor.current.blur();
+  //   // alert("BLUR!");
+  //   // alert(`COMPARE ${prevViewport} ${visualViewport.height} ${prevViewport > visualViewport.height}`);
+  //   if (prevViewport > visualViewport.height) {
+  //     (ua.indexOf("like Mac OS X") > -1 ) && setEditorContainerClass("editorContainerKeyboard");
+  //   } else if (prevViewport === 0) {
+  //     handleClick();
+  //     (ua.indexOf("like Mac OS X") > -1 ) && setEditorContainerClass("editorContainerKeyboard");
+  //   } else {
+  //     (ua.indexOf("like Mac OS X") > -1 ) && setEditorContainerClass("editorContainer");
+  //   }
+  // };
+  const handleMobileBlur = useCallback(() => {
+    setFocused(false);
+    setPrevViewport(visualViewport.height);
+    isMobile && setEditorContainerClass("editorContainer");
+    if (isMobile && prevViewport > visualViewport.height) {
+      setEditorContainerClass("editorContainerKeyboard");
+    } else if (isMobile && prevViewport === 0) {
       handleClick();
+      setEditorContainerClass("editorContainerKeyboard");
+    } else {
+      setEditorContainerClass("editorContainer");
     }
-    console.log(refEditor);
-    // if (ua.indexOf("like Mac OS X") > -1) {
+  });
+
+  useEffect(() => {
+    // if (ua.indexOf("like Mac OS X") > -1) { //? only targets ios
     //   setFocused(true);
     // }
-    //! make textarea smaller/bigger when viewport changes - ignore focus on load issue for now
-    // alert('ios');
-    // alert(
-    //   `USEFFECT viewport: ${visualViewport.height}, focus: ${focused}, prevViewport: ${prevViewport}`
-    // );
-    visualViewport.addEventListener('resize', function () {
-      // alert(`resized! ${visualViewport.height}`)
-      setPrevViewport(visualViewport.height);
-      // alert(`COMPARE ${prevViewport} ${visualViewport.height} ${prevViewport > visualViewport.height}`);
-      if (prevViewport < visualViewport.height) {
-        (ua.indexOf("like Mac OS X") > -1 ) && setEditorContainerClass("editorContainer");
-      }
-    });
+    visualViewport.addEventListener('resize', handleMobileBlur);
     return () => {
-      visualViewport.removeEventListener('resize', function () {
-        /* ... */
-      });
+      visualViewport.removeEventListener('resize', handleMobileBlur);
     };
-  }, [editorContainerClass]);
+  }, [handleMobileBlur]);
 
   const handleClick = () => {
     console.log("handleClick ran!");
-    // alert('click')
     if (placeHolder) {
       setFocused(true);
       handlePlaceHolder(false);
@@ -64,7 +74,6 @@ function TextEditor({
       toggleDesktopShareSheet(false);
     }
     refEditor.current.focus();
-    // alert(`HANDLE CLICK viewport: ${visualViewport.height}, focus: ${focused}, prevViewport: ${prevViewport}`);
   };
 
   const handleChange = (event) => {
@@ -75,17 +84,6 @@ function TextEditor({
     isMobile && setEditorContainerClass("editorContainerKeyboard");
   };
 
-  const handleMobileBlur = () => {
-    setFocused(false);
-    isMobile && setEditorContainerClass("editorContainer");
-    // refEditor.current.blur();
-    alert("BLUR!");
-  };
-
-  const handleMouseLeave = () => {
-    // refEditor.current.blur();
-  };
-
   return (
     <div className={editorContainerClass} onClick={handleClick}>
       <textarea
@@ -93,10 +91,8 @@ function TextEditor({
         onChange={handleChange}
         ref={refEditor}
         onFocus={handleMobileFocus}
-        placeHolder={`${visualViewport.height} ${focused} ${prevViewport} ${editorContainerClass} ${refEditor.current}`}
+        placeHolder={`Type Something`}
         onBlur={handleMobileBlur}
-        onTouchLeave={handleMobileBlur}
-      // onMouseLeave={handleMouseLeave}
       />
     </div>
   );
