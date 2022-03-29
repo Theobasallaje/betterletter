@@ -1,5 +1,5 @@
 // Author: Theo Basallaje
-import React from "react";
+import React, { useEffect, useCallback, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import ShareSheet from "../ShareSheet/ShareSheet";
@@ -20,37 +20,55 @@ import {
   toggleDesktopShareSheet,
 } from "../../actions";
 
-const theme = createTheme({
-  palette: {
-    // primary: {
-    //   main: grey[400],
-    // },
-    primary: grey,
-    secondary: grey,
-  },
-});
-
-const useStyles = makeStyles({
-  root: {
-    textDecoration: "none",
-    // float: "right",
-    margin: "0 0 0 80%",
-    bottom: "16px",
-    position: "absolute",
-  },
-  shareSheetDesktop: {
-    bottom: '80px',
-    margin: '0 0 0 80%',
-    position: 'absolute',
-    // border: '2px solid red',
-    width: '56px',
-    height: '186px',
-    display: 'flex',
-    justifyContent: 'center',
-  },
-});
-
 const FabWrapper = (props) => {
+  const [fabBottom, setFabBottom] = useState("16px");
+  const ua = navigator.userAgent;
+
+  const theme = createTheme({
+    palette: {
+      // primary: {
+      //   main: grey[400],
+      // },
+      primary: grey,
+      secondary: grey,
+    },
+  });
+
+  const useStyles = makeStyles({
+    root: {
+      textDecoration: "none",
+      // float: "right",
+      margin: "0 0 0 80%",
+      bottom: fabBottom,
+      right: "3%",
+      position: "absolute",
+    },
+    shareSheetDesktop: {
+      bottom: "80px",
+      margin: "0 0 0 80%",
+      position: "absolute",
+      // border: '2px solid red',
+      width: "56px",
+      height: "186px",
+      display: "flex",
+      justifyContent: "center",
+    },
+  });
+
+  const handleFabPosition = () => {
+    // alert(props.editorClass);
+    if (props.editorClass === "editorContainer") { //TODO: add check for ios
+      setFabBottom("5vh");
+      // alert('editorContainer!');
+    } else if (props.editorClass === "editorContainerKeyboard") {
+      setFabBottom("38vh");
+    }
+  };
+
+  useEffect(() => {
+    if (ua.indexOf("like Mac OS X") > -1 ) handleFabPosition();
+  }, [props.editorClass]);
+
   const handleFabIcon = (icon) => {
     switch (icon) {
       case "back":
@@ -91,7 +109,7 @@ const FabWrapper = (props) => {
       }
     );
     props.toggleDesktopShareSheet(false);
-    props.handleFabIcon('share');
+    props.handleFabIcon("share");
   };
 
   const handleShareShow = () => {
@@ -189,6 +207,7 @@ const mapStateToProps = (state) => ({
   fabIcon: state.fab.fabIcon,
   showDesktopShareSheet: state.fab.showDesktopShareSheet,
   editorState: state.textEditor.editorState,
+  editorClass: state.textEditor.editorClass,
   isMobile: state.placeHolder.isMobile,
 });
 

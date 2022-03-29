@@ -1,6 +1,7 @@
 import {
   EDITOR_CHANGE,
   // EDITOR_CREATE,
+  EDITOR_CLASS,
   EDITOR_REF,
   FAB_ICON,
   IS_MOBILE,
@@ -62,6 +63,13 @@ export const handleEditorRef = (ref) => {
   return {
     type: EDITOR_REF,
     payload: ref,
+  };
+};
+
+export const handleEditorClass = (editorClass) => {
+  return {
+    type: EDITOR_CLASS,
+    payload: editorClass,
   };
 };
 
