@@ -73,7 +73,7 @@ function Navbar(props) {
           {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             News
           </Typography> */}
-          <Send onClick={handleShare} className='sendIcon' />
+          {props.isMobile && <Send onClick={handleShare} className='sendIcon' />}
           {/* <Button color="inherit">Login</Button> */}
         </Toolbar>
       </AppBar>

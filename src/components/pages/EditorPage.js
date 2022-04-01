@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import placeholderSmall from "./../../images/tdraft_placeholder_small.png";
 import placeholderLowerCase from "./../../images/tdraft_placeholder_lower_case.png";
 import placeholderDesktop from "./../../images/tdraft_desktop_placeholder_lower_case.png";
+import FabWrapper from "../FabWrapper/FabWrapper";
 import SpeedDial from '../SpeedDial/SpeedDial'
 import "./EditorPage.scss";
 import "animate.css";

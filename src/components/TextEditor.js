@@ -25,7 +25,6 @@ function TextEditor({
     useState("editorContainer");
   const [focused, setFocused] = useState(false);
   const [prevViewport, setPrevViewport] = useState(0);
-  const ua = navigator.userAgent;
 
   const handleMobileBlur = useCallback(() => {
     setFocused(false);
@@ -48,6 +47,7 @@ function TextEditor({
   });
 
   useEffect(() => {
+    placeHolder && handleClick();
     visualViewport.addEventListener('resize', handleMobileBlur);
     return () => {
       visualViewport.removeEventListener('resize', handleMobileBlur);
@@ -55,13 +55,16 @@ function TextEditor({
   }, [handleMobileBlur]);
 
   const handleClick = () => {
-    console.log("handleClick ran!");
+    const end = refEditor.current.value.length;
+    console.log("handleClick ran!", end);
     if (placeHolder) {
       handlePlaceHolder(false);
       handleFabIcon("share");
       toggleDesktopShareSheet(false);
     }
     setFocused(true);
+    refEditor.current.setSelectionRange(0, 0);
+    // !move cursor back down after a set time out?
     refEditor.current.focus();
   };
 

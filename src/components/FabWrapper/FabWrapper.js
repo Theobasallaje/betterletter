@@ -55,20 +55,6 @@ const FabWrapper = (props) => {
     },
   });
 
-  const handleFabPosition = () => {
-    // alert(props.editorClass);
-    if (props.editorClass === "editorContainer") { //TODO: add check for ios
-      setFabBottom("5vh");
-      // alert('editorContainer!');
-    } else if (props.editorClass === "editorContainerKeyboard") {
-      setFabBottom("38vh");
-    }
-  };
-
-  useEffect(() => {
-    if (ua.indexOf("like Mac OS X") > -1 ) handleFabPosition();
-  }, [props.editorClass]);
-
   const handleFabIcon = (icon) => {
     switch (icon) {
       case "back":
