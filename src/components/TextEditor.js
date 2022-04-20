@@ -32,7 +32,7 @@ function TextEditor({
     isMobile && setEditorContainerClass("editorContainer");
     if (isMobile && prevViewport > visualViewport.height) {
       setEditorContainerClass("editorContainerKeyboard");
-      handleEditorClass("editorContainerKeyboard")
+      handleEditorClass("editorContainerKeyboard");
       setFocused(true);
     } else if (isMobile && prevViewport === 0) {
       handleClick();
@@ -48,9 +48,9 @@ function TextEditor({
 
   useEffect(() => {
     placeHolder && handleClick();
-    visualViewport.addEventListener('resize', handleMobileBlur);
+    visualViewport.addEventListener("resize", handleMobileBlur);
     return () => {
-      visualViewport.removeEventListener('resize', handleMobileBlur);
+      visualViewport.removeEventListener("resize", handleMobileBlur);
     };
   }, [handleMobileBlur]);
 
@@ -63,9 +63,32 @@ function TextEditor({
       toggleDesktopShareSheet(false);
     }
     setFocused(true);
-    refEditor.current.setSelectionRange(0, 0);
+    // refEditor.current.setSelectionRange(0, 0);
     // !move cursor back down after a set time out?
     refEditor.current.focus();
+    console.log(refEditor);
+    refEditor.current.dispatchEvent(new KeyboardEvent('keypress', {
+      'key': 'a'
+    }));
+    // document.getElementById("editor").dispatchEvent(
+    //   new KeyboardEvent("keydown", {
+    //     key: "e",
+    //     keyCode: 69,
+    //     code: "KeyE",
+    //     which: 69,
+    //     shiftKey: false,
+    //     ctrlKey: false,
+    //     metaKey: false,
+    //   })
+    // );
+    //console.log(event);
+    // refEditor.dispatchEvent(new KeyboardEvent('keydown', {'key': 'a'})); // 37
+    // refEditor.current.dispatchEvent(new KeyboardEvent('keydown', {'key': 'left arrow'})); // 37
+    // refEditor.current.dispatchEvent(new KeyboardEvent('keydown', {'key': 'right arrow'})); // 39
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
+    }, 150);
   };
 
   const handleChange = (event) => {
@@ -73,12 +96,15 @@ function TextEditor({
   };
 
   const handleMobileFocus = () => {
+    // window.scrollTo(0, 0);
+    // document.body.scrollTop = 0;
     isMobile && setEditorContainerClass("editorContainerKeyboard");
   };
 
   return (
     <div className={editorContainerClass} onClick={handleClick}>
       <textarea
+        id="editor"
         tabIndex={-1}
         onChange={handleChange}
         ref={refEditor}

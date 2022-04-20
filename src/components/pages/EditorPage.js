@@ -15,7 +15,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import placeholderLowerCase from "./../../images/tdraft_placeholder_lower_case.png";
 import placeholderDesktop from "./../../images/tdraft_desktop_placeholder_lower_case.png";
 import FabWrapper from "../FabWrapper/FabWrapper";
-import SpeedDial from '../SpeedDial/SpeedDial'
 import "./EditorPage.scss";
 import "animate.css";
 class EditorPage extends Component {
@@ -64,8 +63,7 @@ class EditorPage extends Component {
   render() {
     return (
       <div
-        id="homeContainer"
-        className={this.state.homeContainerClass}
+        className="editorPageContainer"
       >
         {/* //! adding animation here made the fab have unexpected behavior, not coming up with keyboard on Android */}
         {!this.props.isMobile && this.state.showCopyConfrimation && (
@@ -78,10 +76,7 @@ class EditorPage extends Component {
           {/* //! Is this prop needed, doesnt seem to be used in the TextEditor component */}
           <TextEditor handleHomeAnimation={this.handleHomeAnimation} /> 
         </div>
-        {/* <img alt='squirtle' src='https://image.pngaaa.com/218/4268218-middle.png' className="squirtle" /> */}
-        {!this.props.isMobile && <FabWrapper />}
-        {/* //TODO: Implement for Desktop? */}
-        {/* <SpeedDial /> */}
+        {/* {!this.props.isMobile && <FabWrapper />} */}
       </div>
     );
   }

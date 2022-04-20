@@ -1,16 +1,19 @@
-import * as React from 'react';
+import * as React from "react";
 import { connect } from "react-redux";
 import "./Navbar.scss";
-import { } from "./../../actions";
+import {} from "./../../actions";
 import tangerineLogo from "./../../images/tdraft_tangerine.png";
 
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import { Menu, Send } from '@mui/icons-material';
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import { makeStyles } from "@mui/styles";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import { Menu, Send } from "@mui/icons-material";
+import ShareSheet from "../ShareSheet/ShareSheet";
+import IconMenu from '../IconMenu/IconMenu';
 import {
   handleFabIcon,
   handlePlaceHolder,
@@ -18,6 +21,19 @@ import {
 } from "../../actions";
 
 function Navbar(props) {
+
+  const useStyles = makeStyles({
+    shareSheetDesktop: {
+      bottom: "80px",
+      margin: "0 0 0 50%",
+      position: "absolute",
+      // border: '2px solid red',
+      width: "56px",
+      height: "186px",
+      display: "flex",
+      justifyContent: "center",
+    },
+  });
 
   const handleShareShow = () => {
     console.log("handleShareShow Ran!");
@@ -32,7 +48,7 @@ function Navbar(props) {
   };
 
   const handleShare = (e) => {
-    console.log('handleShare Ran!!');
+    console.log("handleShare Ran!!");
     console.log(props.isMobile);
     if (props.isMobile) {
       if (navigator.share) {
@@ -57,10 +73,29 @@ function Navbar(props) {
     }
   };
 
+  const handleCopy = () => {
+    props.handleCopyConfirmationAnimation(
+      "copyConfirmation animate__animated animate__backInDown",
+      "copyConfirmation animate__animated animate__fadeOut"
+    );
+    var text = props.editorState;
+    navigator.clipboard.writeText(text).then(
+      function () {
+        console.log("Async: Copying to clipboard was successful!");
+      },
+      function (err) {
+        console.error("Async: Could not copy text: ", err);
+      }
+    );
+    props.toggleDesktopShareSheet(false);
+    props.handleFabIcon("share");
+  };
+
+  const classes = useStyles();
   return (
     <Box className="navContainer" sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar className='toolbar'>
+        <Toolbar variant="dense" className="toolbar">
           {/* <IconButton
             size="large"
             edge="start"
@@ -70,13 +105,19 @@ function Navbar(props) {
           >
             <Menu />
           </IconButton> */}
-          {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
-          </Typography> */}
-          {props.isMobile && <Send onClick={handleShare} className='sendIcon' />}
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} className="brandName">
+            tdraft.io
+          </Typography>
+          <Send onClick={handleShare} className="sendIcon" />
           {/* <Button color="inherit">Login</Button> */}
         </Toolbar>
+          <Box className={classes.shareSheetDesktop}>
+            {props.showDesktopShareSheet && (
+              <ShareSheet handleCopy={handleCopy} />
+            )}
+          </Box>
       </AppBar>
+      <IconMenu />
     </Box>
   );
 }

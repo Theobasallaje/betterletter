@@ -29,14 +29,15 @@
 
 .navContainer {
   z-index: 9999;
-  border: 2px solid red;
+  // border: 2px solid red;
   position: fixed;
   width: 100%;
+  // min-height: 56px;
   // margin-bottom: 5px;
 }
 
 .toolbar {
-  background-color: #FFC062;
+  background-color: #FDDAA5;
   // border: 2px solid red;
   display: flex;
   justify-content: flex-end;
@@ -44,4 +45,10 @@
 
 .sendIcon {
   // border: 2px solid red;
+  color: black;
+}
+
+.brandName {
+  color: #3F3F3F;
+  font-size: 20px;
 }
