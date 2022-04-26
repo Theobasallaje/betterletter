@@ -47,10 +47,15 @@ function TextEditor({
   });
 
   useEffect(() => {
-    placeHolder && handleClick();
+    // placeHolder && handleClick();
     visualViewport.addEventListener("resize", handleMobileBlur);
+    refEditor.current.addEventListener("keypress", (e) => { 
+      refEditor.current.focus();
+      console.log('keypress listener ran!', e.keyCode, e.key) 
+    });
     return () => {
       visualViewport.removeEventListener("resize", handleMobileBlur);
+      refEditor.current.removeEventListener("keypress", () => console.log('keypress listener ran!'));
     };
   }, [handleMobileBlur]);
 
@@ -66,10 +71,15 @@ function TextEditor({
     // refEditor.current.setSelectionRange(0, 0);
     // !move cursor back down after a set time out?
     refEditor.current.focus();
-    console.log(refEditor);
+    console.log('refEditor.current: ', refEditor.current);
+    // window.dispatchEvent(new KeyboardEvent('keypress', {
+    //   'key': 'a'
+    // }));
     refEditor.current.dispatchEvent(new KeyboardEvent('keypress', {
-      'key': 'a'
+      key: 'e',
+      keyCode: 69,
     }));
+    //! Do I need to pass the event as a payload to the reducer somehow?
     // document.getElementById("editor").dispatchEvent(
     //   new KeyboardEvent("keydown", {
     //     key: "e",
@@ -92,7 +102,7 @@ function TextEditor({
   };
 
   const handleChange = (event) => {
-    changeEditor(event.target.value);
+    changeEditor(event.target.value); //! Do I need to do something with this for the keyboard event to change the editor
   };
 
   const handleMobileFocus = () => {
@@ -107,6 +117,7 @@ function TextEditor({
         id="editor"
         tabIndex={-1}
         onChange={handleChange}
+        onKeyPress={(e) => console.log('event.target.value', e.target.value)}
         ref={refEditor}
         onFocus={handleMobileFocus}
         placeHolder={`Type Something ${focused} ${placeHolder} ${editorContainerClass}`}

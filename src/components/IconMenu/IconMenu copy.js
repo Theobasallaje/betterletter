@@ -13,10 +13,9 @@ import ContentPaste from '@mui/icons-material/ContentPaste';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faCopy } from "@fortawesome/free-solid-svg-icons"
 import { faTelegram, faFacebook } from '@fortawesome/free-brands-svg-icons'
-import { ContentCopy, EmailOutlined, FileDownload } from '@mui/icons-material';
+import { ContentCopy, Email } from '@mui/icons-material';
 import Cloud from '@mui/icons-material/Cloud';
 import { handleFabIcon, toggleDesktopShareSheet } from "../../actions";
-//! Look into material ui download icon - https://fonts.google.com/icons?icon.query=download
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -34,6 +33,59 @@ function IconMenu(props) {
   return (
     <Paper sx={{ width: 320, maxWidth: '100%' }}>
       <MenuList>
+        <MenuItem className='menuItem'>
+          <TelegramShareButton
+            beforeOnClick={() => { props.toggleDesktopShareSheet(false); props.handleFabIcon('share'); }}
+            url=" "
+            title={props.editorState}
+            className="shareButton"
+          >
+            <ListItemIcon>
+              {/* <ContentCut fontSize="small" />
+              <TelegramIcon size={32} round /> */}
+              {/* <FontAwesomeIcon icon="fa-brands fa-telegram" /> */}
+              <FontAwesomeIcon className="" icon={faTelegram} size="xl" />
+            </ListItemIcon>
+            <ListItemText>Telegram</ListItemText>
+            {/* <Typography variant="body2" color="text.secondary">
+            ⌘X
+          </Typography> */}
+          </TelegramShareButton>
+        </MenuItem>
+        <FacebookShareButton
+          beforeOnClick={() => { props.toggleDesktopShareSheet(false); props.handleFabIcon('share'); }}
+          url="https://tdraft.io"
+          quote={props.editorState}
+        // className="shareButton"
+        >
+          <MenuItem>
+            <ListItemIcon>
+              {/* <ContentCut fontSize="small" />
+              <TelegramIcon size={32} round /> */}
+              {/* <FontAwesomeIcon icon="fa-brands fa-telegram" /> */}
+              <FontAwesomeIcon className="" icon={faFacebook} size="m" />
+            </ListItemIcon>
+            <ListItemText>Facebook</ListItemText>
+            {/* <Typography variant="body2" color="text.secondary">
+            ⌘X
+          </Typography> */}
+          </MenuItem>
+        </FacebookShareButton>
+        <Divider />
+        <EmailShareButton
+          beforeOnClick={() => { props.toggleDesktopShareSheet(false); props.handleFabIcon('share'); }}
+          url=""
+          subject=""
+          body={props.editorState}
+        // className="shareButtonDiv"
+        >
+          <MenuItem>
+            <ListItemIcon>
+              <Email />
+            </ListItemIcon>
+            <ListItemText>Email</ListItemText>
+          </MenuItem>
+        </EmailShareButton>
         <Link
           onClick={props.handleCopy}
           className="copyLink noSelect"
@@ -49,35 +101,6 @@ function IconMenu(props) {
           </Typography> */}
           </MenuItem>
         </Link>
-        <Link
-          onClick={props.handleCopy} //! CHANGE TO DOWNLOAD FUNCTION
-          className="copyLink noSelect"
-        >
-          <MenuItem>
-            <ListItemIcon>
-              {/* <FontAwesomeIcon className="" icon={faCopy} size="m" /> */}
-              <FileDownload />
-            </ListItemIcon>
-            <ListItemText>Download</ListItemText>
-            {/* <Typography variant="body2" color="text.secondary">
-            ⌘C
-          </Typography> */}
-          </MenuItem>
-        </Link>
-        <EmailShareButton
-          beforeOnClick={() => { props.toggleDesktopShareSheet(false); props.handleFabIcon('share'); }}
-          url=""
-          subject=""
-          body={props.editorState}
-        // className="shareButtonDiv"
-        >
-          <MenuItem>
-            <ListItemIcon>
-              <EmailOutlined />
-            </ListItemIcon>
-            <ListItemText>Email</ListItemText>
-          </MenuItem>
-        </EmailShareButton>
       </MenuList>
     </Paper>
   );

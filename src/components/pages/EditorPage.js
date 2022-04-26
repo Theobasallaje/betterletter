@@ -71,7 +71,7 @@ class EditorPage extends Component {
             <div className={this.state.copyConfirmationClass}>Copied!</div>
           </div>
         )}
-        <Navbar />
+        <Navbar handleCopyConfirmationAnimation={this.handleCopyConfirmationAnimation} />
         <div className="editorDiv">
           {/* //! Is this prop needed, doesnt seem to be used in the TextEditor component */}
           <TextEditor handleHomeAnimation={this.handleHomeAnimation} /> 

@@ -111,13 +111,13 @@ function Navbar(props) {
           <Send onClick={handleShare} className="sendIcon" />
           {/* <Button color="inherit">Login</Button> */}
         </Toolbar>
-          <Box className={classes.shareSheetDesktop}>
+          {/* <Box className={classes.shareSheetDesktop}>
             {props.showDesktopShareSheet && (
               <ShareSheet handleCopy={handleCopy} />
             )}
-          </Box>
+          </Box> */}
       </AppBar>
-      <IconMenu />
+      {props.showDesktopShareSheet && <IconMenu handleCopy={handleCopy}/>}
     </Box>
   );
 }
