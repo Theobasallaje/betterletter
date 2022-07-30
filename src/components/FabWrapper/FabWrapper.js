@@ -25,10 +25,19 @@ const FabWrapper = (props) => {
       // primary: {
       //   main: grey[400],
       // },
-      primary: grey,
-      secondary: grey,
+      primary: {
+        main: "#FDDAA5",
+      },
+      // secondary: grey,
     },
   });
+
+  const Hover = {
+    "&:hover": {
+      color: "#FDDAA5",
+      backgroundColor: "#FDDAA5",
+    },
+  };
 
   const useStyles = makeStyles({
     root: {
@@ -37,7 +46,11 @@ const FabWrapper = (props) => {
       margin: "0 0 0 80%",
       bottom: fabBottom,
       right: "3%",
-      position: "absolute",
+      position: "fixed",
+      // borderRadius: "15px",
+      // backgroundColor: "#FDDAA5",
+      // boxShadow: "0 4px 4px 0 #00000040",
+      border: "none",
     },
   });
 
@@ -52,9 +65,6 @@ const FabWrapper = (props) => {
       case "info":
         props.handleFabIcon("info");
         props.handlePlaceHolder(true);
-        break;
-      case "share":
-        props.handleFabIcon("share");
         break;
       case "shareSheetClose":
         props.handleFabIcon("shareSheetClose");
@@ -79,7 +89,15 @@ const FabWrapper = (props) => {
             to="/about"
           >
             {/* <Fab color="primary" > */}
-            <Fab>
+            <Fab
+              sx={{
+                backgroundColor: "primary.main",
+                borderRadius: "15px",
+                border: "none",
+                boxShadow: "0 4px 4px 0 #00000040",
+                "&:hover": { background: "#FDDAA5" },
+              }}
+            >
               <InfoOutlined className="icon" />
             </Fab>
           </Link>
@@ -92,7 +110,16 @@ const FabWrapper = (props) => {
             }}
             to="/"
           >
-            <Fab className="infoFabButton">
+            <Fab
+              className="infoFabButton"
+              sx={{
+                backgroundColor: "primary.main",
+                borderRadius: "15px",
+                border: "none",
+                boxShadow: "0 4px 4px 0 #00000040",
+                "&:hover": { background: "#FDDAA5" },
+              }}
+            >
               <ArrowBackIosNew className="icon" />
             </Fab>
           </Link>

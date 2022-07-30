@@ -4,6 +4,7 @@ import {
   EDITOR_CLASS,
   EDITOR_REF,
   FAB_ICON,
+  HAS_TEXT,
   IS_MOBILE,
   KEY_PRESSED,
   PLACE_HOLDER_SHOW,
@@ -73,21 +74,18 @@ export const handleEditorClass = (editorClass) => {
   };
 };
 
-// export const createEditor = (state) => async (dispatch, getState) => {
-//   // let state = await getState();
-//   console.log(state);
-//   if (state) {
-//     // let currentContent = editorState.textEditor.editorState.getCurrentContent().getPlainText();
-//     let currentContent = state.textEditor.editorState.getCurrentContent().getPlainText();
-//     console.log("Current Content: ", currentContent);
-//     const contentState = convertFromRaw(currentContent);
-//     let editorState = await EditorState.createWithContent(contentState);
+export const handleTextDetection = (hasText) => {
+  return {
+    type: HAS_TEXT,
+    payload: hasText,
+  };
+};
 
-//     dispatch({ type: EDITOR_CREATE, payload: { editorState } });
-//   } else {
-//     let editorState = await EditorState.createEmpty();
-//     dispatch({ type: EDITOR_CREATE, payload: { editorState } });
-//   }
+// export const handleTextDetection = (hasText) => async (dispatch, getState) => {
+//   console.log("hasText FROM ACTIONS: ", hasText);
+//   dispatch({ type: HAS_TEXT, payload: { hasText } });
+  
+//   // console.log('Get Plain Text editorState AFTER 2nd getState: ', state.textEditor.editorState.getCurrentContent().getPlainText())
 // };
 
 export const changeEditor = (editorState) => async (dispatch, getState) => {

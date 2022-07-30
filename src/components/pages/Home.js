@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 
 import {
@@ -6,6 +7,7 @@ import {
   handlePlaceHolder,
   showShareButton,
   toggleDesktopShareSheet,
+  handleTextDetection,
 } from "./../../actions";
 import { faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,73 +18,88 @@ import placeholderDesktop from "./../../images/tdraft_logo.png";
 import FabWrapper from "../FabWrapper/FabWrapper";
 import "./Home.scss";
 import "animate.css";
-class Home extends Component {
-  state = {
-    homeContainerClass: "",
-    copyConfirmationClass: "copyConfirmation",
-    showCopyConfrimation: false,
-  };
+const Home = (props) => {
+  // const history = useHistory();
+  const history = useNavigate();
+  const [homeContainerClass, setHomeContainerClass] = useState("");
+  const [copyConfirmationClass, setCopyConfirmationClass] = useState("copyConfirmation");
+  const [showCopyConfrimation, setShowCopyConfirmation] = useState(false);
 
-  componentDidMount() {
-    window.addEventListener("keydown", this.handleKeyPressFocus);
+  // state = {
+  //   homeContainerClass: "",
+  //   copyConfirmationClass: "copyConfirmation",
+  //   showCopyConfrimation: false,
+  // };
+
+  useEffect(() => {
+    // console.log(this.history);
+    if (!props.placeHolder) props.handlePlaceHolder(true);
+    if (props.hasText) props.handleTextDetection(false);
+    window.addEventListener("keydown", handleKeyPressFocus);
     return () => {
-      window.removeEventListener("keydown", this.handleKeyPressFocus);
+      window.removeEventListener("keydown", handleKeyPressFocus);
     };
-  }
+  }, []);
 
-  handlePlaceHolder = () => {
-    this.props.history.push("/editor");
+  const showEditor = () => {
+    history("/editor");
+    // history("../editor", { replace: true });
   };
 
-  handleHomeAnimation = (className) => {
-    this.setState({
-      homeContainerClass: className,
-    });
-    console.log("Inisde handleHomeExit!");
+  // const handleHomeAnimation = (className) => {
+  //   this.setState({
+  //     homeContainerClass: className,
+  //   });
+  //   console.log("Inisde handleHomeExit!");
+  // };
+
+  const handleKeyPressFocus = () => {
+    history("/editor");
+    // history("../editor", { replace: true });
   };
 
-  handleKeyPressFocus = () => {
-    this.props.history.push("/editor");
-  }
-
-  render() {
-    return (
-      <div
-        id="homeContainer"
-        className={this.state.homeContainerClass}
-        onClick={this.handlePlaceHolder}
-      >
-        {this.props.placeHolder && (
-          <div
-            className="placeholderContainer"
+  return (
+    <div
+      id="homeContainer"
+      className={homeContainerClass}
+      onClick={showEditor}
+    >
+      {props.placeHolder && (
+        <div
+          className="placeholderContainer"
           //! Why is this not triggering??
-          // onClick={this.handlePlaceHolder} 
-          >
-            {/* <img className="placeholder" src={placeholder} alt="placeholder" /> */}
-            {/* <img className="placeholder" src={placeholderSmall} alt="placeholder" /> */}
-            {/* //TODO: make h1 */}
-            <p className="title animate__animated animate__fadeIn">tdraft.io</p>
-            <img
-              className="placeholder animate__animated animate__fadeIn"
-              src={
-                this.props.isMobile ? placeholderLowerCase : placeholderDesktop
-              }
-              alt="tdraft logo"
-            />
-            <br /><br />
-            <p className="instructions animate__animated animate__fadeIn">{this.props.isMobile ? 'Tap anywhere to start typing' : 'Click anywhere or press any key'}</p>
-            <hr />
-          </div>
-        )}
-        <FabWrapper />
-      </div>
-    );
-  }
-}
+          // onClick={this.handlePlaceHolder}
+        >
+          {/* <img className="placeholder" src={placeholder} alt="placeholder" /> */}
+          {/* <img className="placeholder" src={placeholderSmall} alt="placeholder" /> */}
+          {/* //TODO: make h1 */}
+          <p className="title animate__animated animate__fadeIn">tdraft.io</p>
+          <img
+            className="placeholder animate__animated animate__fadeIn"
+            src={
+              props.isMobile ? placeholderLowerCase : placeholderDesktop
+            }
+            alt="tdraft logo"
+          />
+          <br />
+          <br />
+          <p className="instructions animate__animated animate__fadeIn">
+            {props.isMobile
+              ? "Tap anywhere to start typing"
+              : "Click anywhere or press any key"}
+          </p>
+          <hr />
+        </div>
+      )}
+      <FabWrapper />
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => ({
   placeHolder: state.placeHolder.placeHolderShow,
   isMobile: state.placeHolder.isMobile,
+  hasText: state.textEditor.hasText,
 });
 
 export default connect(mapStateToProps, {
@@ -90,4 +107,5 @@ export default connect(mapStateToProps, {
   handlePlaceHolder,
   showShareButton,
   toggleDesktopShareSheet,
+  handleTextDetection,
 })(Home);

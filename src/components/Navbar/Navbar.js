@@ -1,37 +1,60 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import "./Navbar.scss";
-import {} from "./../../actions";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 import tangerineLogo from "./../../images/tdraft_tangerine.png";
-
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import { makeStyles } from "@mui/styles";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import { Menu, Send } from "@mui/icons-material";
 import ShareSheet from "../ShareSheet/ShareSheet";
-import IconMenu from '../IconMenu/IconMenu';
+import IconMenu from "../IconMenu/IconMenu";
 import {
   handleFabIcon,
   handlePlaceHolder,
   toggleDesktopShareSheet,
 } from "../../actions";
+import { saveAs } from "file-saver";
 
 function Navbar(props) {
+  // const useStyles = makeStyles({
+  //   shareSheetDesktop: {
+  //     bottom: "80px",
+  //     margin: "0 0 0 50%",
+  //     position: "absolute",
+  //     // border: '2px solid red',
+  //     width: "56px",
+  //     height: "186px",
+  //     display: "flex",
+  //     justifyContent: "center",
+  //   },
+  // });
+
+  const theme = createTheme({
+    typography: {
+      fontFamily: ['"Montserrat"', "sans-serif"].join(","),
+    },
+  });
 
   const useStyles = makeStyles({
-    shareSheetDesktop: {
-      bottom: "80px",
-      margin: "0 0 0 50%",
-      position: "absolute",
-      // border: '2px solid red',
-      width: "56px",
-      height: "186px",
-      display: "flex",
-      justifyContent: "center",
+    brandName: {
+      color: "#3F3F3F",
+      fontSize: "20px",
+      textDecoration: "none",
+      "&:hover": {
+        textDecoration: "none",
+      },
+    },
+    sendIcon: {
+      color: "black",
+      "&:hover": {
+        cursor: "pointer",
+      }
     },
   });
 
@@ -44,10 +67,10 @@ function Navbar(props) {
   const handleShareClose = () => {
     console.log("handleShareClose Ran!");
     props.toggleDesktopShareSheet(false);
-    handleFabIcon("share");
   };
 
   const handleShare = (e) => {
+    // debugger;
     console.log("handleShare Ran!!");
     console.log(props.isMobile);
     if (props.isMobile) {
@@ -66,18 +89,14 @@ function Navbar(props) {
       }
     } else {
       // on Desktop
-      e.stopPropagation();
       // console.log('props.showDesktopShareSheet: ', props.showDesktopShareSheet);
-      console.log("props.shareSheetClose: ", props.fabIcon);
+      // console.log("props.shareSheetClose: ", props.fabIcon);
       props.showDesktopShareSheet ? handleShareClose() : handleShareShow();
     }
   };
 
   const handleCopy = () => {
-    props.handleCopyConfirmationAnimation(
-      "copyConfirmation animate__animated animate__backInDown",
-      "copyConfirmation animate__animated animate__fadeOut"
-    );
+    props.handleCopySnackBar()
     var text = props.editorState;
     navigator.clipboard.writeText(text).then(
       function () {
@@ -88,15 +107,37 @@ function Navbar(props) {
       }
     );
     props.toggleDesktopShareSheet(false);
-    props.handleFabIcon("share");
+  };
+
+  const handleEmail = () => {
+    window.open(`mailto:?body=${props.editorState}`);
+    props.toggleDesktopShareSheet(false);
+    console.log("handleEmail Ran!");
+  };
+
+  const handleDownload = () => {
+    let date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+    let fullDate = `${month}_${day}_${year}`;
+    let time =
+      date.getHours() + "_" + date.getMinutes() + "_" + date.getSeconds();
+    let textContent = new Blob([props.editorState], {
+      type: "text/plain;charset=utf-8",
+    });
+    saveAs(textContent, `${fullDate}_tdraft.txt`);
+    props.toggleDesktopShareSheet(false);
   };
 
   const classes = useStyles();
   return (
-    <Box className="navContainer" sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar variant="dense" className="toolbar">
-          {/* <IconButton
+    <ThemeProvider theme={theme}>
+      <Box className="navContainer" sx={{ flexGrow: 1 }}>
+        <AppBar position="static">
+          <Toolbar variant="dense" className="toolbar">
+            {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
@@ -105,20 +146,37 @@ function Navbar(props) {
           >
             <Menu />
           </IconButton> */}
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} className="brandName">
-            tdraft.io
-          </Typography>
-          <Send onClick={handleShare} className="sendIcon" />
-          {/* <Button color="inherit">Login</Button> */}
-        </Toolbar>
-          {/* <Box className={classes.shareSheetDesktop}>
-            {props.showDesktopShareSheet && (
-              <ShareSheet handleCopy={handleCopy} />
-            )}
-          </Box> */}
-      </AppBar>
-      {props.showDesktopShareSheet && <IconMenu handleCopy={handleCopy}/>}
-    </Box>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <Link
+                className={classes.brandName}
+                // onClick={(e) => {
+                //   e.stopPropagation();
+                //   // handleFabIcon("back");
+                // }}
+                to="/"
+              >
+                tdraft.io
+              </Link>
+            </Typography>
+            <Send 
+              onClick={(e) => { 
+                e.stopPropagation();
+                handleShare(); 
+              }} 
+              className={classes.sendIcon}
+            />
+            {/* <Button color="inherit">Login</Button> */}
+          </Toolbar>
+        </AppBar>
+        {props.showDesktopShareSheet && (
+          <IconMenu
+            handleCopy={handleCopy}
+            handleEmail={handleEmail}
+            handleDownload={handleDownload}
+          />
+        )}
+      </Box>
+    </ThemeProvider>
   );
 }
 

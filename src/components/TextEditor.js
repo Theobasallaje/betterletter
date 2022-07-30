@@ -6,6 +6,7 @@ import {
   handlePlaceHolder,
   handleFabIcon,
   handleEditorRef,
+  handleTextDetection,
   toggleDesktopShareSheet,
 } from "./../actions";
 import "./TextEditor.scss";
@@ -17,6 +18,8 @@ function TextEditor({
   handleEditorClass,
   handlePlaceHolder,
   handleFabIcon,
+  handleTextDetection,
+  hasText,
   changeEditor,
   toggleDesktopShareSheet,
 }) {
@@ -48,14 +51,15 @@ function TextEditor({
 
   useEffect(() => {
     // placeHolder && handleClick();
+    var textArea = refEditor.current;
     visualViewport.addEventListener("resize", handleMobileBlur);
-    refEditor.current.addEventListener("keypress", (e) => { 
-      refEditor.current.focus();
+    textArea.addEventListener("keypress", (e) => { 
+      textArea.focus();
       console.log('keypress listener ran!', e.keyCode, e.key) 
     });
     return () => {
       visualViewport.removeEventListener("resize", handleMobileBlur);
-      refEditor.current.removeEventListener("keypress", () => console.log('keypress listener ran!'));
+      textArea.removeEventListener("keypress", () => console.log('keypress listener ran!'));
     };
   }, [handleMobileBlur]);
 
@@ -64,7 +68,6 @@ function TextEditor({
     console.log("handleClick ran!", end);
     if (placeHolder) {
       handlePlaceHolder(false);
-      handleFabIcon("share");
       toggleDesktopShareSheet(false);
     }
     setFocused(true);
@@ -102,7 +105,15 @@ function TextEditor({
   };
 
   const handleChange = (event) => {
+    // handleTextDetection(true);
+    if (!hasText && event.target.value.length > 0) {
+      handleTextDetection(true)
+    } else if (hasText && event.target.value.length <= 0) {
+      handleTextDetection(false);
+    }
     changeEditor(event.target.value); //! Do I need to do something with this for the keyboard event to change the editor
+    // console.log('HANDLETEXT: ', hasText, event.target.value.length);
+    // console.log('HANDLETEXT: ', !hasText && event.target.value.length > 0);
   };
 
   const handleMobileFocus = () => {
@@ -120,7 +131,8 @@ function TextEditor({
         onKeyPress={(e) => console.log('event.target.value', e.target.value)}
         ref={refEditor}
         onFocus={handleMobileFocus}
-        placeHolder={`Type Something ${focused} ${placeHolder} ${editorContainerClass}`}
+        placeHolder={`Type Something`}
+        // placeHolder={`Type Something ${focused} ${placeHolder} ${editorContainerClass}`}
         onBlur={handleMobileBlur}
         autoFocus={true}
       />
@@ -133,6 +145,7 @@ const mapStateToProps = (state) => ({
   editorState: state.textEditor.editorState,
   fabIcon: state.fab.fabIcon,
   isMobile: state.placeHolder.isMobile,
+  hasText: state.textEditor.hasText,
 });
 
 export default connect(mapStateToProps, {
@@ -141,5 +154,6 @@ export default connect(mapStateToProps, {
   handlePlaceHolder,
   handleFabIcon,
   handleEditorRef,
+  handleTextDetection,
   toggleDesktopShareSheet,
 })(TextEditor);

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
 // .navContainer {
 //   // !position: device-fixed;
 //   position: fixed;
@@ -28,7 +30,7 @@
 // }
 
 .navContainer {
-  z-index: 9999;
+  z-index: 2;
   // border: 2px solid red;
   position: fixed;
   width: 100%;
@@ -41,14 +43,4 @@
   // border: 2px solid red;
   display: flex;
   justify-content: flex-end;
-}
-
-.sendIcon {
-  // border: 2px solid red;
-  color: black;
-}
-
-.brandName {
-  color: #3F3F3F;
-  font-size: 20px;
 }

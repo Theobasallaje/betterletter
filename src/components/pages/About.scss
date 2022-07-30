@@ -1,23 +1,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
-.logoContainer {
-  display: flex;
-  justify-content: flex-start;
+html, body {
+  height: 100vh;
+  // border: 2px solid red;
 }
 
-.logo {
-  max-width: 50vw;
-  max-height: 15vh;
+h2 {
+  margin-top: 32px;
+  margin-bottom: 16px;
 }
 
-.aboutHeader {
-  font-weight: 400;
-  font-size: 90px;
+p {
+  margin: 0 0 0 16px;
+  font-size: 20px;
+}
+
+ul {
+  padding-left: 16px;
+  margin: 0 0 0 16px;
+  list-style-type: '- ';
+  font-size: 20px;
 }
 
 .aboutContainer {
   // border: 2px solid orange;
-  height: calc(100vh - (100vh - 100%));
+  height: 100%;
   width: calc(100vw - (100vw - 100%));
   display: flex;
   justify-content: center;
@@ -28,37 +35,39 @@
 }
 
 .aboutContentContainer {
-    display: flex;
+  height: 100%;
+  display: flex;
 }
 
 .aboutContent {
   // border: 2px solid red;
-  width: 100%;
+  width: 600px;
   height: 100%;
+  margin-top: 64px;
   display: flex;
   flex-direction: column;
-  margin-top: 5vh;
-  padding: 0 64px 0 64px;
+  justify-content: center;
 }
 
 .aboutParagraph,
-.authors {
-  font-size: 28px;
-  margin: 16px 0 0 0;
+.contact {
+  font-size: 20px;
   // border: 2px solid blue;
 }
 
-.aboutParagraph:nth-child(2),
-.authors:nth-child(1) {
-  margin: 32px 0 0 0;
-  // border: 2px solid red;
+// .aboutParagraph:nth-child(2),
+// .contact:nth-child(1) {
+//   margin: 32px 0 0 0;
+//   // border: 2px solid red;
+// }
+
+.contactDiv {
+  margin-top: 32px;
+  margin-left: 16px;
+  display: flex;
 }
 
-.authorsDiv {
-  // margin-bottom: 50px;
-}
-
-.authors {
+.contact {
   // border: 2px solid blue;
   font-size: 18px;
 }
@@ -67,17 +76,35 @@ a:link {
   text-decoration: none;
 }
 
+.emailButton, .linkedInButton, .gitHubButton {
+  margin-left: 8px;
+  text-transform: lowercase;
+  text-transform: capitalize;
+}
+
 @media only screen and (max-width: 600px) {
   //Phone
-  .aboutHeader {
-    font-size: 50px;
+  html,
+  body {
+    width: 100%;
+    overflow: auto;
+    position: relative;
   }
-  .logo {
-    max-height: 35vh;
-    max-width: 35vw;
+
+  .aboutContent {
+    // border: 2px solid red;
+    width: 100%;
+    display: flex;
+    margin-top: 0;
+    flex-direction: column;
+    padding: 0 16px 0 16px;
   }
-  .aboutParagraph,
-  .authors {
-    font-size: 18px;
+
+  .aboutContentContainer {
+    // height: 100vh;
+  }
+
+  .contactDiv {
+    flex-direction: column;
   }
 }
