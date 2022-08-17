@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback, useRef, useState } from "react";
 import { connect } from "react-redux";
+import { isAndroid, isIOS } from "react-device-detect";
 import {
   changeEditor,
   handleEditorClass,
@@ -28,38 +29,35 @@ function TextEditor({
     useState("editorContainer");
   const [focused, setFocused] = useState(false);
   const [prevViewport, setPrevViewport] = useState(0);
+  const ua = navigator.userAgent;
 
   const handleMobileBlur = useCallback(() => {
     setFocused(false);
     setPrevViewport(visualViewport.height);
-    isMobile && setEditorContainerClass("editorContainer");
-    if (isMobile && prevViewport > visualViewport.height) {
+    isAndroid && setEditorContainerClass("editorContainer");
+    if (isAndroid && prevViewport > visualViewport.height) {
       setEditorContainerClass("editorContainerKeyboard");
       handleEditorClass("editorContainerKeyboard");
       setFocused(true);
-    } else if (isMobile && prevViewport === 0) {
+    } else if (isAndroid && prevViewport === 0) {
       handleClick();
-      // setFocused(true);
       setEditorContainerClass("editorContainerKeyboard");
       handleEditorClass("editorContainerKeyboard");
-    } else {
+    } else if (isAndroid && !isIOS) {
       setEditorContainerClass("editorContainer");
       handleEditorClass("editorContainer");
-      // alert('Text Editor else!');
+    } else if (isIOS) {
+      setEditorContainerClass("editorContainerKeyboardIos");
+      handleEditorClass("editorContainerKeyboardIos");
+    } else {
+      return;
     }
   });
 
   useEffect(() => {
-    // placeHolder && handleClick();
-    var textArea = refEditor.current;
     visualViewport.addEventListener("resize", handleMobileBlur);
-    textArea.addEventListener("keypress", (e) => { 
-      textArea.focus();
-      console.log('keypress listener ran!', e.keyCode, e.key) 
-    });
     return () => {
       visualViewport.removeEventListener("resize", handleMobileBlur);
-      textArea.removeEventListener("keypress", () => console.log('keypress listener ran!'));
     };
   }, [handleMobileBlur]);
 
@@ -71,55 +69,21 @@ function TextEditor({
       toggleDesktopShareSheet(false);
     }
     setFocused(true);
-    // refEditor.current.setSelectionRange(0, 0);
-    // !move cursor back down after a set time out?
     refEditor.current.focus();
     console.log('refEditor.current: ', refEditor.current);
-    // window.dispatchEvent(new KeyboardEvent('keypress', {
-    //   'key': 'a'
-    // }));
-    refEditor.current.dispatchEvent(new KeyboardEvent('keypress', {
-      key: 'e',
-      keyCode: 69,
-    }));
-    //! Do I need to pass the event as a payload to the reducer somehow?
-    // document.getElementById("editor").dispatchEvent(
-    //   new KeyboardEvent("keydown", {
-    //     key: "e",
-    //     keyCode: 69,
-    //     code: "KeyE",
-    //     which: 69,
-    //     shiftKey: false,
-    //     ctrlKey: false,
-    //     metaKey: false,
-    //   })
-    // );
-    //console.log(event);
-    // refEditor.dispatchEvent(new KeyboardEvent('keydown', {'key': 'a'})); // 37
-    // refEditor.current.dispatchEvent(new KeyboardEvent('keydown', {'key': 'left arrow'})); // 37
-    // refEditor.current.dispatchEvent(new KeyboardEvent('keydown', {'key': 'right arrow'})); // 39
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-      document.body.scrollTop = 0;
-    }, 150);
   };
 
   const handleChange = (event) => {
-    // handleTextDetection(true);
     if (!hasText && event.target.value.length > 0) {
       handleTextDetection(true)
     } else if (hasText && event.target.value.length <= 0) {
       handleTextDetection(false);
     }
-    changeEditor(event.target.value); //! Do I need to do something with this for the keyboard event to change the editor
-    // console.log('HANDLETEXT: ', hasText, event.target.value.length);
-    // console.log('HANDLETEXT: ', !hasText && event.target.value.length > 0);
+    changeEditor(event.target.value);
   };
 
   const handleMobileFocus = () => {
-    // window.scrollTo(0, 0);
-    // document.body.scrollTop = 0;
-    isMobile && setEditorContainerClass("editorContainerKeyboard");
+    isAndroid && setEditorContainerClass("editorContainerKeyboard");
   };
 
   return (
@@ -128,11 +92,9 @@ function TextEditor({
         id="editor"
         tabIndex={-1}
         onChange={handleChange}
-        onKeyPress={(e) => console.log('event.target.value', e.target.value)}
         ref={refEditor}
         onFocus={handleMobileFocus}
         placeHolder={`Type Something`}
-        // placeHolder={`Type Something ${focused} ${placeHolder} ${editorContainerClass}`}
         onBlur={handleMobileBlur}
         autoFocus={true}
       />
