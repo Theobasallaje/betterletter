@@ -35,9 +35,9 @@ function IconMenu(props) {
   const useStyles = makeStyles({
     iconMenu: {
       float: "right",
-    //   width: "200px",
-    //   height: "100px",
-    //   border: "2px solid red",
+      //   width: "200px",
+      //   height: "100px",
+      //   border: "2px solid red",
     },
   });
 
@@ -46,30 +46,30 @@ function IconMenu(props) {
     <Paper sx={{ width: 320, maxWidth: "100%" }} className={classes.iconMenu}>
       <MenuList>
         {/* <Link onClick={props.handleCopy} className="copyLink noSelect"> */}
-        <div onClick={props.handleCopy} className="copyLink noSelect">
-          <MenuItem>
+        <MenuItem onClick={props.handleCopy}>
+          <div className="copyLink noSelect">
             <ListItemIcon>
               <ContentCopy />
             </ListItemIcon>
             <ListItemText>Copy</ListItemText>
-          </MenuItem>
-        </div>
-        <div onClick={props.handleDownload} className="downloadLink noSelect">
-          <MenuItem>
+          </div>
+        </MenuItem>
+        <MenuItem onClick={props.handleDownload}>
+          <div className="downloadLink noSelect">
             <ListItemIcon>
               <FileDownload />
             </ListItemIcon>
             <ListItemText>Download</ListItemText>
-          </MenuItem>
-        </div>
-        <div onClick={props.handleEmail} className="emailLink noSelect">
-          <MenuItem>
+          </div>
+        </MenuItem>
+        <MenuItem onClick={props.handleEmail}>
+          <div className="emailLink noSelect">
             <ListItemIcon>
               <EmailOutlined />
             </ListItemIcon>
             <ListItemText>Email</ListItemText>
-          </MenuItem>
-        </div>
+          </div>
+        </MenuItem>
       </MenuList>
     </Paper>
   );

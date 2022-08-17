@@ -24,6 +24,7 @@
 // }
 
 .copyLink, .downloadLink, .emailLink {
+    display: flex;
     height: 31px;
     width: 31px;
     margin: 5px;
