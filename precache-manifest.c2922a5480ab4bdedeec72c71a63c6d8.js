@@ -1,31 +1,39 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "34d8913e515580a2fcdc348ef8765444",
+    "revision": "22626dc0276f3273a9236c368bfacb11",
     "url": "/index.html"
   },
   {
-    "revision": "c666d1c59d7ad0c4242a",
+    "revision": "24a539f0af8575867f94",
     "url": "/static/css/2.2ce0d9b2.chunk.css"
   },
   {
-    "revision": "ac1614c0068eda0d0d25",
-    "url": "/static/css/main.b1ef9ba1.chunk.css"
+    "revision": "ab61e1cf3d85cc94d3a9",
+    "url": "/static/css/main.3ebb750a.chunk.css"
   },
   {
-    "revision": "c666d1c59d7ad0c4242a",
-    "url": "/static/js/2.c55184ba.chunk.js"
+    "revision": "24a539f0af8575867f94",
+    "url": "/static/js/2.d1132ab3.chunk.js"
   },
   {
     "revision": "9d17dd505efc286942b3e725ae9a9f79",
-    "url": "/static/js/2.c55184ba.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.d1132ab3.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ac1614c0068eda0d0d25",
-    "url": "/static/js/main.809d58a0.chunk.js"
+    "revision": "ab61e1cf3d85cc94d3a9",
+    "url": "/static/js/main.3fe59920.chunk.js"
   },
   {
     "revision": "0e86036cf39ea2970993",
     "url": "/static/js/runtime-main.f098d426.js"
+  },
+  {
+    "revision": "041af17efe84087bc15d61abaf9f28be",
+    "url": "/static/media/IJNA_logo.041af17e.png"
+  },
+  {
+    "revision": "fb9b4a563dec4e856570e72712fe2243",
+    "url": "/static/media/tangerine_icon.fb9b4a56.png"
   },
   {
     "revision": "537e54957ef074a86ae4d1210f1750aa",
