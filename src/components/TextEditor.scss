@@ -3,12 +3,13 @@
 html {
   // border: 2px solid blue;
 }
-
-body {
-  overflow: hidden; /* Hide scrollbars */
-  // overflow: auto; /* Hide scrollbars */
-  font-family: "Montserrat", sans-serif;
-  // border: 2px solid red;
+.editorContainer {
+  body {
+    overflow: hidden; /* Hide scrollbars */
+    // overflow: auto; /* Hide scrollbars */
+    font-family: "Montserrat", sans-serif;
+    // border: 2px solid red;
+  }
 }
 
 // button {

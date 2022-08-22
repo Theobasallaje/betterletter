@@ -153,7 +153,7 @@ function Navbar(props) {
                 //   e.stopPropagation();
                 //   // handleFabIcon("back");
                 // }}
-                to="/"
+                to="/about"
               >
                 tdraft.io
               </Link>

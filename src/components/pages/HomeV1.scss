@@ -1,12 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
-.textIconContainer {
+// html,
+// body {
+//   max-width: 100%;
+//   overflow-y: hidden;
+// }
+
+.placeholderContainer {
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-top: 30vh;
+  flex-direction: column;
+  // font-weight: 400;
+  // font-size: 22px;
   // border: 2px solid red;
+  height: 100%;
+  width: 100%;
 }
+
+// .placeholderContainer img {
+//   width: 30%;
+// }
 
 .p {
   text-decoration: none;
@@ -14,7 +27,9 @@
 
 .title {
   font-weight: 400;
-  font-size: 64px;
+  font-size: 90px;
+  margin-top: 144px;
+  margin-bottom: 32px;
 }
 
 .instructions {
@@ -22,26 +37,20 @@
   font-size: 28px;
 }
 
-.tangerineIcon {
-  margin-top: 10px;
-  max-height: 56px;
-  max-width: 56px;
+.placeholder {
+  // position: fixed;
+  max-height: 20vh;
+  max-width: 20vw;
 }
 
-.ijnaLogo {
-  max-height: 150px;
-  max-width: 150px;
-  margin: 100px 0 64px 0;
+.copyConfirmationContainer {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  top: 26vh;
+  z-index: 1;
 }
-
-// .copyConfirmationContainer {
-//   position: fixed;
-//   width: 100%;
-//   display: flex;
-//   justify-content: center;
-//   top: 26vh;
-//   z-index: 1;
-// }
 
 .copyConfirmation {
   display: flex;
@@ -59,12 +68,9 @@
 }
 
 #homeContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  // border: 2px solid blue;
-  // width: calc(100vw - (100vw - 100%));
+  // border: 2px solid rgb(255, 123, 0);
+  height: 100vh;
+  width: calc(100vw - (100vw - 100%));
 }
 
 .editorDiv {
@@ -81,26 +87,24 @@ hr {
   border: none;
 }
 
-.copyRightInfo {
-  margin: 0 0 116px 0;
-}
-
 //Phone
 @media only screen and (max-width: 600px) { 
   .title {
     font-weight: 400;
-    font-size: 64px;
-    // margin-top: 45vh;
+    font-size: 50px;
+    margin-top: 100px;
+    margin-bottom: 32px;
   }
   .instructions {
     font-size: 18px;
   }
-  // .tangerineIcon {
-  //   margin-top: 312px;
-  //   max-height: 56px;
-  //   max-width: 56px;
-  // }
+  .placeholder {
+    // position: fixed;
+    max-height: 35vh;
+    max-width: 35vw;
+  }
   #homeContainer {
+    // border: 2px solid rgb(255, 123, 0);
     height: 100vh;
     width: 100vw;
   }
@@ -108,14 +112,9 @@ hr {
 
 // Tablet
 @media screen and (min-device-width: 600px) and (max-device-width: 1024px) {
-  // #homeContainer {
-  //   height: 95vh;
-  // }
-
-  .title {
-    font-weight: 400;
-    font-size: 64px;
-    // margin-top: 75%;
+  #homeContainer {
+    // border: 2px solid rgb(255, 123, 0);
+    height: 95vh;
   }
 }
 

@@ -1,21 +1,13 @@
 import React, { Component, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { connect } from "react-redux";
-
-import {
-  handleFabIcon,
-  handlePlaceHolder,
-  showShareButton,
-  toggleDesktopShareSheet,
-  handleTextDetection,
-} from "./../../actions";
 import { faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import placeholder from "./../../images/tdraft_placeholder.png";
-// import placeholderSmall from "./../../images/tdraft_placeholder_small.png";
-import placeholderLowerCase from "./../../images/tdraft_logo.png";
-import placeholderDesktop from "./../../images/tdraft_logo.png";
+import tangerineIcon from "../../images/tangerine_icon.png";
+import IJNA from "../../images/IJNA_logo.png";
 import FabWrapper from "../FabWrapper/FabWrapper";
+import Button from '@mui/material/Button';
+import About from "./About";
 import "./Home.scss";
 import "animate.css";
 const Home = (props) => {
@@ -25,87 +17,62 @@ const Home = (props) => {
   const [copyConfirmationClass, setCopyConfirmationClass] = useState("copyConfirmation");
   const [showCopyConfrimation, setShowCopyConfirmation] = useState(false);
 
-  // state = {
-  //   homeContainerClass: "",
-  //   copyConfirmationClass: "copyConfirmation",
-  //   showCopyConfrimation: false,
-  // };
-
   useEffect(() => {
-    // console.log(this.history);
-    if (!props.placeHolder) props.handlePlaceHolder(true);
-    if (props.hasText) props.handleTextDetection(false);
-    window.addEventListener("keydown", handleKeyPressFocus);
-    return () => {
-      window.removeEventListener("keydown", handleKeyPressFocus);
-    };
+
   }, []);
 
   const showEditor = () => {
-    history("/editor");
-    // history("../editor", { replace: true });
-  };
-
-  // const handleHomeAnimation = (className) => {
-  //   this.setState({
-  //     homeContainerClass: className,
-  //   });
-  //   console.log("Inisde handleHomeExit!");
-  // };
-
-  const handleKeyPressFocus = () => {
-    history("/editor");
-    // history("../editor", { replace: true });
+    history("/");
   };
 
   return (
     <div
       id="homeContainer"
       className={homeContainerClass}
-      onClick={showEditor}
     >
-      {props.placeHolder && (
-        <div
-          className="placeholderContainer"
-          //! Why is this not triggering??
-          // onClick={this.handlePlaceHolder}
+      <div
+        className="textIconContainer"
+      >
+        {/* //! put in another container? want tangerine aligned with middle of text */}
+        {/* //TODO: make h1 */}
+        <p className="title">tdraft.io</p>
+        <img
+          className="tangerineIcon"
+          src={tangerineIcon}
+          alt="tdraft icon and text"
+        />
+      </div>
+      <Link to='/'>
+        <Button
+          variant="outlined"
+          sx={{
+            color: "black",
+            background: "#FDDAA5",
+            textAlign: "left",
+            borderColor: "black",
+            marginTop: "22vh",
+            marginBottom: "12vh",
+            marginRight: "8px",
+            borderWidth: "2px",
+            "&:hover": { borderWidth: "2px", borderColor: "black", background: "#FDDAA5" },
+          }}
         >
-          {/* <img className="placeholder" src={placeholder} alt="placeholder" /> */}
-          {/* <img className="placeholder" src={placeholderSmall} alt="placeholder" /> */}
-          {/* //TODO: make h1 */}
-          <p className="title animate__animated animate__fadeIn">tdraft.io</p>
-          <img
-            className="placeholder animate__animated animate__fadeIn"
-            src={
-              props.isMobile ? placeholderLowerCase : placeholderDesktop
-            }
-            alt="tdraft logo"
-          />
-          <br />
-          <br />
-          <p className="instructions animate__animated animate__fadeIn">
-            {props.isMobile
-              ? "Tap anywhere to start typing"
-              : "Click anywhere or press any key"}
-          </p>
-          <hr />
-        </div>
-      )}
-      <FabWrapper />
+          Start Typing
+        </Button>
+      </Link>
+      <About />
+      <img
+        className="ijnaLogo"
+        src={IJNA}
+        alt="IJNA logo"
+      />
+      <p className="copyRightInfo">&#169; IJNA 2022</p>
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-  placeHolder: state.placeHolder.placeHolderShow,
   isMobile: state.placeHolder.isMobile,
-  hasText: state.textEditor.hasText,
 });
 
-export default connect(mapStateToProps, {
-  handleFabIcon,
-  handlePlaceHolder,
-  showShareButton,
-  toggleDesktopShareSheet,
-  handleTextDetection,
-})(Home);
+export default connect(mapStateToProps)(Home);
