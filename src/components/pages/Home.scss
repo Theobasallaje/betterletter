@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
 .textIconContainer {
   display: flex;
@@ -84,6 +85,8 @@ hr {
 
 .copyRightInfo {
   margin: 0 0 116px 0;
+  font-family: "Roboto Mono";
+  font-size: 18px;
 }
 
 //Phone
