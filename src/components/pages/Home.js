@@ -50,7 +50,7 @@ const Home = (props) => {
             background: "#FDDAA5",
             textAlign: "left",
             borderColor: "black",
-            marginTop: "22vh",
+            marginTop: "20vh",
             marginBottom: "12vh",
             marginRight: "8px",
             borderWidth: "2px",
