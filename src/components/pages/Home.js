@@ -45,6 +45,7 @@ const Home = (props) => {
       <Link to='/'>
         <Button
           variant="outlined"
+          size="large"
           sx={{
             color: "black",
             background: "#FDDAA5",
