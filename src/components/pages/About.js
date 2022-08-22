@@ -45,7 +45,7 @@ function About({ handleFabIcon, showShareButton }) {
                 Type distraction free and then move your text to other apps.
               </p>
             </div> */}
-          <a href="mailto:jonathanbasallaje1995@gmail.com" target="_blank" rel="noopener noreferrer">
+          <a href="mailto:jbasallaje@gmail.com" target="_blank" rel="noopener noreferrer">
             <Button
               variant="outlined"
               sx={{
