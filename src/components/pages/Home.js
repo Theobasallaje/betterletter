@@ -42,25 +42,27 @@ const Home = (props) => {
           alt="tdraft icon and text"
         />
       </div>
-      <Link to='/'>
-        <Button
-          variant="outlined"
-          size="large"
-          sx={{
-            color: "black",
-            background: "#FDDAA5",
-            textAlign: "left",
-            borderColor: "black",
-            marginTop: "20vh",
-            marginBottom: "12vh",
-            marginRight: "8px",
-            borderWidth: "2px",
-            "&:hover": { borderWidth: "2px", borderColor: "black", background: "#FDDAA5" },
-          }}
-        >
-          Start Typing
-        </Button>
-      </Link>
+
+      <Button
+        onClick={() => {
+          history('/');
+        }}
+        variant="outlined"
+        size="large"
+        sx={{
+          color: "black",
+          background: "#FDDAA5",
+          textAlign: "left",
+          borderColor: "black",
+          marginTop: "20vh",
+          marginBottom: "12vh",
+          marginRight: "8px",
+          borderWidth: "2px",
+          "&:hover": { borderWidth: "2px", borderColor: "black", background: "#FDDAA5" },
+        }}
+      >
+        Start Typing
+      </Button>
       <About />
       <img
         className="ijnaLogo"
