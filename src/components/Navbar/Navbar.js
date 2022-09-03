@@ -11,7 +11,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import { Menu, Send } from "@mui/icons-material";
+import { Menu, SendOutlined } from "@mui/icons-material";
 import ShareSheet from "../ShareSheet/ShareSheet";
 import IconMenu from "../IconMenu/IconMenu";
 import {
@@ -43,7 +43,7 @@ function Navbar(props) {
 
   const useStyles = makeStyles({
     brandName: {
-      color: "#3F3F3F",
+      color: "#000000",
       fontSize: "20px",
       textDecoration: "none",
       "&:hover": {
@@ -158,7 +158,7 @@ function Navbar(props) {
                 tdraft.io
               </Link>
             </Typography>
-            <Send 
+            <SendOutlined
               onClick={(e) => { 
                 e.stopPropagation();
                 handleShare(); 
