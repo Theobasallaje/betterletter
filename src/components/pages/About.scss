@@ -47,8 +47,7 @@ h2 {
 
 .aboutContent {
   // border: 2px solid red;
-  width: 600px; //! do max width for desktop at 600px
-  margin-left: 22px;
+  max-width: 600px;
   height: 100%;
   margin-top: 64px;
   display: flex;
@@ -91,6 +90,6 @@ a:link {
     display: flex;
     margin-top: 0;
     flex-direction: column;
-    padding: 0 16px 0 16px;
+    padding: 0 32px 0 32px;
   }
 }
