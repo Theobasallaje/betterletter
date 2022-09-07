@@ -51,8 +51,10 @@ textarea {
   resize: none;
   // border: 2px solid blue;
   // height: 85vh;
-  width: 65vw;
+  width: 78vw;
+  max-width: 600px;
   padding: 0 16vw 0;
+  line-height: 1.6;
 }
 
 // Phone
@@ -65,7 +67,6 @@ textarea {
     // border: 2px solid black;
     // border-radius: 10px;
     // ! 
-    width: 78vw;
     padding: 0 30px 0;
   }
 
@@ -101,7 +102,6 @@ textarea {
 @media screen and (min-device-width: 600px) and (max-device-width: 1024px) {
   textarea {
     // border: 2px solid blue;
-    width: 60vw;
     padding: 0 165px 0;
   }
 
