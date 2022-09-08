@@ -135,7 +135,7 @@ function Navbar(props) {
   return (
     <ThemeProvider theme={theme}>
       <Box className="navContainer" sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar position="static" sx={{ boxShadow: 'none' }}>
           <Toolbar variant="dense" className="toolbar">
             {/* <IconButton
             size="large"
