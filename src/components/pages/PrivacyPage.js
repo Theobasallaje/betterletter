@@ -31,7 +31,7 @@ const PrivacyPage = (props) => {
     <div
       id="privacyPageContainer"
     >
-      <AppBar position="static" sx={{ boxShadow: 'none' }}>
+      <AppBar position="fixed" sx={{ boxShadow: 'none' }}>
         <Toolbar variant="dense" className="privacyToolbar">
           <Link
             // className={classes.brandName}
@@ -50,7 +50,7 @@ const PrivacyPage = (props) => {
             >
               <ArrowBack />
             </IconButton>
-            <Typography component="span" sx={{ fontSize: 15 }}>
+            <Typography component="span" sx={{ fontSize: 15, color: "black" }}>
               BACK TO HOME
             </Typography>
           </Link>
