@@ -46,7 +46,7 @@ function About({
               here
             </a>
             , and you can find our privacy policy
-            <a href="/privacy" target="_blank" rel="noopener noreferrer">
+            <a href="/privacy" rel="noopener noreferrer">
               {" "}
               here
             </a>

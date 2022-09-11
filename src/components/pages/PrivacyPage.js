@@ -39,7 +39,7 @@ const PrivacyPage = (props) => {
             //   e.stopPropagation();
             //   // handleFabIcon("back");
             // }}
-            to="/"
+            to="/about"
           >
             <IconButton
               // size="large"
