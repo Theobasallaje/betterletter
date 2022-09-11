@@ -36,14 +36,14 @@ function About({
           <h2 className="aboutHeader">About</h2>
           <p className="aboutParagraph">
             tdraft.io is a product of IJNA Design based out of Dallas, TX. You
-            can find the source code for this project
+            can find the source code for this project on our
             <a
               href="https://github.com/Theobasallaje/betterletter"
               target="_blank"
               rel="noopener noreferrer"
             >
               {" "}
-              here
+              Github
             </a>
             , and you can find our privacy policy
             <a href="/privacy" rel="noopener noreferrer">
