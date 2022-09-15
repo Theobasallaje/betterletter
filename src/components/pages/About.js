@@ -46,7 +46,7 @@ function About({
               Github
             </a>
             , and you can find our privacy policy
-            <a href="/privacy" rel="noopener noreferrer">
+            <a href="#/privacy" rel="noopener noreferrer">
               {" "}
               here
             </a>
