@@ -1,42 +1,43 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button } from "@mui/material";
-
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "animate.css";
 import "./NavigationModal.scss";
 
 function NavigationModal(props) {
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "75vw",
-    maxWidth: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-  };
+  const theme = createTheme({
+    typography: {
+      "fontFamily": `"Montserrat", "sans-serif"`,
+    }
+  });
+
+  function changeBackgroundColor(e) {
+    console.log('close!', document.getElementsByClassName('css-hz1bth-MuiDialog-container')[0]);
+  }
 
   return (
     <Dialog
       open={props.showModal}
       onClose={!props.showModal}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
+      aria-labelledby="Leave this page confirmation modal"
+      aria-describedby="Leave this page confirmation modal"
+      onClick={changeBackgroundColor}
+      PaperProps={{ sx: { width: 300 } }}
     >
-      <DialogTitle id="alert-dialog-title">
-        {"Leave this page?"}
-      </DialogTitle>
-      <DialogContent>
-        <DialogContentText id="alert-dialog-description">
-          If you do, you will lose what you have written.
-        </DialogContentText>
-      </DialogContent>
+      <ThemeProvider theme={theme}>
+        <DialogTitle id="alert-dialog-title">
+          {"Leave this page?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Your draft will not be saved.
+          </DialogContentText>
+        </DialogContent>
+      </ThemeProvider>
       <DialogActions>
         <Button onClick={props.cancelNavigation}>CANCEL</Button>
-        <Button onClick={props.confirmNavigation}>
+        <Button variant="contained" onClick={props.confirmNavigation}>
           LEAVE
         </Button>
       </DialogActions>
