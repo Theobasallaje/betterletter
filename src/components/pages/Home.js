@@ -39,7 +39,8 @@ const Home = (props) => {
         <img
           className="tangerineIcon"
           src={tangerineIcon}
-          alt="tdraft icon and text"
+          alt="tdraft logo which is a tangerine with a leaf on top"
+          title="tdraft logo which is a tangerine with a leaf on top"
         />
       </div>
 
@@ -67,7 +68,8 @@ const Home = (props) => {
       <img
         className="ijnaLogo"
         src={IJNA}
-        alt="IJNA logo"
+        alt="IJNA logo which is a blue window with a star on the bottom right"
+        title="IJNA logo which is a blue window with a star on the bottom right"
       />
       <p className="copyRightInfo">&#169; IJNA 2022</p>
     </div>

@@ -159,6 +159,8 @@ function Navbar(props) {
               </Link>
             </Typography>
             <SendOutlined
+              alt='Send'
+              title='Send'
               onClick={(e) => { 
                 e.stopPropagation();
                 handleShare(); 

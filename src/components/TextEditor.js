@@ -55,6 +55,9 @@ function TextEditor({
   });
 
   useEffect(() => {
+    // document.getElementById('editor').click();
+    refEditor.current.click();
+    console.log(document.getElementById('editor'));
     visualViewport.addEventListener("resize", handleMobileBlur);
     return () => {
       visualViewport.removeEventListener("resize", handleMobileBlur);
@@ -62,8 +65,8 @@ function TextEditor({
   }, [handleMobileBlur]);
 
   const handleClick = () => {
-    const end = refEditor.current.value.length;
-    console.log("handleClick ran!", end);
+    // const end = refEditor.current.value.length;
+    // console.log("handleClick ran!", end);
     if (placeHolder) {
       handlePlaceHolder(false);
       toggleDesktopShareSheet(false);
