@@ -55,8 +55,6 @@ function TextEditor({
   });
 
   useEffect(() => {
-    // document.getElementById('editor').click();
-    refEditor.current.click();
     console.log(document.getElementById('editor'));
     visualViewport.addEventListener("resize", handleMobileBlur);
     return () => {

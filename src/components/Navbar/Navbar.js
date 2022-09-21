@@ -96,6 +96,7 @@ function Navbar(props) {
   };
 
   const handleCopy = () => {
+    console.log('handleCopy ran!');
     props.handleCopySnackBar()
     var text = props.editorState;
     navigator.clipboard.writeText(text).then(
