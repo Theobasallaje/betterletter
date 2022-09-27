@@ -23,8 +23,8 @@ class App extends Component {
         <Router>
           <Routes>
             <Route path="/" exact element={<EditorPage />} />
-            <Route path="/about" exact element={<Home />} />
-            <Route path="/privacy" exact element={<PrivacyPage />} />
+            <Route path="about" exact element={<Home />} />
+            <Route path="privacy" exact element={<PrivacyPage />} />
           </Routes>
         </Router>
       </>
