@@ -9,10 +9,8 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
+import Tooltip from '@mui/material/Tooltip';
 import { Menu, SendOutlined } from "@mui/icons-material";
-import ShareSheet from "../ShareSheet/ShareSheet";
 import IconMenu from "../IconMenu/IconMenu";
 import {
   handleFabIcon,
@@ -159,15 +157,17 @@ function Navbar(props) {
                 tdraft.io
               </Link>
             </Typography>
-            <SendOutlined
-              alt='Send'
-              title='Send'
-              onClick={(e) => { 
-                e.stopPropagation();
-                handleShare(); 
-              }} 
-              className={classes.sendIcon}
-            />
+            <Tooltip title="Send">
+              <SendOutlined
+                alt='Send'
+                title='Send'
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleShare();
+                }}
+                className={classes.sendIcon}
+              />
+            </Tooltip>
             {/* <Button color="inherit">Login</Button> */}
           </Toolbar>
         </AppBar>
