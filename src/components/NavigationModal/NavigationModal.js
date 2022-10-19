@@ -6,23 +6,26 @@ import "animate.css";
 import "./NavigationModal.scss";
 
 function NavigationModal(props) {
+
   const theme = createTheme({
     typography: {
       "fontFamily": `"Montserrat", "sans-serif"`,
     }
   });
 
-  function changeBackgroundColor(e) {
-    console.log('close!', document.getElementsByClassName('css-hz1bth-MuiDialog-container')[0]);
+  const handleClose = (reason) => {
+    console.log('inside handleClose', reason, props.cancelNavigation);
+    if (props.showModal && reason === 'backdropClick') {
+      props.cancelNavigation();
+    }
   }
 
   return (
     <Dialog
       open={props.showModal}
-      onClose={!props.showModal}
+      onClose={(_, reason) => handleClose(reason)}
       aria-labelledby="Leave this page confirmation modal"
       aria-describedby="Leave this page confirmation modal"
-      onClick={changeBackgroundColor}
       PaperProps={{ sx: { width: 300 } }}
     >
       <ThemeProvider theme={theme}>
