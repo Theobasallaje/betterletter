@@ -95,7 +95,7 @@ function TextEditor({
         onChange={handleChange}
         ref={refEditor}
         onFocus={handleMobileFocus}
-        placeHolder={isMobile ? `Tap here to start typing` : `Type Something`}
+        placeHolder={isMobile ? `Tap here to start typing` : `Type something`}
         onBlur={handleMobileBlur}
         autoFocus={true}
       />
