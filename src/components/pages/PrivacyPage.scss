@@ -1,35 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 
-// html, body {
-//   height: 100vh;
-//   // border: 2px solid red;
-// }
-
-h2 {
-  margin-top: 32px;
-}
-
-.aboutHeader {
+.privacyHeader {
   margin-bottom: 24px;
   font-family: "Montserrat", sans-serif;
   font-weight: normal;
 }
 
-.aboutParagraph {
+.privacyParagraph {
   margin: 0 0 0 0;
   font-size: 20px;
   font-family: "Montserrat", sans-serif;
 }
 
-.featuresList {
-  padding-left: 16px;
-  margin: 0 0 0 0;
-  list-style-type: '- ';
-  font-size: 20px;
-  font-family: "Montserrat", sans-serif;
-}
-
-.aboutContainer {
+.privacyInfoContainer {
   // border: 2px solid orange;
   height: 100%;
   // width: calc(100vw - (100vw - 100%));
@@ -45,41 +29,50 @@ h2 {
 //   display: flex;
 // }
 
-.aboutContent {
+.privacyContent {
   // border: 2px solid red;
   max-width: 600px;
   height: 100%;
-  margin-top: 64px;
+  margin-top: 32px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-// .aboutParagraph:nth-child(2),
-// .contact:nth-child(1) {
-//   margin: 32px 0 0 0;
-//   // border: 2px solid red;
-// }
-
 a:link {
   text-decoration: none;
 }
 
-// .emailButton {
-//   text-transform: lowercase;
-//   text-transform: capitalize;
-// }
+#privacyPageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.privacyPolicyHeader {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 78px;
+  margin-bottom: 32px;
+  margin-top: 80px;
+  max-width: 600px;
+}
+
+.privacyEmailLink {
+  margin-bottom: 100px;
+}
+
+.privacyToolbar {
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
 
 @media only screen and (max-width: 600px) {
-  //Phone
-  html,
-  body {
-    width: 100%;
-    overflow: auto;
-    position: relative;
-  }
-
-  .aboutContent {
+  .privacyContent {
     // border: 2px solid red;
     width: 100%;
     display: flex;

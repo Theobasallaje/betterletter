@@ -1,69 +1,104 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useEffect, useCallback, useRef, useState } from "react";
 import { connect } from "react-redux";
+import { isAndroid, isIOS } from "react-device-detect";
 import {
   changeEditor,
+  handleEditorClass,
   handlePlaceHolder,
   handleFabIcon,
   handleEditorRef,
+  handleTextDetection,
   toggleDesktopShareSheet,
 } from "./../actions";
 import "./TextEditor.scss";
 
-// FIXME:
 function TextEditor({
   placeHolder,
   fabIcon,
+  isMobile,
+  handleEditorClass,
   handlePlaceHolder,
   handleFabIcon,
+  handleTextDetection,
+  hasText,
   changeEditor,
   toggleDesktopShareSheet,
 }) {
-  // console.log(props);
-  // TODO: uninstall Draftjs
-  let refEditor = useRef("editor");
-  const hydrate = useCallback(() => {
-    handleClick();
-    window.addEventListener("keydown", handleKeyPressFocus);
-    // if (fabIcon === "share") refEditor.current.focus(); // Not needed cause the handle click gets called when fabIcon changes
-    console.log("hydrate()");
-  }, [fabIcon]);
-  useEffect(() => {
-    console.log("Inside UseEffect");
-    hydrate();
-    return () => {
-      window.removeEventListener("keydown", handleKeyPressFocus);
-    };
-  }, [hydrate]); //! When I put props in the dependency array, it keeps looping and running the useEffect, WHY??
+  let refEditor = useRef();
+  const [editorContainerClass, setEditorContainerClass] =
+    useState("editorContainer");
+  const [focused, setFocused] = useState(false);
+  const [prevViewport, setPrevViewport] = useState(0);
+  const ua = navigator.userAgent;
 
-  // https://dev.to/r3wt/useeffect-missing-dependency-need-advice-4d6b
-  // https://stackoverflow.com/questions/54219238/how-to-stop-editor-draftjs-cursor-jumping-to-beginning-of-text-while-typing-in-r
+  const handleMobileBlur = useCallback(() => {
+    setFocused(false);
+    setPrevViewport(visualViewport.height);
+    isAndroid && setEditorContainerClass("editorContainer");
+    if (isAndroid && prevViewport > visualViewport.height) {
+      setEditorContainerClass("editorContainerKeyboard");
+      handleEditorClass("editorContainerKeyboard");
+      setFocused(true);
+    } else if (isAndroid && prevViewport === 0) {
+      handleClick();
+      setEditorContainerClass("editorContainerKeyboard");
+      handleEditorClass("editorContainerKeyboard");
+    } else if (isAndroid && !isIOS) {
+      setEditorContainerClass("editorContainer");
+      handleEditorClass("editorContainer");
+    } else if (isIOS) {
+      setEditorContainerClass("editorContainerKeyboardIos");
+      handleEditorClass("editorContainerKeyboardIos");
+    } else {
+      return;
+    }
+  });
+
+  useEffect(() => {
+    console.log(document.getElementById('editor'));
+    visualViewport.addEventListener("resize", handleMobileBlur);
+    return () => {
+      visualViewport.removeEventListener("resize", handleMobileBlur);
+    };
+  }, [handleMobileBlur]);
 
   const handleClick = () => {
-    console.log("handleClick ran!");
+    // const end = refEditor.current.value.length;
+    // console.log("handleClick ran!", end);
     if (placeHolder) {
       handlePlaceHolder(false);
-      // handleHomeAnimation('animate__animated animate__flipInY');
-      handleFabIcon("share");
       toggleDesktopShareSheet(false);
     }
+    setFocused(true);
     refEditor.current.focus();
-  };
-
-  const handleKeyPressFocus = (event) => {
-    handleClick();
-    if (fabIcon === "shareSheetClose") {
-      handleFabIcon("share");
-      toggleDesktopShareSheet(false);
-    }
+    console.log('refEditor.current: ', refEditor.current);
   };
 
   const handleChange = (event) => {
+    if (!hasText && event.target.value.length > 0) {
+      handleTextDetection(true)
+    } else if (hasText && event.target.value.length <= 0) {
+      handleTextDetection(false);
+    }
     changeEditor(event.target.value);
   };
 
+  const handleMobileFocus = () => {
+    isAndroid && setEditorContainerClass("editorContainerKeyboard");
+  };
+
   return (
-    <div className="editorContainer" onClick={handleClick}>
-      <textarea tabIndex={-1} onChange={handleChange} ref={refEditor} />
+    <div className={editorContainerClass} onClick={handleClick}>
+      <textarea
+        id="editor"
+        tabIndex={-1}
+        onChange={handleChange}
+        ref={refEditor}
+        onFocus={handleMobileFocus}
+        placeHolder={isMobile ? `Tap here to start typing` : `Type something`}
+        onBlur={handleMobileBlur}
+        autoFocus={true}
+      />
     </div>
   );
 }
@@ -72,12 +107,16 @@ const mapStateToProps = (state) => ({
   placeHolder: state.placeHolder.placeHolderShow,
   editorState: state.textEditor.editorState,
   fabIcon: state.fab.fabIcon,
+  isMobile: state.placeHolder.isMobile,
+  hasText: state.textEditor.hasText,
 });
 
 export default connect(mapStateToProps, {
   changeEditor,
+  handleEditorClass,
   handlePlaceHolder,
   handleFabIcon,
   handleEditorRef,
+  handleTextDetection,
   toggleDesktopShareSheet,
 })(TextEditor);

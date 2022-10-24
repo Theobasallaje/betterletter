@@ -1,5 +1,5 @@
 // Author: Theo Basallaje
-import React from "react";
+import React, { useEffect, useCallback, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import ShareSheet from "../ShareSheet/ShareSheet";
@@ -14,43 +14,46 @@ import Box from "@mui/material/Box";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
 import { grey } from "@mui/material/colors";
-import {
-  handleFabIcon,
-  handlePlaceHolder,
-  toggleDesktopShareSheet,
-} from "../../actions";
-
-const theme = createTheme({
-  palette: {
-    // primary: {
-    //   main: grey[400],
-    // },
-    primary: grey,
-    secondary: grey,
-  },
-});
-
-const useStyles = makeStyles({
-  root: {
-    textDecoration: "none",
-    // float: "right",
-    margin: "0 0 0 80%",
-    bottom: "16px",
-    position: "absolute",
-  },
-  shareSheetDesktop: {
-    bottom: '80px',
-    margin: '0 0 0 80%',
-    position: 'absolute',
-    // border: '2px solid red',
-    width: '56px',
-    height: '186px',
-    display: 'flex',
-    justifyContent: 'center',
-  },
-});
+import { handleFabIcon, handlePlaceHolder } from "../../actions";
 
 const FabWrapper = (props) => {
+  const [fabBottom, setFabBottom] = useState("16px");
+  const ua = navigator.userAgent;
+
+  const theme = createTheme({
+    palette: {
+      // primary: {
+      //   main: grey[400],
+      // },
+      primary: {
+        main: "#FDDAA5",
+      },
+      // secondary: grey,
+    },
+  });
+
+  const Hover = {
+    "&:hover": {
+      color: "#FDDAA5",
+      backgroundColor: "#FDDAA5",
+    },
+  };
+
+  const useStyles = makeStyles({
+    root: {
+      textDecoration: "none",
+      // float: "right",
+      margin: "0 0 0 80%",
+      bottom: fabBottom,
+      right: "3%",
+      position: "fixed",
+      // borderRadius: "15px",
+      // backgroundColor: "#FDDAA5",
+      // boxShadow: "0 4px 4px 0 #00000040",
+      border: "none",
+    },
+  });
+
   const handleFabIcon = (icon) => {
     switch (icon) {
       case "back":
@@ -63,9 +66,6 @@ const FabWrapper = (props) => {
         props.handleFabIcon("info");
         props.handlePlaceHolder(true);
         break;
-      case "share":
-        props.handleFabIcon("share");
-        break;
       case "shareSheetClose":
         props.handleFabIcon("shareSheetClose");
         break;
@@ -73,59 +73,6 @@ const FabWrapper = (props) => {
         props.handleFabIcon("info");
         props.handlePlaceHolder(true);
         break;
-    }
-  };
-
-  const handleCopy = () => {
-    props.handleCopyConfirmationAnimation(
-      "copyConfirmation animate__animated animate__backInDown",
-      "copyConfirmation animate__animated animate__fadeOut"
-    );
-    var text = props.editorState;
-    navigator.clipboard.writeText(text).then(
-      function () {
-        console.log("Async: Copying to clipboard was successful!");
-      },
-      function (err) {
-        console.error("Async: Could not copy text: ", err);
-      }
-    );
-    props.toggleDesktopShareSheet(false);
-  };
-
-  const handleShareShow = () => {
-    console.log("handleShareShow Ran!");
-    props.toggleDesktopShareSheet(true);
-    handleFabIcon("shareSheetClose");
-  };
-
-  const handleShareClose = () => {
-    console.log("handleShareClose Ran!");
-    props.toggleDesktopShareSheet(false);
-    handleFabIcon("share");
-  };
-
-  const handleShare = (e) => {
-    if (props.isMobile) {
-      if (navigator.share) {
-        navigator
-          .share({
-            // title: "tdraft",
-            text: props.editorState,
-            // text: props.editorRef.current.editor.innerText,
-            // url: "https://tdraft.io",
-          })
-          .then(() => {
-            console.log("Successful share");
-          })
-          .catch((error) => console.log("Error sharing", error));
-      }
-    } else {
-      // on Desktop
-      e.stopPropagation();
-      // console.log('props.showDesktopShareSheet: ', props.showDesktopShareSheet);
-      console.log("props.shareSheetClose: ", props.fabIcon);
-      props.showDesktopShareSheet ? handleShareClose() : handleShareShow();
     }
   };
 
@@ -142,7 +89,15 @@ const FabWrapper = (props) => {
             to="/about"
           >
             {/* <Fab color="primary" > */}
-            <Fab>
+            <Fab
+              sx={{
+                backgroundColor: "primary.main",
+                borderRadius: "15px",
+                border: "none",
+                boxShadow: "0 4px 4px 0 #00000040",
+                "&:hover": { background: "#FDDAA5" },
+              }}
+            >
               <InfoOutlined className="icon" />
             </Fab>
           </Link>
@@ -155,29 +110,20 @@ const FabWrapper = (props) => {
             }}
             to="/"
           >
-            <Fab className="infoFabButton">
+            <Fab
+              className="infoFabButton"
+              sx={{
+                backgroundColor: "primary.main",
+                borderRadius: "15px",
+                border: "none",
+                boxShadow: "0 4px 4px 0 #00000040",
+                "&:hover": { background: "#FDDAA5" },
+              }}
+            >
               <ArrowBackIosNew className="icon" />
             </Fab>
           </Link>
         )}
-        {/* {props.isMobile && props.fabIcon === "share" && ( */}
-        {props.fabIcon === "share" && (
-          <Link onClick={handleShare} className="noSelect">
-            <Fab className="infoFabButton">
-              <Send className="icon" />
-            </Fab>
-          </Link>
-        )}
-        {props.fabIcon === "shareSheetClose" && (
-          <Link onClick={handleShare} className="noSelect">
-            <Fab className="infoFabButton">
-              <Clear className="icon" />
-            </Fab>
-          </Link>
-        )}
-      </Box>
-      <Box className={classes.shareSheetDesktop}>
-        {props.showDesktopShareSheet && <ShareSheet handleCopy={handleCopy} />}
       </Box>
     </ThemeProvider>
   );
@@ -185,13 +131,12 @@ const FabWrapper = (props) => {
 
 const mapStateToProps = (state) => ({
   fabIcon: state.fab.fabIcon,
-  showDesktopShareSheet: state.fab.showDesktopShareSheet,
   editorState: state.textEditor.editorState,
+  editorClass: state.textEditor.editorClass,
   isMobile: state.placeHolder.isMobile,
 });
 
 export default connect(mapStateToProps, {
   handleFabIcon,
   handlePlaceHolder,
-  toggleDesktopShareSheet,
 })(FabWrapper);

@@ -1,72 +1,81 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { handleFabIcon, showShareButton } from "./../../actions";
-import FabWapper from "../FabWrapper/FabWrapper";
+import {
+  handleFabIcon,
+  showShareButton,
+  handleTextDetection,
+} from "./../../actions";
+import Button from "@mui/material/Button";
 import "./About.scss";
 import "animate.css";
 import tangerineLogo from "./../../images/tdraft_logo.png";
 
 // function About(props) {
-function About({ handleFabIcon, showShareButton }) {
+function About({
+  handleFabIcon,
+  showShareButton,
+  handleTextDetection,
+  hasText,
+}) {
   useEffect(() => {
     handleFabIcon("back");
     showShareButton(false);
+    hasText && handleTextDetection(false);
   }, [handleFabIcon, showShareButton]); // dependencies
 
   return (
     <>
-      <div className="aboutContainer animate__animated animate__bounceInLeft">
-        <div className="aboutContentContainer">
-          <div className="aboutContent">
-            <div>
-              <div className="logoContainer">
-                <img
-                  className="logo animate__animated"
-                  src={tangerineLogo}
-                  alt="tdraft Tangerine Logo"
-                />
-                <h1 className="aboutHeader">tdraft.io</h1>
-              </div>
-              {/* <img className="logo animate__animated animate__rubberBand" src={tangerineLogo} alt="tdraft Tangerine Logo" /> */}
-              <p className="aboutParagraph">
-                tdraft is a simple, mobile-optimized text editor for the web.
-              </p>
-              <p className="aboutParagraph">
-                Type distraction free and then move your text to other apps.
-              </p>
-            </div>
-            <div className="authorsDiv">
-              <p className="authors">Made by:</p>
-              <p className="authors">
-                <a
-                  href="https://www.linkedin.com/in/jonathan-basallaje-08a043141/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Jonathan{" "}
-                </a>
-                and
-                <a
-                  href="https://www.linkedin.com/in/theobasallaje/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {" "}
-                  Theo Basallaje
-                </a>
-              </p>
-            </div>
-          </div>
+      <div className="aboutContainer">
+        <div className="aboutContent">
+          <h2 className="aboutHeader">Features</h2>
+          <ul className="featuresList">
+            <li>Type distraction free</li>
+            <li>Move your text to other apps</li>
+            <li>Optimized for Mobile</li>
+          </ul>
+          <h2 className="aboutHeader">About</h2>
+          <p className="aboutParagraph">
+            tdraft.io is a product of IJNA Design based out of Dallas, TX. You
+            can find the source code for this project on our
+            <a
+              href="https://github.com/Theobasallaje/betterletter"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              Github
+            </a>
+            , and you can find our privacy policy
+            <a href="/privacy" rel="noopener noreferrer">
+              {" "}
+              here
+            </a>
+            .
+          </p>
+          <h2 className="aboutHeader">Contact</h2>
+          <p className="aboutParagraph">
+            If you have any questions or feedback, please reach out to us using
+            the following email address:
+          </p>
+          <a
+            href="mailto:jbasallaje@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            jbasallaje@gmail.com
+          </a>
         </div>
       </div>
-      <FabWapper />
     </>
   );
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = (state) => ({
+  hasText: state.textEditor.hasText,
+});
 
 export default connect(mapStateToProps, {
   handleFabIcon,
   showShareButton,
+  handleTextDetection,
 })(About);

@@ -2,6 +2,8 @@
 export const EDITOR_REF = "EDITOR_REF";
 export const EDITOR_CREATE = "EDITOR_CREATE";
 export const EDITOR_CHANGE = "EDITOR_CHANGE";
+export const EDITOR_CLASS = "EDITOR_CLASS";
+export const HAS_TEXT = "HAS_TEXT";
 
 // Fab
 export const FAB_ICON = "FAB_ICON";

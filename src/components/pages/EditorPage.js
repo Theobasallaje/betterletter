@@ -1,6 +1,16 @@
-import React, { Component } from "react";
+import React, {
+  Component,
+  useEffect,
+  useCallback,
+  useRef,
+  useState,
+} from "react";
+import { Prompt } from "react-router-dom";
+import { useCallbackPrompt } from "../../hooks/useCallbackPrompt";
 import { connect } from "react-redux";
+import Navbar from "../Navbar/Navbar";
 import TextEditor from "./../TextEditor";
+import NavigationModal from "../NavigationModal/NavigationModal";
 import {
   handleFabIcon,
   handlePlaceHolder,
@@ -9,83 +19,85 @@ import {
 } from "./../../actions";
 import { faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import placeholder from "./../../images/tdraft_placeholder.png";
-// import placeholderSmall from "./../../images/tdraft_placeholder_small.png";
 import placeholderLowerCase from "./../../images/tdraft_placeholder_lower_case.png";
 import placeholderDesktop from "./../../images/tdraft_desktop_placeholder_lower_case.png";
 import FabWrapper from "../FabWrapper/FabWrapper";
-import "./EditorPage.scss";
+import styles from "./EditorPage.module.scss";
 import "animate.css";
-class EditorPage extends Component {
-  state = {
-    homeContainerClass: "",
-    copyConfirmationClass: "copyConfirmation",
-    showCopyConfrimation: false,
+import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
+import Box from "@mui/material/Box";
+import { makeStyles } from "@mui/styles";
+
+const EditorPage = (props) => {
+  const [copyConfirmationClass, setCopyConfirmationClass] =
+    useState("copyConfirmation");
+  const [showCopyConfrimation, setShowCopyConfirmation] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [showPrompt, confirmNavigation, cancelNavigation] = useCallbackPrompt(
+    props.hasText
+  );
+
+  const handleCopySnackBar = () => {
+    setShowCopyConfirmation(true);
+    setOpen(true);
+    setTimeout(() => {
+      handleCopySnackBarClose();
+    }, 4000);
   };
 
-  componentDidMount() {
-    // if (!this.props.placeHolder) alert("Test!");
-    window.onbeforeunload = function () {
-      return "Data will be lost if you leave the page, are you sure?";
-    };
-  }
-
-  componentWillUnmount() {
-    window.location.reload();
-  }
-
-  handleCopyConfirmationAnimation = (classEnter, ClassExtit) => {
-    this.setState({
-      showCopyConfrimation: true,
-      copyConfirmationClass: classEnter,
-    });
-    // TODO: Look into making this a promise.
-    setTimeout(() => {
-      this.setState({
-        copyConfirmationClass: ClassExtit,
-      });
-    }, 1200);
-    setTimeout(() => {
-      this.setState({
-        showCopyConfrimation: false,
-      });
-    }, 2200);
-    console.log("Inisde handleHomeExit!");
+  const handleCopySnackBarClose = () => {
+    setOpen(false);
+    setShowCopyConfirmation(false);
   };
 
-  handleKeyPressFocus = () => {
-    if (!this.props.keyPress) {
-      this.handleKeyPress(true)
-    }
-  }
+  const handleDismissShareSheet = () => {
+    props.showDesktopShareSheet && props.toggleDesktopShareSheet(false);
+  };
 
-  render() {
-    return (
-      <div
-        id="homeContainer"
-        className={this.state.homeContainerClass}
-      >
-        {/* //! adding animation here made the fab have unexpected behavior, not coming up with keyboard on Android */}
-        {!this.props.isMobile && this.state.showCopyConfrimation && (
-          <div className="copyConfirmationContainer">
-            <div className={this.state.copyConfirmationClass}>Copied!</div>
-          </div>
-        )}
-        <div className="editorDiv">
-          {/* //? Is this prop needed, doesnt seem to be used in the TextEditor component */}
-          <TextEditor handleHomeAnimation={this.handleHomeAnimation} /> 
-        </div>
-        <FabWrapper
-          handleCopyConfirmationAnimation={this.handleCopyConfirmationAnimation}
+  return (
+    <div
+      className={styles.editorPageContainer}
+      onClick={handleDismissShareSheet}
+    >
+      <NavigationModal
+        showModal={showPrompt}
+        confirmNavigation={confirmNavigation}
+        cancelNavigation={cancelNavigation}
+      />
+      {!props.isMobile && showCopyConfrimation && (
+        <Snackbar
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          // autoHideDuration={1000}
+          open={open}
+          onClose={handleCopySnackBarClose}
+          message="Copied!"
+          key={"top" + "center"}
+          sx={{
+            "& .MuiSnackbarContent-root": {
+              backgroundColor: "white",
+              color: "black",
+              minWidth: 80,
+              maxWidth: 80,
+              justifyContent: "center",
+              padding: 0,
+            },
+          }}
         />
+      )}
+      <Navbar handleCopySnackBar={handleCopySnackBar} />
+      <div className={styles.editorDiv}>
+        <TextEditor />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => ({
   placeHolder: state.placeHolder.placeHolderShow,
   isMobile: state.placeHolder.isMobile,
+  showDesktopShareSheet: state.fab.showDesktopShareSheet,
+  editorState: state.textEditor.editorState,
+  hasText: state.textEditor.hasText,
 });
 
 export default connect(mapStateToProps, {

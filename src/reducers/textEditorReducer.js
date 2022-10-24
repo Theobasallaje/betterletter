@@ -1,8 +1,9 @@
-import { EDITOR_CHANGE, EDITOR_CREATE, EDITOR_REF } from "../actions/types";
+import { EDITOR_CHANGE, EDITOR_CLASS, EDITOR_CREATE, EDITOR_REF, HAS_TEXT } from "../actions/types";
 
 const INTIAL_STATE = {
   editorState: "",
-  hasText: null,
+  editorClass: "editorContainer",
+  hasText: false,
   ref: null,
 };
 
@@ -14,6 +15,10 @@ export default (state = INTIAL_STATE, action) => {
       return { ...state, editorState: action.payload.editorState };
     case EDITOR_CHANGE:
       return { ...state, editorState: action.payload.editorState };
+    case EDITOR_CLASS:
+      return { ...state, editorClass: action.payload };
+    case HAS_TEXT:
+      return { ...state, hasText: action.payload };
     default:
       return state;
   }

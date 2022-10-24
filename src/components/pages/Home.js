@@ -1,98 +1,83 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { connect } from "react-redux";
-
-import {
-  handleFabIcon,
-  handlePlaceHolder,
-  showShareButton,
-  toggleDesktopShareSheet,
-} from "./../../actions";
 import { faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import placeholder from "./../../images/tdraft_placeholder.png";
-// import placeholderSmall from "./../../images/tdraft_placeholder_small.png";
-import placeholderLowerCase from "./../../images/tdraft_logo.png";
-import placeholderDesktop from "./../../images/tdraft_logo.png";
+import tangerineIcon from "../../images/tangerine_icon.png";
+import IJNA from "../../images/IJNA_logo.png";
 import FabWrapper from "../FabWrapper/FabWrapper";
+import Button from '@mui/material/Button';
+import About from "./About";
 import "./Home.scss";
 import "animate.css";
-class Home extends Component {
-  state = {
-    homeContainerClass: "",
-    copyConfirmationClass: "copyConfirmation",
-    showCopyConfrimation: false,
+const Home = (props) => {
+  // const history = useHistory();
+  const history = useNavigate();
+  const [homeContainerClass, setHomeContainerClass] = useState("");
+  const [copyConfirmationClass, setCopyConfirmationClass] = useState("copyConfirmation");
+  const [showCopyConfrimation, setShowCopyConfirmation] = useState(false);
+
+  useEffect(() => {
+
+  }, []);
+
+  const showEditor = () => {
+    history("/");
   };
 
-  componentDidMount() {
-    window.addEventListener("keydown", this.handleKeyPressFocus);
-    return () => {
-      window.removeEventListener("keydown", this.handleKeyPressFocus);
-    };
-  }
-
-  handlePlaceHolder = () => {
-    console.log("handlePlaceHolder Ran!");
-    // this.props.handlePlaceHolder(false);
-    // this.props.handleFabIcon("share");
-    // this.props.toggleDesktopShareSheet(false);
-    // this.props.showShareButton(true);
-    this.props.history.push("/editor");
-  };
-
-  handleHomeAnimation = (className) => {
-    this.setState({
-      homeContainerClass: className,
-    });
-    console.log("Inisde handleHomeExit!");
-  };
-
-  handleKeyPressFocus = () => {
-    this.props.history.push("/editor");
-  }
-
-  render() {
-    return (
+  return (
+    <div
+      id="homeContainer"
+      className={homeContainerClass}
+    >
       <div
-        id="homeContainer"
-        className={this.state.homeContainerClass}
-        onClick={this.handlePlaceHolder}
+        className="textIconContainer"
       >
-        {this.props.placeHolder && (
-          <div
-            className="placeholderContainer"
-          //! Why is this not triggering??
-          // onClick={this.handlePlaceHolder} 
-          >
-            {/* <img className="placeholder" src={placeholder} alt="placeholder" /> */}
-            {/* <img className="placeholder" src={placeholderSmall} alt="placeholder" /> */}
-            {/* //TODO: make h1 */}
-            <p className="title animate__animated animate__fadeIn">tdraft.io</p>
-            <img
-              className="placeholder animate__animated animate__fadeIn"
-              src={
-                this.props.isMobile ? placeholderLowerCase : placeholderDesktop
-              }
-              alt="placeholder"
-            />
-            <br /><br />
-            <p className="instructions animate__animated animate__fadeIn">{this.props.isMobile ? 'Tap anywhere to start typing' : 'Click anywhere or press any key'}</p>
-            <hr />
-          </div>
-        )}
-        <FabWrapper />
+        {/* //! put in another container? want tangerine aligned with middle of text */}
+        {/* //TODO: make h1 */}
+        <p className="title">tdraft.io</p>
+        <img
+          className="tangerineIcon"
+          src={tangerineIcon}
+          alt="tdraft logo which is a tangerine with a leaf on top"
+          title="tdraft logo which is a tangerine with a leaf on top"
+        />
       </div>
-    );
-  }
-}
+
+      <Button
+        onClick={() => {
+          history('/');
+        }}
+        variant="outlined"
+        size="large"
+        sx={{
+          color: "black",
+          background: "#FDDAA5",
+          textAlign: "left",
+          borderColor: "black",
+          marginTop: "20vh",
+          marginBottom: "12vh",
+          marginRight: "8px",
+          borderWidth: "2px",
+          "&:hover": { borderWidth: "2px", borderColor: "black", background: "#FDDAA5" },
+        }}
+      >
+        Start Typing
+      </Button>
+      <About />
+      <img
+        className="ijnaLogo"
+        src={IJNA}
+        alt="IJNA logo which is a blue window with a star on the bottom right"
+        title="IJNA logo which is a blue window with a star on the bottom right"
+      />
+      <p className="copyRightInfo">&#169; IJNA 2022</p>
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => ({
-  placeHolder: state.placeHolder.placeHolderShow,
   isMobile: state.placeHolder.isMobile,
 });
 
-export default connect(mapStateToProps, {
-  handleFabIcon,
-  handlePlaceHolder,
-  showShareButton,
-  toggleDesktopShareSheet,
-})(Home);
+export default connect(mapStateToProps)(Home);

@@ -1,8 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
-body {
-  overflow: auto; /* Hide scrollbars */
-  font-family: "Montserrat", sans-serif;
+html {
+  // border: 2px solid blue;
+}
+.editorContainer {
+  body {
+    overflow: hidden; /* Hide scrollbars */
+    // overflow: auto; /* Hide scrollbars */
+    font-family: "Montserrat", sans-serif;
+    // border: 2px solid red;
+  }
 }
 
 // button {
@@ -22,16 +29,17 @@ body {
 .editorContainer {
   display: flex;
   justify-content: center;
-  position: absolute;
-  top: 0;
-  // border: 2px solid red;
+  position: fixed;
+  margin-top: 80px;
+  // border: 2px solid blue;
+  height: 90%;
 }
 
 textarea {
   font-size: large;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   resize: none;
-  margin-top: 40px;
+  // margin-top: 75px;
   border: none;
   overflow: auto;
   outline: none;
@@ -40,27 +48,94 @@ textarea {
   -moz-box-shadow: none;
   box-shadow: none;
 
-  resize: none; 
-  // border: 2px solid red;
-  height: 95vh;
-  width: 65vw;
+  resize: none;
+  // border: 2px solid blue;
+  // height: 85vh;
+  width: 78vw;
+  max-width: 800px;
   padding: 0 16vw 0;
+  line-height: 1.6;
 }
 
 // Phone
 @media only screen and (max-width: 600px) {
   textarea {
+    // margin-top: 65px;
+    // height: 100%;
     // border: 2px solid red;
-    width: 78vw;
+    // ! for textarea border - too large
+    // border: 2px solid black;
+    // border-radius: 10px;
+    // ! 
     padding: 0 30px 0;
+  }
+
+  .editorContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+    // border: 2px solid red;
+    height: 85%;
+  }
+
+  .editorContainerKeyboard {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    margin-top: 80px;
+    // border: 2px solid blue;
+    height: 75%;
+  }
+
+  .editorContainerKeyboardIos {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    margin-top: 80px;
+    // border: 2px solid black;
+    // border-radius: 10px;
+    height: 25vh;
   }
 }
 
 // Tablet
-@media screen and (min-device-width: 600px) and (max-device-width: 1024px) { 
+@media screen and (min-device-width: 600px) and (max-device-width: 1024px) {
   textarea {
     // border: 2px solid blue;
-    width: 60vw;
     padding: 0 165px 0;
+  }
+
+  .editorContainer {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    margin-top: 80px;
+    // border: 2px solid red;
+    height: 90%;
+  }
+
+  .editorContainerKeyboard {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    margin-top: 80px;
+    // border: 2px solid blue;
+    height: 55%;
+  }
+
+  .editorContainerKeyboardIos {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    margin-top: 80px;
+    // border: 2px solid black;
+    // border-radius: 10px;
+    height: 50vh;
+  }
+
+  @media (orientation: landscape) {
+    .editorContainerKeyboardIos {
+      height: 15vh;
+    }
   }
 }
