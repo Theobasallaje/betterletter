@@ -1,0 +1,14 @@
+[
+      {
+            "relation": [
+                  "delegate_permission/common.handle_all_urls"
+            ],
+            "target": {
+                  "namespace": "android_app",
+                  "package_name": "io.tdraftijna.twa",
+                  "sha256_cert_fingerprints": [
+                        "79:8C:C0:66:7C:F5:4C:F3:3C:DC:CE:9E:C4:CF:52:AD:E0:BC:A7:60:74:98:6E:09:AD:7D:C8:A7:38:0E:57:4D"
+                  ]
+            }
+      }
+]
