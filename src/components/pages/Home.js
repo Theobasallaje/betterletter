@@ -18,7 +18,7 @@ const Home = (props) => {
   const [showCopyConfrimation, setShowCopyConfirmation] = useState(false);
 
   useEffect(() => {
-
+    window.scrollTo(0, 0)
   }, []);
 
   const showEditor = () => {
