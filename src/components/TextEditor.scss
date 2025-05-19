@@ -57,6 +57,15 @@ textarea {
   line-height: 1.6;
 }
 
+[data-theme='dark'] textarea {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+[data-theme='dark'] textarea::placeholder {
+  color: #888;
+}
+
 // Phone
 @media only screen and (max-width: 600px) {
   textarea {
