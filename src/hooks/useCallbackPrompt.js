@@ -1,11 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useCallback, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useBlocker } from './useBlocker';
 
 export function useCallbackPrompt(when) {
   const navigate = useNavigate();
-  const location = useLocation();
   const [showPrompt, setShowPrompt] = useState(false);
   const [lastLocation, setLastLocation] = useState(null);
   const [confirmedNavigation, setConfirmedNavigation] = useState(false);
@@ -14,23 +12,6 @@ export function useCallbackPrompt(when) {
     setShowPrompt(false);
   }, []);
 
-  // handle blocking when user click on another route prompt will be shown
-  const handleBlockedNavigation = useCallback(
-    (nextLocation) => {
-        // in if condition we are checking next location and current location are equals or not
-      if (
-        !confirmedNavigation &&
-        nextLocation.location.pathname !== location.pathname
-      ) {
-        setShowPrompt(true);
-        setLastLocation(nextLocation);
-        return false;
-      }
-      return true;
-    },
-    [confirmedNavigation],
-  );
-
   const confirmNavigation = useCallback(() => {
     setShowPrompt(false);
     setConfirmedNavigation(true);
@@ -38,11 +19,16 @@ export function useCallbackPrompt(when) {
 
   useEffect(() => {
     if (confirmedNavigation && lastLocation) {
-      navigate(lastLocation.location.pathname);
+      navigate(lastLocation);
     }
-  }, [confirmedNavigation, lastLocation]);
+  }, [confirmedNavigation, lastLocation, navigate]);
 
-  useBlocker(handleBlockedNavigation, when);
+  // Handle blocking the navigation in React Router v7 using useBlocker
+  const [blockNavigation, startBlocking] = useBlocker(() => {
+    setShowPrompt(true);
+    setLastLocation(window.location.pathname); // Store the last location
+  }, when);
 
-  return [showPrompt, confirmNavigation, cancelNavigation];
+  // Return the prompt visibility, navigation functions, and startBlocking function
+  return [showPrompt, confirmNavigation, cancelNavigation, startBlocking];
 }

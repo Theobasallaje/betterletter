@@ -1,41 +1,37 @@
 import React, {
-  Component,
   useEffect,
   useCallback,
-  useRef,
   useState,
 } from "react";
-import { Prompt } from "react-router-dom";
-import { useCallbackPrompt } from "../../hooks/useCallbackPrompt";
 import { connect } from "react-redux";
 import Navbar from "../Navbar/Navbar";
 import TextEditor from "./../TextEditor";
 import NavigationModal from "../NavigationModal/NavigationModal";
+import { useCallbackPrompt } from "../../hooks/useCallbackPrompt";
 import {
   handleFabIcon,
   handlePlaceHolder,
   showShareButton,
   toggleDesktopShareSheet,
 } from "./../../actions";
-import { faShare } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import placeholderLowerCase from "./../../images/tdraft_placeholder_lower_case.png";
-import placeholderDesktop from "./../../images/tdraft_desktop_placeholder_lower_case.png";
-import FabWrapper from "../FabWrapper/FabWrapper";
+import Snackbar from "@mui/material/Snackbar";
 import styles from "./EditorPage.module.scss";
-import "animate.css";
-import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
-import Box from "@mui/material/Box";
-import { makeStyles } from "@mui/styles";
 
 const EditorPage = (props) => {
-  const [copyConfirmationClass, setCopyConfirmationClass] =
-    useState("copyConfirmation");
+  const [copyConfirmationClass, setCopyConfirmationClass] = useState("copyConfirmation");
   const [showCopyConfrimation, setShowCopyConfirmation] = useState(false);
   const [open, setOpen] = useState(false);
-  const [showPrompt, confirmNavigation, cancelNavigation] = useCallbackPrompt(
-    props.hasText
-  );
+  
+  // Deconstructing returned values from the custom hook
+  const [showPrompt, confirmNavigation, cancelNavigation, startBlocking] = useCallbackPrompt(props.hasText);
+
+  // When user tries to navigate, block the navigation and show the prompt
+  useEffect(() => {
+    if (props.hasText) {
+      // If user is editing and tries to navigate away, trigger blocker
+      startBlocking();
+    }
+  }, [props.hasText, startBlocking]);
 
   const handleCopySnackBar = () => {
     setShowCopyConfirmation(true);
@@ -59,15 +55,14 @@ const EditorPage = (props) => {
       className={styles.editorPageContainer}
       onClick={handleDismissShareSheet}
     >
-      <NavigationModal
+      {/* <NavigationModal
         showModal={showPrompt}
         confirmNavigation={confirmNavigation}
         cancelNavigation={cancelNavigation}
-      />
+      /> */}
       {!props.isMobile && showCopyConfrimation && (
         <Snackbar
           anchorOrigin={{ vertical: "top", horizontal: "center" }}
-          // autoHideDuration={1000}
           open={open}
           onClose={handleCopySnackBarClose}
           message="Copied!"
